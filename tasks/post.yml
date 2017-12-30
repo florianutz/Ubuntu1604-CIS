@@ -1,7 +1,7 @@
 ---
 # Post tasks
 
-- name: "Find removed configured apt packages"
+- name: "Find removed but configured apt packages"
   shell: "dpkg --list|grep ^rc|tr -s ' '|cut -d ' ' -f 2"
   register: apt_rc_packages
   changed_when: no

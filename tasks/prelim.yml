@@ -22,6 +22,7 @@
 - name: "PRELIM | Run apt cache update"
   apt:
     update_cache: yes
+  changed_when: no
 
 - name: "PRELIM | Section 4.1 | Configure System Accounting (auditd)"
   apt:
