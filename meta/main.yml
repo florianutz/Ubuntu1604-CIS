@@ -1,0 +1,19 @@
+galaxy_info:
+  author: "Daniel Shepherd, Matt Shepherd, Bas Meijeri, amunter, daswars"
+  description: "Ansible role to apply Ubuntu 16.04 CIS Baseline"
+  company:
+  license: MIT
+  min_ansible_version: 2.4
+
+  platforms:
+  - name: Ubuntu
+    versions:
+      - 16.04
+
+  galaxy_tags:
+    - system
+    - security
+    - cis
+    - hardening
+
+dependencies: []
