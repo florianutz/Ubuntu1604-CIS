@@ -248,7 +248,7 @@
 
 - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service start"
   service:
-      name: "{{ rhel7cis_time_synchronization }}"
+      name: "{{ ubuntu1604cis_time_synchronization }}"
       state: started
       enabled: yes
   when: ansible_os_family == "Debian"
