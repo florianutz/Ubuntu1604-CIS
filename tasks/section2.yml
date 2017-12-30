@@ -299,7 +299,7 @@
       dest: /etc/init.d/ntp
       regexp: "^RUNASUSER"
       line: "RUNASUSER=ntp"
-  when: rhel7cis_time_synchronization == "ntp" and ansible_os_family == "Debian"
+  when: ubuntu1604cis_time_synchronization == "ntp" and ansible_os_family == "Debian"
   tags:
       - level1
       - patch
