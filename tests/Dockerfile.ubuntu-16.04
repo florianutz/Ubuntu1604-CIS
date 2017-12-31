@@ -20,7 +20,7 @@ RUN apt -y install git ansible sudo
 
 # Fix for Travis docker containers
 RUN mkdir /var/log/audit; chmod 700 /var/log/audit;
-RUN touch /etc/default/grub; touch /etc/audit/audit.rules; touch /boot/grub2/grub.cfg;
+RUN touch /etc/default/grub; touch /etc/audit/audit.rules; touch /boot/grub/grub.cfg;
 
 # Disable requiretty
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
