@@ -21,18 +21,18 @@ LABEL maintainer="Florian Utz"
 ###
 RUN echo "===> Install packages ..."  && \
     apt update && apt upgrade -y   && \
-    apt install --no-install-recommends -y python3 python3-setuptools python3-pip openssl ca-certificates sudo groff \
-        python3-dev libffi-dev libssl-dev build-essential \
+    apt install --no-install-recommends -y python python-setuptools python-pip openssl ca-certificates sudo groff \
+        python-dev libffi-dev libssl-dev build-essential \
         openssh-server auditd grub2 git ansible sudo && \
     echo "===> Cleanup" && \
     apt clean all && \
     echo "===> Package installation completed!"
 
 RUN echo "===> Install python packages ..."  && \
-    pip3 install --no-cache-dir --upgrade pip cffi && \
+    pip install --no-cache-dir --upgrade pip cffi && \
     \
     echo "===> Installing Ansible..."  && \
-    pip3 install --no-cache-dir --upgrade ansible &&
+    pip install --no-cache-dir --upgrade ansible
 
 ###
 
