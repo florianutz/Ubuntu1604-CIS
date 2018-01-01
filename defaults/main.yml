@@ -246,3 +246,7 @@ tmp_mount_options:
 chrony_config_file:
   RedHat: /etc/chrony.conf
   Debian: /etc/chrony/chrony.conf
+
+###firewall
+
+ubuntu1604cis_setup_firewall: false

@@ -327,7 +327,7 @@
   apt:
       name: firewalld
       state: present
-  when: ubuntu1604cis_firewall == "firewalld"
+  when: ubuntu1604cis_firewall == "firewalld" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -338,7 +338,7 @@
       name: firewalld
       state: started
       enabled: yes
-  when: ubuntu1604cis_firewall == "firewalld"
+  when: ubuntu1604cis_firewall == "firewalld" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -348,7 +348,7 @@
   apt:
       name: iptables
       state: present
-  when: ubuntu1604cis_firewall == "iptables"
+  when: ubuntu1604cis_firewall == "iptables" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -359,7 +359,7 @@
       name: iptables
       state: started
       enabled: yes
-  when: ubuntu1604cis_firewall == "iptables"
+  when: ubuntu1604cis_firewall == "iptables" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -370,7 +370,7 @@
       dest: /etc/firewalld/firewalld.conf
       regexp: "^DefaultZone"
       line: "DefaultZone=drop"
-  when: ubuntu1604cis_firewall == "firewalld"
+  when: ubuntu1604cis_firewall == "firewalld" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -381,7 +381,7 @@
       state: enabled
       zone: drop
       permanent: true
-  when: ubuntu1604cis_firewall == "firewalld"
+  when: ubuntu1604cis_firewall == "firewalld" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -390,7 +390,7 @@
 - name: "SCORED | 3.6.2 | PATCH | Ensure default deny firewall policy"
   command: /bin/true
   changed_when: no
-  when: ubuntu1604cis_firewall == "iptables"
+  when: ubuntu1604cis_firewall == "iptables" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -400,7 +400,7 @@
 - name: "SCORED | 3.6.3 | PATCH | Ensure loopback traffic is configured"
   command: /bin/true
   changed_when: no
-  when: ubuntu1604cis_firewall == "iptables"
+  when: ubuntu1604cis_firewall == "iptables" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -410,7 +410,7 @@
 - name: "NOTSCORED | 3.6.4 | PATCH | Ensure outbound and established connections are configured"
   command: /bin/true
   changed_when: no
-  when: ubuntu1604cis_firewall == "iptables"
+  when: ubuntu1604cis_firewall == "iptables" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
@@ -424,7 +424,7 @@
       zone: drop
       permanent: true
       immediate: true
-  when: ubuntu1604cis_firewall == "firewalld"
+  when: ubuntu1604cis_firewall == "firewalld" && ubuntu1604cis_setup_firewall
   notify: restart firewalld
   with_items: "{{ ubuntu1604cis_firewall_services }}"
   tags:
@@ -435,7 +435,7 @@
 - name: "SCORED | 3.6.5 | PATCH | Ensure firewall rules exist for all open ports"
   command: /bin/true
   changed_when: no
-  when: ubuntu1604cis_firewall == "iptables"
+  when: ubuntu1604cis_firewall == "iptables" && ubuntu1604cis_setup_firewall
   tags:
       - level1
       - patch
