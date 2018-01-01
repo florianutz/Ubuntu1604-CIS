@@ -1,4 +1,5 @@
 FROM ubuntu:16.04
+LABEL maintainer="Florian Utz"
 
 # Install systemd -- See https://hub.docker.com/_/centos/
 #RUN yum -y swap -- remove fakesystemd -- install systemd systemd-libs
@@ -13,10 +14,27 @@ FROM ubuntu:16.04
 #rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # Install Ansible
-RUN apt update
-RUN apt -y install  openssh-server auditd  grub2
-RUN apt -y install git ansible sudo
+#RUN apt update
+#RUN apt -y install openssh-server auditd grub2
+#RUN apt -y install git ansible sudo
 
+###
+RUN echo "===> Install packages ..."  && \
+    apt update && apt upgrade -y   && \
+    apt install --no-install-recommends -y python3 python3-setuptools python3-pip openssl ca-certificates sudo groff \
+        python3-dev libffi-dev libssl-dev build-essential \
+        openssh-server auditd grub2 git ansible sudo && \
+    echo "===> Cleanup" && \
+    apt clean all && \
+    echo "===> Package installation completed!"
+
+RUN echo "===> Install python packages ..."  && \
+    pip3 install --no-cache-dir --upgrade pip cffi && \
+    \
+    echo "===> Installing Ansible..."  && \
+    pip3 install --no-cache-dir --upgrade ansible &&
+
+###
 
 # Fix for Travis docker containers
 RUN mkdir /var/log/audit; chmod 700 /var/log/audit;
