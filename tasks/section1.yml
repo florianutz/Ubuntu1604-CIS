@@ -618,6 +618,7 @@
       - scored
       - patch
       - rule_1.5.3
+      - sysctl
 
 - name: "SCORED | 1.5.4 | PATCH | Ensure prelink is disabled"
   command: prelink -ua
