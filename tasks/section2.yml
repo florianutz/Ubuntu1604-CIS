@@ -227,7 +227,7 @@
       name: xinetd
       state: stopped
       enabled: no
-  when: 
+  when:
       - xinetd_service_status.stdout == "loaded" and not ubuntu1604cis_xinetd_required
   tags:
       - level1
@@ -499,7 +499,7 @@
   lineinfile:
       dest: /etc/postfix/main.cf
       regexp: "^(#)?inet_interfaces"
-      line: "inet_interfaces = localhost"
+      line: "inet_interfaces = loopback-only"
   when: ubuntu1604cis_is_mail_server == false and postfix_installed.rc == 0
   tags:
       - level1
