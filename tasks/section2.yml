@@ -239,6 +239,7 @@
   apt:
       name: "{{ ubuntu1604cis_time_synchronization }}"
       state: present
+      install_recommends: no
   tags:
       - level1
       - patch

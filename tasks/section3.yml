@@ -230,6 +230,7 @@
   apt:
     name: "{{ tcp_wrapper_package[ansible_os_family] }}"
     state: present
+    install_recommends: no
   tags:
       - level1
       - patch
@@ -327,6 +328,7 @@
   apt:
       name: firewalld
       state: present
+      install_recommends: no
   when: ubuntu1604cis_firewall == "firewalld" and ubuntu1604cis_setup_firewall
   tags:
       - level1
@@ -348,6 +350,7 @@
   apt:
       name: iptables
       state: present
+      install_recommends: no
   when: ubuntu1604cis_firewall == "iptables" and ubuntu1604cis_setup_firewall
   tags:
       - level1

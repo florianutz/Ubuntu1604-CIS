@@ -260,6 +260,7 @@
   apt:
       name: "{{ ubuntu1604cis_syslog }}"
       state: present
+      install_recommends: no
   tags:
       - level1
       - level2
