@@ -1,7 +1,7 @@
 Ubuntu 16.04 CIS STIG
 ================
 
-[![Build Status](https://travis-ci.org/MindPointGroup/Ubuntu1604-CIS.svg?branch=devel)](https://travis-ci.org/MindPointGroup/Ubuntu1604-CIS)
+[![Build Status](https://travis-ci.org/florianutz/Ubuntu1604-CIS.svg?branch=master)](https://travis-ci.org/florianutz/Ubuntu1604-CIS)
 [![Ansible Role](https://img.shields.io/ansible/role/16089.svg)](https://galaxy.ansible.com/MindPointGroup/Ubuntu1604-CIS/)
 
 Configure RHEL/Centos 7 machine to be CIS compliant. Level 1 and 2 findings will be corrected by default.
@@ -111,20 +111,20 @@ ubuntu1604cis_aide_cron:
 ```
 
 ##### SELinux policy
-`ubuntu1604cis_selinux_pol: targeted` 
+`ubuntu1604cis_selinux_pol: targeted`
 
 
 ##### Set to 'true' if X Windows is needed in your environment
-`ubuntu1604cis_xwindows_required: no` 
+`ubuntu1604cis_xwindows_required: no`
 
 
 ##### Client application requirements
 ```
-ubuntu1604cis_openldap_clients_required: false 
-ubuntu1604cis_telnet_required: false 
+ubuntu1604cis_openldap_clients_required: false
+ubuntu1604cis_telnet_required: false
 ubuntu1604cis_talk_required: false  
-ubuntu1604cis_rsh_required: false 
-ubuntu1604cis_ypbind_required: false 
+ubuntu1604cis_rsh_required: false
+ubuntu1604cis_ypbind_required: false
 ```
 
 ##### Time Synchronization
@@ -138,7 +138,7 @@ ubuntu1604cis_time_synchronization_servers:
     - 2.pool.ntp.org
     - 3.pool.ntp.org  
 ```  
-  
+
 ##### 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 ```
 ubuntu1604cis_host_allow:
@@ -150,8 +150,8 @@ ubuntu1604cis_host_allow:
 ```
 ubuntu1604cis_firewall: firewalld
 ubuntu1604cis_firewall: iptables
-``` 
-  
+```
+
 
 Dependencies
 ------------
