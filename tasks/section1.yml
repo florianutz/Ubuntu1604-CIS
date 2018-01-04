@@ -224,18 +224,18 @@
       - rule_1.1.8
       - rule_1.1.9
 
-- name: "SCORED | 1.1.11 | PATCH | Ensure separate partition exists for /var/log"
+- name: "SCORED | 1.1.10 | PATCH | Ensure separate partition exists for /var/log"
   shell: mount | grep "on /var/log "
   register: var_log_mounted
   changed_when: no
   failed_when: no
   when:
-      - ubuntu1604cis_rule_1_1_11
+      - ubuntu1604cis_rule_1_1_10
   tags:
       - level2
       - scored
       - patch
-      - rule_1.1.11
+      - rule_1.1.10
 
 - name: "SCORED | 1.1.12 | PATCH | Ensure separate partition exists for /var/log/audit"
   shell: mount | grep "on /var/log/audit "
