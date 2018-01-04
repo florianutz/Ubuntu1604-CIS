@@ -237,9 +237,22 @@
       - patch
       - rule_1.1.10
 
-- name: "SCORED | 1.1.12 | PATCH | Ensure separate partition exists for /var/log/audit"
+- name: "SCORED | 1.1.11 | PATCH | Ensure separate partition exists for /var/log/audit"
   shell: mount | grep "on /var/log/audit "
   register: var_log_audit_mounted
+  changed_when: no
+  failed_when: no
+  when:
+      - ubuntu1604cis_rule_1_1_11
+  tags:
+      - level2
+      - scored
+      - patch
+      - rule_1.1.11
+
+- name: "SCORED | 1.1.12 | PATCH | Ensure separate partition exists for /home"
+  shell: mount | grep "on /home "
+  register: home_mounted
   changed_when: no
   failed_when: no
   when:
@@ -250,34 +263,21 @@
       - patch
       - rule_1.1.12
 
-- name: "SCORED | 1.1.13 | PATCH | Ensure separate partition exists for /home"
-  shell: mount | grep "on /home "
-  register: home_mounted
-  changed_when: no
-  failed_when: no
-  when:
-      - ubuntu1604cis_rule_1_1_13
-  tags:
-      - level2
-      - scored
-      - patch
-      - rule_1.1.13
-
-- name: "SCORED | 1.1.14 | PATCH | Ensure nodev option set on /home partition"
+- name: "SCORED | 1.1.13 | PATCH | Ensure nodev option set on /home partition"
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604cis_rule_1_1_14
+      - ubuntu1604cis_rule_1_1_13
   tags:
       - level1
       - level2
       - patch
-      - rule_1.1.14
+      - rule_1.1.13
       - notimplemented
 
-- name: "SCORED | 1.1.15 | PATCH | Ensure nodev option set on /dev/shm partition\n
-         SCORED | 1.1.16 | PATCH | Ensure nosuid option set on /dev/shm partition\n
-         SCORED | 1.1.17 | PATCH | Ensure noexec option set on /dev/shm partition"
+- name: "SCORED | 1.1.14 | PATCH | Ensure nodev option set on /dev/shm partition\n
+         SCORED | 1.1.15 | PATCH | Ensure nosuid option set on /dev/shm partition\n
+         SCORED | 1.1.16 | PATCH | Ensure noexec option set on /dev/shm partition"
   mount:
       name: /dev/shm
       src: tmpfs
@@ -285,18 +285,30 @@
       fstype: tmpfs
       opts: "defaults,nodev,nosuid,noexec"
   when:
+      - ubuntu1604cis_rule_1_1_14
       - ubuntu1604cis_rule_1_1_15
       - ubuntu1604cis_rule_1_1_16
-      - ubuntu1604cis_rule_1_1_17
   tags:
       - level1
       - scored
       - patch
+      - rule_1.1.14
       - rule_1.1.15
       - rule_1.1.16
-      - rule_1.1.17
 
-- name: "NOTSCORED | 1.1.18 | PATCH | Ensure nodev option set on removable media partitions"
+- name: "NOTSCORED | 1.1.17 | PATCH | Ensure nodev option set on removable media partitions"
+  command: /bin/true
+  changed_when: no
+  when:
+      - ubuntu1604cis_rule_1_1_17
+  tags:
+      - level1
+      - notscored
+      - patch
+      - rule_1.1.18
+      - notimplemented
+
+- name: "NOTSCORED | 1.1.18 | PATCH | Ensure nosuid option set on removable media partitions"
   command: /bin/true
   changed_when: no
   when:
@@ -308,7 +320,7 @@
       - rule_1.1.18
       - notimplemented
 
-- name: "NOTSCORED | 1.1.19 | PATCH | Ensure nosuid option set on removable media partitions"
+- name: "NOTSCORED | 1.1.19 | PATCH | Ensure noexec option set on removable media partitions"
   command: /bin/true
   changed_when: no
   when:
@@ -320,42 +332,30 @@
       - rule_1.1.19
       - notimplemented
 
-- name: "NOTSCORED | 1.1.20 | PATCH | Ensure noexec option set on removable media partitions"
-  command: /bin/true
-  changed_when: no
-  when:
-      - ubuntu1604cis_rule_1_1_20
-  tags:
-      - level1
-      - notscored
-      - patch
-      - rule_1.1.20
-      - notimplemented
-
-- name: "SCORED | 1.1.21 | PATCH | Ensure sticky bit is set on all world-writable directories"
+- name: "SCORED | 1.1.20 | PATCH | Ensure sticky bit is set on all world-writable directories"
   shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
   changed_when: no
   failed_when: no
   #when: sticky_bit_on_worldwritable_dirs_audit.rc == '0'
   when:
-      - ubuntu1604cis_rule_1_1_21
+      - ubuntu1604cis_rule_1_1_20
   tags:
       - level1
       - level2
       - patch
-      - rule_1.1.21
+      - rule_1.1.20
 
-- name: "SCORED | 1.1.22 | PATCH | Disable Automounting"
+- name: "SCORED | 1.1.21 | PATCH | Disable Automounting"
   service:
       name: autofs
       enabled: no
   when:
       - ubuntu1604cis_allow_autofs == false and autofs_service_status.stdout == "loaded"
-      - ubuntu1604cis_rule_1_1_22
+      - ubuntu1604cis_rule_1_1_21
   tags:
       - level1
       - patch
-      - rule_1.1.22
+      - rule_1.1.21
 
 - name: "NOTSCORED | 1.2.1 | PATCH | Ensure package manager repositories are configured"
   command: /bin/true
