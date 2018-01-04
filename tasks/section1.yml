@@ -631,7 +631,7 @@
       - rule_1.6.1.2
       - notimplemented
 
-- name: "SCORED | 1.6.1.3 | PATCH | Ensure the SELinux state is enforcing"
+- name: "SCORED | 1.6.1.3 | PATCH | Ensure SELinux policy is configured"
   command: /bin/true
   changed_when: no
   when:
@@ -643,7 +643,7 @@
       - rule_1.6.1.2
       - notimplemented
 
-- name: "SCORED | 1.6.1.4 | PATCH | Ensure the SELinux state is enforcing"
+- name: "SCORED | 1.6.1.4 | PATCH | Ensure no unconfined daemons exist"
   command: /bin/true
   changed_when: no
   when:
@@ -655,7 +655,7 @@
       - rule_1.6.1.4
       - notimplemented
 
-- name: "SCORED | 1.6.2.1 | PATCH | Ensure the SELinux state is enforcing"
+- name: "SCORED | 1.6.2.1 | PATCH | Ensure AppArmor is not disabled in bootloader configuration"
   command: /bin/true
   changed_when: no
   when:
@@ -667,7 +667,7 @@
       - rule_1.6.2.1
       - notimplemented
 
-- name: "SCORED | 1.6.2.2 | PATCH | Ensure the SELinux state is enforcing"
+- name: "SCORED | 1.6.2.2 | PATCH | Ensure all AppArmor Profiles are enforcing"
   command: /bin/true
   changed_when: no
   when:
@@ -679,7 +679,7 @@
       - rule_1.6.2.2
       - notimplemented
 
-- name: "SCORED | 1.6.3 | PATCH | Ensure the SELinux state is enforcing"
+- name: "SCORED | 1.6.3 | PATCH | Ensure SELinux or AppArmor are installed"
   command: /bin/true
   changed_when: no
   when:
