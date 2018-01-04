@@ -270,19 +270,19 @@
       - patch
       - rule_5.2.10
 
-- name: "SCORED | 5.2.11 | PATCH | Ensure only approved ciphers are used"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: '^Ciphers'
-      line: 'Ciphers aes256-ctr,aes192-ctr,aes128-ctr'
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.2.11
+#- name: "SCORED | 5.2.11 | PATCH | Ensure only approved ciphers are used"
+#  lineinfile:
+#      state: present
+#      dest: /etc/ssh/sshd_config
+#      regexp: '^Ciphers'
+#      line: 'Ciphers aes256-ctr,aes192-ctr,aes128-ctr'
+#  tags:
+#      - level1
+#      - level2
+#      - patch
+#      - rule_5.2.11
 
-- name: "SCORED | 5.2.12 | PATCH | Ensure only approved MAC algorithms are used"
+- name: "SCORED | 5.2.11 | PATCH | Ensure only approved MAC algorithms are used"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -292,9 +292,9 @@
       - level1
       - level2
       - patch
-      - rule_5.2.12
+      - rule_5.2.11
 
-- name: "SCORED | 5.2.13 | PATCH | Ensure SSH Idle Timeout Interval is configured"
+- name: "SCORED | 5.2.12 | PATCH | Ensure SSH Idle Timeout Interval is configured"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -304,21 +304,21 @@
       - level1
       - level2
       - patch
-      - rule_5.2.13
+      - rule_5.2.12
 
-- name: "SCORED | 5.2.13 | PATCH | Ensure SSH ClientAliveCountMax set to <= 3"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: '^ClientAliveCountMax'
-      line: "ClientAliveCountMax {{ ubuntu1604cis_sshd['clientalivecountmax'] }}"
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.2.13
+#- name: "SCORED | 5.2.13 | PATCH | Ensure SSH ClientAliveCountMax set to <= 3"
+#  lineinfile:
+#      state: present
+#      dest: /etc/ssh/sshd_config
+#      regexp: '^ClientAliveCountMax'
+#      line: "ClientAliveCountMax {{ ubuntu1604cis_sshd['clientalivecountmax'] }}"
+#  tags:
+#      - level1
+#      - level2
+#      - patch
+#      - rule_5.2.13
 
-- name: "SCORED | 5.2.14 | PATCH | Ensure SSH LoginGraceTime is set to one minute or less"
+- name: "SCORED | 5.2.13 | PATCH | Ensure SSH LoginGraceTime is set to one minute or less"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -328,9 +328,9 @@
       - level1
       - level2
       - patch
-      - rule_5.2.14
+      - rule_5.2.13
 
-- name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited - allowusers"
+- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - allowusers"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -343,9 +343,9 @@
       - level1
       - level2
       - patch
-      - rule_5.2.15
+      - rule_5.2.14
 
-- name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited - allowgroups"
+- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - allowgroups"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -358,9 +358,9 @@
       - level1
       - level2
       - patch
-      - rule_5.2.15
+      - rule_5.2.14
 
-- name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited - denyusers"
+- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - denyusers"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -375,7 +375,7 @@
       - patch
       - rule_5.2.15
 
-- name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited - denygroups"
+- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - denygroups"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -390,7 +390,7 @@
       - patch
       - rule_5.2.15
 
-- name: "SCORED | 5.2.16 | PATCH | Ensure SSH warning banner is configured"
+- name: "SCORED | 5.2.15 | PATCH | Ensure SSH warning banner is configured"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -400,7 +400,7 @@
       - level1
       - level2
       - patch
-      - rule_5.2.16
+      - rule_5.2.15
 
 - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
   package:
