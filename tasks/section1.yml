@@ -224,9 +224,22 @@
       - rule_1.1.8
       - rule_1.1.9
 
-- name: "SCORED | 1.1.11 | PATCH | Ensure separate partition exists for /var/log"
+- name: "SCORED | 1.1.10 | PATCH | Ensure separate partition exists for /var/log"
   shell: mount | grep "on /var/log "
   register: var_log_mounted
+  changed_when: no
+  failed_when: no
+  when:
+      - ubuntu1604cis_rule_1_1_10
+  tags:
+      - level2
+      - scored
+      - patch
+      - rule_1.1.10
+
+- name: "SCORED | 1.1.11 | PATCH | Ensure separate partition exists for /var/log/audit"
+  shell: mount | grep "on /var/log/audit "
+  register: var_log_audit_mounted
   changed_when: no
   failed_when: no
   when:
@@ -237,9 +250,9 @@
       - patch
       - rule_1.1.11
 
-- name: "SCORED | 1.1.12 | PATCH | Ensure separate partition exists for /var/log/audit"
-  shell: mount | grep "on /var/log/audit "
-  register: var_log_audit_mounted
+- name: "SCORED | 1.1.12 | PATCH | Ensure separate partition exists for /home"
+  shell: mount | grep "on /home "
+  register: home_mounted
   changed_when: no
   failed_when: no
   when:
@@ -250,34 +263,21 @@
       - patch
       - rule_1.1.12
 
-- name: "SCORED | 1.1.13 | PATCH | Ensure separate partition exists for /home"
-  shell: mount | grep "on /home "
-  register: home_mounted
-  changed_when: no
-  failed_when: no
-  when:
-      - ubuntu1604cis_rule_1_1_13
-  tags:
-      - level2
-      - scored
-      - patch
-      - rule_1.1.13
-
-- name: "SCORED | 1.1.14 | PATCH | Ensure nodev option set on /home partition"
+- name: "SCORED | 1.1.13 | PATCH | Ensure nodev option set on /home partition"
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604cis_rule_1_1_14
+      - ubuntu1604cis_rule_1_1_13
   tags:
       - level1
       - level2
       - patch
-      - rule_1.1.14
+      - rule_1.1.13
       - notimplemented
 
-- name: "SCORED | 1.1.15 | PATCH | Ensure nodev option set on /dev/shm partition\n
-         SCORED | 1.1.16 | PATCH | Ensure nosuid option set on /dev/shm partition\n
-         SCORED | 1.1.17 | PATCH | Ensure noexec option set on /dev/shm partition"
+- name: "SCORED | 1.1.14 | PATCH | Ensure nodev option set on /dev/shm partition\n
+         SCORED | 1.1.15 | PATCH | Ensure nosuid option set on /dev/shm partition\n
+         SCORED | 1.1.16 | PATCH | Ensure noexec option set on /dev/shm partition"
   mount:
       name: /dev/shm
       src: tmpfs
@@ -285,18 +285,30 @@
       fstype: tmpfs
       opts: "defaults,nodev,nosuid,noexec"
   when:
+      - ubuntu1604cis_rule_1_1_14
       - ubuntu1604cis_rule_1_1_15
       - ubuntu1604cis_rule_1_1_16
-      - ubuntu1604cis_rule_1_1_17
   tags:
       - level1
       - scored
       - patch
+      - rule_1.1.14
       - rule_1.1.15
       - rule_1.1.16
-      - rule_1.1.17
 
-- name: "NOTSCORED | 1.1.18 | PATCH | Ensure nodev option set on removable media partitions"
+- name: "NOTSCORED | 1.1.17 | PATCH | Ensure nodev option set on removable media partitions"
+  command: /bin/true
+  changed_when: no
+  when:
+      - ubuntu1604cis_rule_1_1_17
+  tags:
+      - level1
+      - notscored
+      - patch
+      - rule_1.1.18
+      - notimplemented
+
+- name: "NOTSCORED | 1.1.18 | PATCH | Ensure nosuid option set on removable media partitions"
   command: /bin/true
   changed_when: no
   when:
@@ -308,7 +320,7 @@
       - rule_1.1.18
       - notimplemented
 
-- name: "NOTSCORED | 1.1.19 | PATCH | Ensure nosuid option set on removable media partitions"
+- name: "NOTSCORED | 1.1.19 | PATCH | Ensure noexec option set on removable media partitions"
   command: /bin/true
   changed_when: no
   when:
@@ -320,42 +332,30 @@
       - rule_1.1.19
       - notimplemented
 
-- name: "NOTSCORED | 1.1.20 | PATCH | Ensure noexec option set on removable media partitions"
-  command: /bin/true
-  changed_when: no
-  when:
-      - ubuntu1604cis_rule_1_1_20
-  tags:
-      - level1
-      - notscored
-      - patch
-      - rule_1.1.20
-      - notimplemented
-
-- name: "SCORED | 1.1.21 | PATCH | Ensure sticky bit is set on all world-writable directories"
+- name: "SCORED | 1.1.20 | PATCH | Ensure sticky bit is set on all world-writable directories"
   shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
   changed_when: no
   failed_when: no
   #when: sticky_bit_on_worldwritable_dirs_audit.rc == '0'
   when:
-      - ubuntu1604cis_rule_1_1_21
+      - ubuntu1604cis_rule_1_1_20
   tags:
       - level1
       - level2
       - patch
-      - rule_1.1.21
+      - rule_1.1.20
 
-- name: "SCORED | 1.1.22 | PATCH | Disable Automounting"
+- name: "SCORED | 1.1.21 | PATCH | Disable Automounting"
   service:
       name: autofs
       enabled: no
   when:
       - ubuntu1604cis_allow_autofs == false and autofs_service_status.stdout == "loaded"
-      - ubuntu1604cis_rule_1_1_22
+      - ubuntu1604cis_rule_1_1_21
   tags:
       - level1
       - patch
-      - rule_1.1.22
+      - rule_1.1.21
 
 - name: "NOTSCORED | 1.2.1 | PATCH | Ensure package manager repositories are configured"
   command: /bin/true
@@ -463,34 +463,6 @@
       - rule_1.3.2
 
 - name: "SCORED | 1.4.1 | PATCH | Ensure permissions on bootloader config are configured"
-  stat:
-      path: /etc/grub2.cfg
-  register: grub_cfg
-  when:
-      - ubuntu1604cis_rule_1_4_1
-  tags:
-      - level1
-      - scored
-      - grub
-      - patch
-      - rule_1.4.1
-
-- name: "SCORED | 1.4.1 | PATCH | Ensure permissions on bootloader config are configured"
-  file:
-      path: "{{ grub_cfg.stat.lnk_source }}"
-      owner: root
-      group: root
-      mode: 0600
-  when:
-      - grub_cfg.stat.exists and grub_cfg.stat.islnk
-  tags:
-      - level1
-      - scored
-      - grub
-      - patch
-      - rule_1.4.1
-      - ubuntu1604cis_rule_1_4_1
-- name: "SCORED | 1.4.1 | PATCH | Ensure permissions on bootloader config are configured"
   file:
       path: "/boot/grub/grub.cfg"
       owner: root
@@ -517,33 +489,22 @@
       - grub
       - patch
       - rule_1.4.2
-
-- name: "SCORED | 1.4.2 | PATCH | Ensure bootloader password is set"
-  copy:
-      dest: /boot/grub2/user.cfg
-      content: "GRUB2_PASSWORD={{ grub_pass.passhash }}"
-  notify: generate new grub config
-  when:
-      - ubuntu1604cis_set_boot_pass and grub_pass is defined and grub_pass.passhash is defined and grub_pass.passhash != ''
-      - ubuntu1604cis_rule_1_4_2
-  tags:
-      - level1
-      - scored
-      - grub
-      - patch
-      - rule_1.4.2
-
-- name: "NOTSCORED | 1.4.3 | PATCH | Ensure authentication required for single user mode"
-  command: /bin/true
-  changed_when: no
-  when:
-      - ubuntu1604cis_rule_1_4_3
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_1.4.3
       - notimplemented
+
+#- name: "SCORED | 1.4.2 | PATCH | Ensure bootloader password is set"
+#  copy:
+#      dest: /boot/grub2/user.cfg
+#      content: "GRUB2_PASSWORD={{ grub_pass.passhash }}"
+#  notify: generate new grub config
+#  when:
+#      - ubuntu1604cis_set_boot_pass and grub_pass is defined and grub_pass.passhash is defined and grub_pass.passhash != ''
+#      - ubuntu1604cis_rule_1_4_2
+#  tags:
+#      - level1
+#      - scored
+#      - grub
+#      - patch
+#      - rule_1.4.2
 
 - name: "NOTSCORED | 1.4.3 | PATCH | Ensure authentication required for single user mode"
   command: /bin/true
@@ -658,18 +619,77 @@
       - patch
       - rule_1.6.1.1
 
-
-- name: "SCORED | 1.6.1.5 | PATCH | Ensure the MCS Translation Service (mcstrans) is not installed"
-  apt:
-      name: mcstrans
-      state: absent
+- name: "SCORED | 1.6.1.2 | PATCH | Ensure the SELinux state is enforcing"
+  command: /bin/true
+  changed_when: no
   when:
-      - ubuntu1604cis_rule_1_6_1_5
+      - ubuntu1604cis_rule_1_6_1_2
   tags:
-      - level2
-      - scored
+      - level1
+      - notscored
       - patch
-      - rule_1.6.1.5
+      - rule_1.6.1.2
+      - notimplemented
+
+- name: "SCORED | 1.6.1.3 | PATCH | Ensure SELinux policy is configured"
+  command: /bin/true
+  changed_when: no
+  when:
+      - ubuntu1604cis_rule_1_6_1_3
+  tags:
+      - level1
+      - notscored
+      - patc3
+      - rule_1.6.1.2
+      - notimplemented
+
+- name: "SCORED | 1.6.1.4 | PATCH | Ensure no unconfined daemons exist"
+  command: /bin/true
+  changed_when: no
+  when:
+      - ubuntu1604cis_rule_1_6_1_4
+  tags:
+      - level1
+      - notscored
+      - patch
+      - rule_1.6.1.4
+      - notimplemented
+
+- name: "SCORED | 1.6.2.1 | PATCH | Ensure AppArmor is not disabled in bootloader configuration"
+  command: /bin/true
+  changed_when: no
+  when:
+      - ubuntu1604cis_rule_1_6_2_1
+  tags:
+      - level1
+      - notscored
+      - patch
+      - rule_1.6.2.1
+      - notimplemented
+
+- name: "SCORED | 1.6.2.2 | PATCH | Ensure all AppArmor Profiles are enforcing"
+  command: /bin/true
+  changed_when: no
+  when:
+      - ubuntu1604cis_rule_1_6_2_2
+  tags:
+      - level1
+      - notscored
+      - patch
+      - rule_1.6.2.2
+      - notimplemented
+
+- name: "SCORED | 1.6.3 | PATCH | Ensure SELinux or AppArmor are installed"
+  command: /bin/true
+  changed_when: no
+  when:
+      - ubuntu1604cis_rule_1_6_3
+  tags:
+      - level1
+      - notscored
+      - patch
+      - rule_1.6.3
+      - notimplemented
 
 
 - name: "SCORED | 1.7.1.1 | PATCH | Ensure message of the day is configured properly"
