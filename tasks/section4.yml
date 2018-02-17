@@ -152,17 +152,6 @@
 
 - name: "SCORED | 4.1.13 | PATCH | Ensure successful file system mounts are collected"
   lineinfile:
-      dest: /etc/audit/rules.d/audit.rules
-      line: "-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts"
-      state: present
-  tags:
-      - level2
-      - auditd
-      - patch
-      - rule_4.1.13
-
-- name: "SCORED | 4.1.13 | PATCH | Ensure successful file system mounts are collected"
-  lineinfile:
       dest: /etc/audit/audit.rules
       line: "-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts"
       state: present
