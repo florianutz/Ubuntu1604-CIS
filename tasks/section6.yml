@@ -225,7 +225,7 @@
   lineinfile:
     dest: /etc/sudoers
     regexp: "(.*secure_path=).*"
-    line: '\1"{{ testd.stdout_lines[0] }}"'
+    line: '\1"{{ fixsudo.stdout_lines[0] }}"'
     backrefs: yes
 
 - name: "SCORED | 6.2.7 | PATCH | Ensure all users' home directories exist"
