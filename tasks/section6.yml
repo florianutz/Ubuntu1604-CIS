@@ -217,6 +217,19 @@
       - rule_6.2.6
       - notimplemented
 
+- name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
+  script: files/fixsudo.sh
+  register: fixsudo
+  - debug:
+      var: testd
+
+- name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: "(.*secure_path=).*"
+    line: '\1"{{ testd.stdout_lines[0] }}"'
+    backrefs: yes
+
 - name: "SCORED | 6.2.7 | PATCH | Ensure all users' home directories exist"
   command: /bin/true
   changed_when: no
