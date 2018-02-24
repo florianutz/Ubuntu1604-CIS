@@ -5,6 +5,7 @@ driver:
   name: docker
 lint:
   name: yamllint
+  enabled: false
 platforms:
   - name: instance
     image: solita/ubuntu-systemd:latest
@@ -21,3 +22,4 @@ verifier:
   name: testinfra
   lint:
     name: flake8
+  enabled: false
