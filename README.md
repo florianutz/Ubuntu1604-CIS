@@ -20,7 +20,7 @@ With this in the file requirements.yml:
 - src: https://github.com/florianutz/Ubuntu1604-CIS.git
 ```
 
-Based on [CIS Ubuntu Benchmark vx - 01-31-2017 ](https://community.cisecurity.org/collab/public/index.php).
+Based on [CIS Ubuntu Benchmark v1.1.0 - 12-28-2017 ](https://community.cisecurity.org/collab/public/index.php).
 
 This repo originated from work done by [MindPointGroup](https://github.com/MindPointGroup/RHEL7-CIS)
 
