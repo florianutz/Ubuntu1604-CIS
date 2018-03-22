@@ -228,6 +228,7 @@
     regexp: "(.*secure_path=).*"
     line: '\1"{{ fixsudo.stdout_lines[0] }}"'
     backrefs: yes
+  when:  fixsudo.stdout_lines[0] != ""
   tags:
       - level1
       - level2
