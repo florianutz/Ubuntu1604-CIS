@@ -221,6 +221,9 @@
   script: files/fixsudo.sh
   register: fixsudo
   changed_when: no
+  check_mode: no
+  tags:
+    - rule_6.2.6
 
 - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
   lineinfile:
