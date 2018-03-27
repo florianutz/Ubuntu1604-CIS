@@ -218,9 +218,23 @@
       - notimplemented
 
 - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
-  script: files/fixsudo.sh
+  shell: |
+    sudopath=($(grep secure_path /etc/sudoers | cut -f2 -d= |cut -f2 -d\"))
+    IFS=:
+    for i in ${sudopath[*]}
+    do
+      if [ -d "$i" ]
+        then newsudopath+=($i)
+      fi
+     done
+    echo "${newsudopath[*]}"
+  args:
+    executable: /bin/bash
   register: fixsudo
   changed_when: no
+  check_mode: no
+  tags:
+    - rule_6.2.6
 
 - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
   lineinfile:
@@ -228,6 +242,7 @@
     regexp: "(.*secure_path=).*"
     line: '\1"{{ fixsudo.stdout_lines[0] }}"'
     backrefs: yes
+  when:  fixsudo.stdout_lines[0] != ""
   tags:
       - level1
       - level2
