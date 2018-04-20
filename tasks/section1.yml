@@ -5,7 +5,7 @@
       line: "install cramfs /bin/true"
       create: yes
   when:
-      - ubuntu1604_rule_1_1_1_1
+      - ubuntu1604cis_rule_1_1_1_1
   tags:
       - level1
       - scored
@@ -18,7 +18,7 @@
     name: cramfs
     state: absent
   when:
-      - ubuntu1604_rule_1_1_1_1
+      - ubuntu1604cis_rule_1_1_1_1
   tags:
       - level1
       - scored
@@ -33,7 +33,7 @@
       line: "install freevxfs /bin/true"
       create: yes
   when:
-      - ubuntu1604_rule_1_1_1_2
+      - ubuntu1604cis_rule_1_1_1_2
   tags:
       - level1
       - scored
@@ -46,7 +46,7 @@
     name: freevxfs
     state: absent
   when:
-      - ubuntu1604_rule_1_1_1_2
+      - ubuntu1604cis_rule_1_1_1_2
   tags:
       - level1
       - scored
@@ -61,7 +61,7 @@
       line: "install jffs2 /bin/true"
       create: yes
   when:
-      - ubuntu1604_rule_1_1_1_3
+      - ubuntu1604cis_rule_1_1_1_3
   tags:
       - level1
       - scored
@@ -74,7 +74,7 @@
     name: jffs2
     state: absent
   when:
-      - ubuntu1604_rule_1_1_1_3
+      - ubuntu1604cis_rule_1_1_1_3
   tags:
       - level1
       - scored
@@ -89,7 +89,7 @@
       line: "install hfs /bin/true"
       create: yes
   when:
-      - ubuntu1604_rule_1_1_1_4
+      - ubuntu1604cis_rule_1_1_1_4
   tags:
       - level1
       - scored
@@ -102,7 +102,7 @@
     name: hfs
     state: absent
   when:
-      - ubuntu1604_rule_1_1_1_4
+      - ubuntu1604cis_rule_1_1_1_4
   tags:
       - level1
       - scored
@@ -130,7 +130,7 @@
     name: hfsplus
     state: absent
   when:
-      - ubuntu1604_rule_1_1_1_5
+      - ubuntu1604cis_rule_1_1_1_5
   tags:
       - level1
       - scored

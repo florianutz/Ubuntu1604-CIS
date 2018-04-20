@@ -5,7 +5,7 @@
       line: "max_log_file = 10"
       state: present
   when:
-      - ubuntu1604_rule_4_1_1_1
+      - ubuntu1604cis_rule_4_1_1_1
   notify: restart auditd
   tags:
       - level2
@@ -17,10 +17,10 @@
   lineinfile:
       dest: /etc/audit/auditd.conf
       regexp: "^admin_space_left_action"
-      line: "admin_space_left_action = {{ ubuntu1604_auditd['admin_space_left_action'] }}"
+      line: "admin_space_left_action = {{ ubuntu1604cis_auditd['admin_space_left_action'] }}"
       state: present
   when:
-      - ubuntu1604_rule_4_1_1_2
+      - ubuntu1604cis_rule_4_1_1_2
   notify: restart auditd
   tags:
       - level2
@@ -35,7 +35,7 @@
       line: "space_left_action = email"
       state: present
   when:
-      - ubuntu1604_rule_4_1_1_2
+      - ubuntu1604cis_rule_4_1_1_2
   notify: restart auditd
   tags:
       - level2
@@ -47,10 +47,10 @@
   lineinfile:
       dest: /etc/audit/auditd.conf
       regexp: "^max_log_file_action"
-      line: "max_log_file_action = {{ ubuntu1604_auditd['max_log_file_action'] }}"
+      line: "max_log_file_action = {{ ubuntu1604cis_auditd['max_log_file_action'] }}"
       state: present
   when:
-      - ubuntu1604_rule_4_1_1_3
+      - ubuntu1604cis_rule_4_1_1_3
   notify: restart auditd
   tags:
       - level2
@@ -64,8 +64,8 @@
       state: started
       enabled: yes
   when:
-      - ubuntu1604_skip_for_travis == false
-      - ubuntu1604_rule_4_1_2
+      - ubuntu1604cis_skip_for_travis == false
+      - ubuntu1604cis_rule_4_1_2
   tags:
       - level2
       - auditd
@@ -81,7 +81,7 @@
   ignore_errors: yes
   notify: generate new grub config
   when:
-      - ubuntu1604_rule_4_1_3
+      - ubuntu1604cis_rule_4_1_3
   tags:
       - level2
       - auditd
@@ -90,13 +90,13 @@
 
 - name: "SCORED | 4.1.4 | PATCH | Ensure events that modify date and time information are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_4.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_4.rules
+      src: audit/ubuntu1604cis_rule_4_1_4.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_4.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_4
+      - ubuntu1604cis_rule_4_1_4
   notify: restart auditd
   tags:
       - level2
@@ -106,13 +106,13 @@
 
 - name: "SCORED | 4.1.5 | PATCH | Ensure events that modify user/group information are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_5.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_5.rules
+      src: audit/ubuntu1604cis_rule_4_1_5.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_5.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_5
+      - ubuntu1604cis_rule_4_1_5
   notify: restart auditd
   tags:
       - level2
@@ -123,13 +123,13 @@
 
 - name: "SCORED | 4.1.6 | PATCH | Ensure events that modify the system's network environment are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_6.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_6.rules
+      src: audit/ubuntu1604cis_rule_4_1_6.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_6.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_6
+      - ubuntu1604cis_rule_4_1_6
   notify: restart auditd
   tags:
       - level2
@@ -140,13 +140,13 @@
 
 - name: "SCORED | 4.1.7 | PATCH | Ensure events that modify the system's Mandatory Access Controls are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_7.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_7.rules
+      src: audit/ubuntu1604cis_rule_4_1_7.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_7.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_7
+      - ubuntu1604cis_rule_4_1_7
   notify: restart auditd
   tags:
       - level2
@@ -156,13 +156,13 @@
 
 - name: "SCORED | 4.1.8 | PATCH | Ensure login and logout events are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_8.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_8.rules
+      src: audit/ubuntu1604cis_rule_4_1_8.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_8.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_8
+      - ubuntu1604cis_rule_4_1_8
   notify: restart auditd
   tags:
       - level2
@@ -173,13 +173,13 @@
 
 - name: "SCORED | 4.1.9 | PATCH | Ensure session initiation information is collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_9.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_9.rules
+      src: audit/ubuntu1604cis_rule_4_1_9.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_9.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_9
+      - ubuntu1604cis_rule_4_1_9
   notify: restart auditd
   tags:
       - level2
@@ -190,13 +190,13 @@
 
 - name: "SCORED | 4.1.10 | PATCH | Ensure discretionary access control permission modification events are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_10.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_10.rules
+      src: audit/ubuntu1604cis_rule_4_1_10.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_10.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_10
+      - ubuntu1604cis_rule_4_1_10
   notify: restart auditd
   tags:
       - level2
@@ -207,13 +207,13 @@
 
 - name: "SCORED | 4.1.11 | PATCH | Ensure unsuccessful unauthorized file access attempts are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_11.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_11.rules
+      src: audit/ubuntu1604cis_rule_4_1_11.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_11.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_11
+      - ubuntu1604cis_rule_4_1_11
   notify: restart auditd
   tags:
       - level2
@@ -228,7 +228,7 @@
   changed_when: no
   check_mode: no
   when:
-      - ubuntu1604_rule_4_1_12
+      - ubuntu1604cis_rule_4_1_12
   tags:
       - level2
       - auditd
@@ -237,14 +237,14 @@
 
 - name: "SCORED | 4.1.12 | PATCH | Ensure use of privileged commands is collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_12.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_12.rules
+      src: audit/ubuntu1604cis_rule_4_1_12.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_12.rules
       owner: root
       group: root
       mode: 0600
   notify: restart auditd
   when:
-      - ubuntu1604_rule_4_1_12
+      - ubuntu1604cis_rule_4_1_12
   tags:
       - level2
       - auditd
@@ -253,13 +253,13 @@
 
 - name: "SCORED | 4.1.13 | PATCH | Ensure successful file system mounts are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_13.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_13.rules
+      src: audit/ubuntu1604cis_rule_4_1_13.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_13.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_13
+      - ubuntu1604cis_rule_4_1_13
   notify: restart auditd
   tags:
       - level2
@@ -269,13 +269,13 @@
 
 - name: "SCORED | 4.1.14 | PATCH | Ensure file deletion events by users are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_14.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_14.rules
+      src: audit/ubuntu1604cis_rule_4_1_14.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_14.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_14
+      - ubuntu1604cis_rule_4_1_14
   notify: restart auditd
   tags:
       - level2
@@ -286,13 +286,13 @@
 
 - name: "SCORED | 4.1.15 | PATCH | Ensure changes to system administration scope (sudoers) is collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_15.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_15.rules
+      src: audit/ubuntu1604cis_rule_4_1_15.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_15.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_15
+      - ubuntu1604cis_rule_4_1_15
   notify: restart auditd
   tags:
       - level2
@@ -302,13 +302,13 @@
 
 - name: "SCORED | 4.1.16 | PATCH | Ensure system administrator actions (sudolog) are collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_16.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_16.rules
+      src: audit/ubuntu1604cis_rule_4_1_16.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_16.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_16
+      - ubuntu1604cis_rule_4_1_16
   notify: restart auditd
   tags:
       - level2
@@ -318,13 +318,13 @@
 
 - name: "SCORED | 4.1.17 | PATCH | Ensure kernel module loading and unloading is collected"
   template:
-      src: audit/ubuntu1604_rule_4_1_17.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_17.rules
+      src: audit/ubuntu1604cis_rule_4_1_17.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_17.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_17
+      - ubuntu1604cis_rule_4_1_17
   notify: restart auditd
   tags:
       - level2
@@ -335,13 +335,13 @@
 
 - name: "SCORED | 4.1.18 | PATCH | Ensure the audit configuration is immutable"
   template:
-      src: audit/ubuntu1604_rule_4_1_18.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604_rule_4_1_18.rules
+      src: audit/ubuntu1604cis_rule_4_1_18.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_18.rules
       owner: root
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_4_1_18
+      - ubuntu1604cis_rule_4_1_18
   notify: restart auditd
   tags:
       - level2
@@ -355,7 +355,7 @@
       state: present
       install_recommends: no
   when:
-      - ubuntu1604_rule_4_2_3
+      - ubuntu1604cis_rule_4_2_3
   tags:
       - level1
       - level2
@@ -366,7 +366,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_1_1
+      - ubuntu1604cis_rule_4_2_1_1
   tags:
       - level1
       - level2
@@ -378,7 +378,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_1_2
+      - ubuntu1604cis_rule_4_2_1_2
   tags:
       - level1
       - level2
@@ -392,7 +392,7 @@
       regexp: '^\$FileCreateMode'
       line: '$FileCreateMode 0640'
   when:
-      - ubuntu1604_rule_4_2_1_3
+      - ubuntu1604cis_rule_4_2_1_3
   tags:
       - level1
       - level2
@@ -403,7 +403,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_1_4
+      - ubuntu1604cis_rule_4_2_1_4
   tags:
       - level1
       - level2
@@ -415,7 +415,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_1_5
+      - ubuntu1604cis_rule_4_2_1_5
   tags:
       - level1
       - level2
@@ -427,7 +427,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_1_5
+      - ubuntu1604cis_rule_4_2_1_5
   tags:
       - level1
       - level2
@@ -439,7 +439,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_2_1
+      - ubuntu1604cis_rule_4_2_2_1
   tags:
       - level1
       - level2
@@ -451,7 +451,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_2_2
+      - ubuntu1604cis_rule_4_2_2_2
   tags:
       - level1
       - level2
@@ -463,7 +463,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_2_3
+      - ubuntu1604cis_rule_4_2_2_3
   tags:
       - level1
       - level2
@@ -475,7 +475,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_2_4
+      - ubuntu1604cis_rule_4_2_2_4
   tags:
       - level1
       - level2
@@ -487,7 +487,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_4_2_2_5
+      - ubuntu1604cis_rule_4_2_2_5
   tags:
       - level1
       - level2
@@ -500,7 +500,7 @@
   changed_when: no
   failed_when: no
   when:
-      - ubuntu1604_rule_4_2_4
+      - ubuntu1604cis_rule_4_2_4
   tags:
       - level1
       - level2

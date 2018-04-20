@@ -69,6 +69,6 @@
   args:
     warn: no
   when:
-    - ubuntu1604_skip_for_travis == false
+    - ubuntu1604cis_skip_for_travis == false
   tags:
     - skip_ansible_lint

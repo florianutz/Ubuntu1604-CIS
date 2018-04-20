@@ -3,7 +3,7 @@
       name: "{{ cron_service[ansible_os_family] }}"
       enabled: yes
   when:
-      - ubuntu1604_rule_5_1_1
+      - ubuntu1604cis_rule_5_1_1
   tags:
       - level1
       - level2
@@ -17,7 +17,7 @@
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_5_1_2
+      - ubuntu1604cis_rule_5_1_2
   tags:
       - level1
       - level2
@@ -32,7 +32,7 @@
       group: root
       mode: 0700
   when:
-      - ubuntu1604_rule_5_1_3
+      - ubuntu1604cis_rule_5_1_3
   tags:
       - level1
       - level2
@@ -47,7 +47,7 @@
       group: root
       mode: 0700
   when:
-      - ubuntu1604_rule_5_1_4
+      - ubuntu1604cis_rule_5_1_4
   tags:
       - level1
       - level2
@@ -62,7 +62,7 @@
       group: root
       mode: 0700
   when:
-      - ubuntu1604_rule_5_1_5
+      - ubuntu1604cis_rule_5_1_5
   tags:
       - level1
       - level2
@@ -77,7 +77,7 @@
       group: root
       mode: 0700
   when:
-      - ubuntu1604_rule_5_1_6
+      - ubuntu1604cis_rule_5_1_6
   tags:
       - level1
       - level2
@@ -92,7 +92,7 @@
       group: root
       mode: 0700
   when:
-      - ubuntu1604_rule_5_1_7
+      - ubuntu1604cis_rule_5_1_7
   tags:
       - level1
       - level2
@@ -171,7 +171,7 @@
       group: root
       mode: 0600
   when:
-      - ubuntu1604_rule_5_2_1
+      - ubuntu1604cis_rule_5_2_1
   tags:
       - level1
       - level2
@@ -185,7 +185,7 @@
       regexp: '^Protocol'
       line: 'Protocol 2'
   when:
-      - ubuntu1604_rule_5_2_2
+      - ubuntu1604cis_rule_5_2_2
   tags:
       - level1
       - level2
@@ -199,7 +199,7 @@
       regexp: '^LogLevel'
       line: 'LogLevel INFO'
   when:
-      - ubuntu1604_rule_5_2_3
+      - ubuntu1604cis_rule_5_2_3
   tags:
       - level1
       - level2
@@ -213,7 +213,7 @@
       regexp: '^X11Forwarding'
       line: 'X11Forwarding no'
   when:
-      - ubuntu1604_rule_5_2_4
+      - ubuntu1604cis_rule_5_2_4
   tags:
       - level1
       - level2
@@ -227,7 +227,7 @@
       regexp: '^(#)?MaxAuthTries \d'
       line: 'MaxAuthTries 4'
   when:
-      - ubuntu1604_rule_5_2_5
+      - ubuntu1604cis_rule_5_2_5
   tags:
       - level1
       - level2
@@ -241,7 +241,7 @@
       regexp: '^IgnoreRhosts'
       line: 'IgnoreRhosts yes'
   when:
-      - ubuntu1604_rule_5_2_6
+      - ubuntu1604cis_rule_5_2_6
   tags:
       - level1
       - level2
@@ -255,7 +255,7 @@
       regexp: '^HostbasedAuthentication'
       line: 'HostbasedAuthentication no'
   when:
-      - ubuntu1604_rule_5_2_7
+      - ubuntu1604cis_rule_5_2_7
   tags:
       - level1
       - level2
@@ -269,7 +269,7 @@
       regexp: '^PermitRootLogin'
       line: 'PermitRootLogin no'
   when:
-      - ubuntu1604_rule_5_2_8
+      - ubuntu1604cis_rule_5_2_8
   tags:
       - level1
       - level2
@@ -283,7 +283,7 @@
       regexp: '^PermitEmptyPasswords'
       line: 'PermitEmptyPasswords no'
   when:
-      - ubuntu1604_rule_5_2_9
+      - ubuntu1604cis_rule_5_2_9
   tags:
       - level1
       - level2
@@ -297,7 +297,7 @@
       regexp: '^PermitUserEnvironment'
       line: 'PermitUserEnvironment no'
   when:
-      - ubuntu1604_rule_5_2_10
+      - ubuntu1604cis_rule_5_2_10
   tags:
       - level1
       - level2
@@ -448,7 +448,7 @@
       - { key: 'ocredit', value: '-1' }
       - { key: 'lcredit', value: '-1' }
   when:
-      - ubuntu1604_rule_5_3_1
+      - ubuntu1604cis_rule_5_3_1
   tags:
       - level1
       - level2
@@ -459,7 +459,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_5_3_2
+      - ubuntu1604cis_rule_5_3_2
   tags:
       - level1
       - level2
@@ -471,7 +471,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_5_3_3
+      - ubuntu1604cis_rule_5_3_3
   tags:
       - level1
       - level2
@@ -484,7 +484,7 @@
   changed_when: no
   failed_when: no
   when:
-      - ubuntu1604_rule_5_3_4
+      - ubuntu1604cis_rule_5_3_4
   tags:
       - level1
       - level2
@@ -496,9 +496,9 @@
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_MAX_DAYS'
-      line: "PASS_MAX_DAYS {{ ubuntu1604_pass['max_days'] }}"
+      line: "PASS_MAX_DAYS {{ ubuntu1604cis_pass['max_days'] }}"
   when:
-      - ubuntu1604_rule_5_4_1_1
+      - ubuntu1604cis_rule_5_4_1_1
   tags:
       - level1
       - level2
@@ -510,9 +510,9 @@
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_MIN_DAYS'
-      line: "PASS_MIN_DAYS {{ ubuntu1604_pass['min_days'] }}"
+      line: "PASS_MIN_DAYS {{ ubuntu1604cis_pass['min_days'] }}"
   when:
-      - ubuntu1604_rule_5_4_1_2
+      - ubuntu1604cis_rule_5_4_1_2
   tags:
       - level1
       - level2
@@ -524,9 +524,9 @@
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_WARN_AGE'
-      line: "PASS_WARN_AGE {{ ubuntu1604_pass['warn_age'] }}"
+      line: "PASS_WARN_AGE {{ ubuntu1604cis_pass['warn_age'] }}"
   when:
-      - ubuntu1604_rule_5_4_1_3
+      - ubuntu1604cis_rule_5_4_1_3
   tags:
       - level1
       - level2
@@ -537,7 +537,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_5_4_1_4
+      - ubuntu1604cis_rule_5_4_1_4
   tags:
       - level1
       - level2
@@ -549,7 +549,7 @@
   command: /bin/true
   changed_when: no
   when:
-      - ubuntu1604_rule_5_4_2
+      - ubuntu1604cis_rule_5_4_2
   tags:
       - level1
       - level2
@@ -562,7 +562,7 @@
   changed_when: no
   failed_when: no
   when:
-      - ubuntu1604_rule_5_4_3
+      - ubuntu1604cis_rule_5_4_3
   tags:
       - level1
       - level2
