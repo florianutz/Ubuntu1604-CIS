@@ -76,19 +76,175 @@ ubuntu1604cis_rule_1_7_1_6: true
 ubuntu1604cis_rule_1_7_2: true
 
 # Section 2 rules
-#ubuntu1604cis_rule_2_1_1: true
+ubuntu1604_rule_2_1_1: true
+ubuntu1604_rule_2_1_2: true
+ubuntu1604_rule_2_1_3: true
+ubuntu1604_rule_2_1_4: true
+ubuntu1604_rule_2_1_5: true
+ubuntu1604_rule_2_1_6: true
+ubuntu1604_rule_2_1_7: true
+ubuntu1604_rule_2_2_1_1: true
+ubuntu1604_rule_2_2_1_2: true
+ubuntu1604_rule_2_2_1_3: true
+ubuntu1604_rule_2_2_2: true
+ubuntu1604_rule_2_2_3: true
+ubuntu1604_rule_2_2_4: true
+ubuntu1604_rule_2_2_5: true
+ubuntu1604_rule_2_2_6: true
+ubuntu1604_rule_2_2_7: true
+ubuntu1604_rule_2_2_8: true
+ubuntu1604_rule_2_2_9: true
+ubuntu1604_rule_2_2_10: true
+ubuntu1604_rule_2_2_11: true
+ubuntu1604_rule_2_2_12: true
+ubuntu1604_rule_2_2_13: true
+ubuntu1604_rule_2_2_14: true
+ubuntu1604_rule_2_2_15: true
+ubuntu1604_rule_2_2_16: true
+ubuntu1604_rule_2_2_17: true
+ubuntu1604_rule_2_2_18: true
+ubuntu1604_rule_2_2_19: true
+ubuntu1604_rule_2_2_20: true
+ubuntu1604_rule_2_2_21: true
+ubuntu1604_rule_2_3_1: true
+ubuntu1604_rule_2_3_2: true
+ubuntu1604_rule_2_3_3: true
+ubuntu1604_rule_2_3_4: true
+ubuntu1604_rule_2_3_5: true
 
 # Section 3 rules
-#ubuntu1604cis_rule_3_1_1: true
+ubuntu1604_rule_3_1_1: true
+ubuntu1604_rule_3_1_2: true
+ubuntu1604_rule_3_2_1: true
+ubuntu1604_rule_3_2_2: true
+ubuntu1604_rule_3_2_3: true
+ubuntu1604_rule_3_2_4: true
+ubuntu1604_rule_3_2_5: true
+ubuntu1604_rule_3_2_6: true
+ubuntu1604_rule_3_2_7: true
+ubuntu1604_rule_3_2_8: true
+ubuntu1604_rule_3_3_1: true
+ubuntu1604_rule_3_3_2: true
+ubuntu1604_rule_3_3_3: true
+ubuntu1604_rule_3_4_1: true
+ubuntu1604_rule_3_4_2: true
+ubuntu1604_rule_3_4_3: true
+ubuntu1604_rule_3_4_4: true
+ubuntu1604_rule_3_4_5: true
+ubuntu1604_rule_3_5_1: true
+ubuntu1604_rule_3_5_2: true
+ubuntu1604_rule_3_5_3: true
+ubuntu1604_rule_3_5_4: true
+ubuntu1604_rule_3_6_1: true
+ubuntu1604_rule_3_6_2: true
+ubuntu1604_rule_3_6_3: true
+ubuntu1604_rule_3_6_4: true
+ubuntu1604_rule_3_6_5: true
 
 # Section 4 rules
-#ubuntu1604cis_rule_4_1_1_1: true
+ubuntu1604_rule_4_1_1_1: true
+ubuntu1604_rule_4_1_1_2: true
+ubuntu1604_rule_4_1_1_3: true
+ubuntu1604_rule_4_1_2: true
+ubuntu1604_rule_4_1_3: true
+ubuntu1604_rule_4_1_4: true
+ubuntu1604_rule_4_1_5: true
+ubuntu1604_rule_4_1_6: true
+ubuntu1604_rule_4_1_7: true
+ubuntu1604_rule_4_1_8: true
+ubuntu1604_rule_4_1_9: true
+ubuntu1604_rule_4_1_10: true
+ubuntu1604_rule_4_1_11: true
+ubuntu1604_rule_4_1_12: true
+ubuntu1604_rule_4_1_13: true
+ubuntu1604_rule_4_1_14: true
+ubuntu1604_rule_4_1_15: true
+ubuntu1604_rule_4_1_16: true
+ubuntu1604_rule_4_1_17: true
+ubuntu1604_rule_4_1_18: true
+ubuntu1604_rule_4_2_3: true
+ubuntu1604_rule_4_2_1_1: true
+ubuntu1604_rule_4_2_1_2: true
+ubuntu1604_rule_4_2_1_3: true
+ubuntu1604_rule_4_2_1_4: true
+ubuntu1604_rule_4_2_1_5: true
+ubuntu1604_rule_4_2_2_1: true
+ubuntu1604_rule_4_2_2_2: true
+ubuntu1604_rule_4_2_2_3: true
+ubuntu1604_rule_4_2_2_4: true
+ubuntu1604_rule_4_2_2_5: true
+ubuntu1604_rule_4_2_4: true
 
 # Section 5 rules
-#ubuntu1604cis_rule_5_1_1: true
+ubuntu1604_rule_5_1_1: true
+ubuntu1604_rule_5_1_2: true
+ubuntu1604_rule_5_1_3: true
+ubuntu1604_rule_5_1_4: true
+ubuntu1604_rule_5_1_5: true
+ubuntu1604_rule_5_1_6: true
+ubuntu1604_rule_5_1_7: true
+ubuntu1604_rule_5_1_8: true
+ubuntu1604_rule_5_2_1: true
+ubuntu1604_rule_5_2_2: true
+ubuntu1604_rule_5_2_3: true
+ubuntu1604_rule_5_2_4: true
+ubuntu1604_rule_5_2_5: true
+ubuntu1604_rule_5_2_6: true
+ubuntu1604_rule_5_2_7: true
+ubuntu1604_rule_5_2_8: true
+ubuntu1604_rule_5_2_9: true
+ubuntu1604_rule_5_2_10: true
+ubuntu1604_rule_5_2_11: true
+ubuntu1604_rule_5_2_12: true
+ubuntu1604_rule_5_2_13: true
+ubuntu1604_rule_5_2_14: true
+ubuntu1604_rule_5_2_15: true
+ubuntu1604_rule_5_2_16: true
+ubuntu1604_rule_5_3_1: true
+ubuntu1604_rule_5_3_2: true
+ubuntu1604_rule_5_3_3: true
+ubuntu1604_rule_5_3_4: true
+ubuntu1604_rule_5_4_1_1: true
+ubuntu1604_rule_5_4_1_2: true
+ubuntu1604_rule_5_4_1_3: true
+ubuntu1604_rule_5_4_1_4: true
+ubuntu1604_rule_5_4_2: true
+ubuntu1604_rule_5_4_3: true
+ubuntu1604_rule_5_4_4: true
 
 # Section 6 rules
-#ubuntu1604cis_rule_6_1_1: true
+ubuntu1604_rule_6_1_1: true
+ubuntu1604_rule_6_1_2: true
+ubuntu1604_rule_6_1_3: true
+ubuntu1604_rule_6_1_4: true
+ubuntu1604_rule_6_1_5: true
+ubuntu1604_rule_6_1_6: true
+ubuntu1604_rule_6_1_7: true
+ubuntu1604_rule_6_1_8: true
+ubuntu1604_rule_6_1_9: true
+ubuntu1604_rule_6_1_10: true
+ubuntu1604_rule_6_1_11: true
+ubuntu1604_rule_6_1_12: true
+ubuntu1604_rule_6_1_13: true
+ubuntu1604_rule_6_1_14: true
+ubuntu1604_rule_6_2_1: true
+ubuntu1604_rule_6_2_2: true
+ubuntu1604_rule_6_2_3: true
+ubuntu1604_rule_6_2_4: true
+ubuntu1604_rule_6_2_5: true
+ubuntu1604_rule_6_2_6: true
+ubuntu1604_rule_6_2_7: true
+ubuntu1604_rule_6_2_8: true
+ubuntu1604_rule_6_2_9: true
+ubuntu1604_rule_6_2_10: true
+ubuntu1604_rule_6_2_11: true
+ubuntu1604_rule_6_2_12: true
+ubuntu1604_rule_6_2_14: true
+ubuntu1604_rule_6_2_15: true
+ubuntu1604_rule_6_2_16: true
+ubuntu1604_rule_6_2_17: true
+ubuntu1604_rule_6_2_18: true
+ubuntu1604_rule_6_2_19: true
 
 # Service configuration booleans set true to keep service
 ubuntu1604cis_avahi_server: false
@@ -203,6 +359,10 @@ ubuntu1604cis_sshd:
     #denyusers:
     #denygroups:
 
+ubuntu1604_pass:
+    max_days: 90
+    min_days: 7
+    warn_age: 7
 # Syslog system
 ubuntu1604cis_syslog: rsyslog
 #ubuntu1604cis_syslog: syslog-ng

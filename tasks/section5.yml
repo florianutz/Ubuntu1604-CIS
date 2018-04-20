@@ -2,6 +2,8 @@
   service:
       name: "{{ cron_service[ansible_os_family] }}"
       enabled: yes
+  when:
+      - ubuntu1604_rule_5_1_1
   tags:
       - level1
       - level2
@@ -14,6 +16,8 @@
       owner: root
       group: root
       mode: 0600
+  when:
+      - ubuntu1604_rule_5_1_2
   tags:
       - level1
       - level2
@@ -27,6 +31,8 @@
       owner: root
       group: root
       mode: 0700
+  when:
+      - ubuntu1604_rule_5_1_3
   tags:
       - level1
       - level2
@@ -40,6 +46,8 @@
       owner: root
       group: root
       mode: 0700
+  when:
+      - ubuntu1604_rule_5_1_4
   tags:
       - level1
       - level2
@@ -53,6 +61,8 @@
       owner: root
       group: root
       mode: 0700
+  when:
+      - ubuntu1604_rule_5_1_5
   tags:
       - level1
       - level2
@@ -66,6 +76,8 @@
       owner: root
       group: root
       mode: 0700
+  when:
+      - ubuntu1604_rule_5_1_6
   tags:
       - level1
       - level2
@@ -79,6 +91,8 @@
       owner: root
       group: root
       mode: 0700
+  when:
+      - ubuntu1604_rule_5_1_7
   tags:
       - level1
       - level2
@@ -156,6 +170,8 @@
       owner: root
       group: root
       mode: 0600
+  when:
+      - ubuntu1604_rule_5_2_1
   tags:
       - level1
       - level2
@@ -168,6 +184,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^Protocol'
       line: 'Protocol 2'
+  when:
+      - ubuntu1604_rule_5_2_2
   tags:
       - level1
       - level2
@@ -180,6 +198,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^LogLevel'
       line: 'LogLevel INFO'
+  when:
+      - ubuntu1604_rule_5_2_3
   tags:
       - level1
       - level2
@@ -192,6 +212,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^X11Forwarding'
       line: 'X11Forwarding no'
+  when:
+      - ubuntu1604_rule_5_2_4
   tags:
       - level1
       - level2
@@ -204,6 +226,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^(#)?MaxAuthTries \d'
       line: 'MaxAuthTries 4'
+  when:
+      - ubuntu1604_rule_5_2_5
   tags:
       - level1
       - level2
@@ -216,6 +240,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^IgnoreRhosts'
       line: 'IgnoreRhosts yes'
+  when:
+      - ubuntu1604_rule_5_2_6
   tags:
       - level1
       - level2
@@ -228,6 +254,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^HostbasedAuthentication'
       line: 'HostbasedAuthentication no'
+  when:
+      - ubuntu1604_rule_5_2_7
   tags:
       - level1
       - level2
@@ -240,6 +268,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^PermitRootLogin'
       line: 'PermitRootLogin no'
+  when:
+      - ubuntu1604_rule_5_2_8
   tags:
       - level1
       - level2
@@ -252,6 +282,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^PermitEmptyPasswords'
       line: 'PermitEmptyPasswords no'
+  when:
+      - ubuntu1604_rule_5_2_9
   tags:
       - level1
       - level2
@@ -264,6 +296,8 @@
       dest: /etc/ssh/sshd_config
       regexp: '^PermitUserEnvironment'
       line: 'PermitUserEnvironment no'
+  when:
+      - ubuntu1604_rule_5_2_10
   tags:
       - level1
       - level2
@@ -413,6 +447,8 @@
       - { key: 'ucredit', value: '-1' }
       - { key: 'ocredit', value: '-1' }
       - { key: 'lcredit', value: '-1' }
+  when:
+      - ubuntu1604_rule_5_3_1
   tags:
       - level1
       - level2
@@ -422,6 +458,8 @@
 - name: "SCORED | 5.3.2 | PATCH | Ensure lockout for failed password attempts is configured"
   command: /bin/true
   changed_when: no
+  when:
+      - ubuntu1604_rule_5_3_2
   tags:
       - level1
       - level2
@@ -432,6 +470,8 @@
 - name: "SCORED | 5.3.3 | PATCH | Ensure password reuse is limited"
   command: /bin/true
   changed_when: no
+  when:
+      - ubuntu1604_rule_5_3_3
   tags:
       - level1
       - level2
@@ -443,6 +483,8 @@
   command: authconfig --passalgo=sha512 --update
   changed_when: no
   failed_when: no
+  when:
+      - ubuntu1604_rule_5_3_4
   tags:
       - level1
       - level2
@@ -454,7 +496,9 @@
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_MAX_DAYS'
-      line: 'PASS_MAX_DAYS 90'
+      line: "PASS_MAX_DAYS {{ ubuntu1604_pass['max_days'] }}"
+  when:
+      - ubuntu1604_rule_5_4_1_1
   tags:
       - level1
       - level2
@@ -466,7 +510,9 @@
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_MIN_DAYS'
-      line: 'PASS_MIN_DAYS 7'
+      line: "PASS_MIN_DAYS {{ ubuntu1604_pass['min_days'] }}"
+  when:
+      - ubuntu1604_rule_5_4_1_2
   tags:
       - level1
       - level2
@@ -478,7 +524,9 @@
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_WARN_AGE'
-      line: 'PASS_WARN_AGE 7'
+      line: "PASS_WARN_AGE {{ ubuntu1604_pass['warn_age'] }}"
+  when:
+      - ubuntu1604_rule_5_4_1_3
   tags:
       - level1
       - level2
@@ -488,6 +536,8 @@
 - name: "SCORED | 5.4.1.4 | PATCH | Ensure inactive password lock is 30 days or less"
   command: /bin/true
   changed_when: no
+  when:
+      - ubuntu1604_rule_5_4_1_4
   tags:
       - level1
       - level2
@@ -498,6 +548,8 @@
 - name: "SCORED | 5.4.2 | PATCH | Ensure system accounts are non-login"
   command: /bin/true
   changed_when: no
+  when:
+      - ubuntu1604_rule_5_4_2
   tags:
       - level1
       - level2
@@ -509,6 +561,8 @@
   command: usermod -g 0 root
   changed_when: no
   failed_when: no
+  when:
+      - ubuntu1604_rule_5_4_3
   tags:
       - level1
       - level2

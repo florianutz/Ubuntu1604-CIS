@@ -16,3 +16,5 @@
   ignore_errors: yes
   when: ansible_os_family == "Debian"
   with_items: "{{ apt_rc_packages.stdout_lines }}"
+  tags:
+    - skip_ansible_lint
