@@ -72,3 +72,10 @@
     - ubuntu1604cis_skip_for_travis == false
   tags:
     - skip_ansible_lint
+
+- name: load audit rules
+  command: /sbin/augenrules --load
+  when:
+    - ubuntu1604cis_skip_for_travis == false
+  tags:
+    - skip_ansible_lint

@@ -97,7 +97,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_4
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -113,7 +115,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_5
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -130,7 +134,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_6
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -147,7 +153,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_7
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -163,7 +171,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_8
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -180,7 +190,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_9
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -197,7 +209,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_10
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -214,7 +228,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_11
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -242,7 +258,9 @@
       owner: root
       group: root
       mode: 0600
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   when:
       - ubuntu1604cis_rule_4_1_12
   tags:
@@ -260,7 +278,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_13
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -276,7 +296,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_14
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -286,14 +308,16 @@
 
 - name: "SCORED | 4.1.15 | PATCH | Ensure changes to system administration scope (sudoers) is collected"
   template:
-      src: audit/ubuntu1604cis_rule_4_1_15.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_15.rules
-      owner: root
-      group: root
-      mode: 0600
+    src: audit/ubuntu1604cis_rule_4_1_15.rules.j2
+    dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_15.rules
+    owner: root
+    group: root
+    mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_15
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -309,7 +333,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_16
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -325,7 +351,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_17
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
@@ -342,7 +370,9 @@
       mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_18
-  notify: restart auditd
+  notify:
+    - load audit rules
+    - restart auditd
   tags:
       - level2
       - auditd
