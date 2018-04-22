@@ -273,6 +273,9 @@
   changed_when: no
   check_mode: no
   tags:
+    - level1
+    - level2
+    - patch
     - rule_6.2.6
 
 - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
