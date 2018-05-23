@@ -261,8 +261,8 @@
   notify: 
     - systemd restart tmp.mount
   when:
-      - ubuntu1604cis_rule_1_1_2
-      - ubuntu1604cis_skip_for_travis == false
+    - ubuntu1604cis_rule_1_1_2
+    - ubuntu1604cis_skip_for_travis == false
   tags:
     - level2
     - scored

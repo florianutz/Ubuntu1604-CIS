@@ -268,8 +268,8 @@
           group: root
           mode: 0600
       notify:
-    - load audit rules
-    - restart auditd
+        - load audit rules
+        - restart auditd
  
   when:
       - ubuntu1604cis_rule_4_1_12
