@@ -1,3 +1,4 @@
+---
 - name: "NOTSCORED | 4.1.1.1 | PATCH | Ensure audit log storage size is configured"
   lineinfile:
       dest: /etc/audit/auditd.conf
@@ -70,7 +71,7 @@
   service:
       name: auditd
       state: started
-      enabled: yes
+      enabled: true
   when:
       - ubuntu1604cis_skip_for_travis == false
       - ubuntu1604cis_rule_4_1_2
@@ -86,8 +87,8 @@
       dest: /etc/default/grub
       regexp: '(^GRUB_CMDLINE_LINUX\s*\=\s*)(?:")(.+)(?<!audit=1)(?:")'
       replace: '\1"\2 audit=1"'
-      follow: yes
-  ignore_errors: yes
+      follow: true
+  ignore_errors: true
   notify:
       - generate new grub config
   when:
@@ -109,8 +110,8 @@
   when:
       - ubuntu1604cis_rule_4_1_4
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -128,8 +129,8 @@
   when:
       - ubuntu1604cis_rule_4_1_5
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -147,8 +148,8 @@
   when:
       - ubuntu1604cis_rule_4_1_6
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -166,8 +167,8 @@
   when:
       - ubuntu1604cis_rule_4_1_7
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -185,8 +186,8 @@
   when:
       - ubuntu1604cis_rule_4_1_8
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -204,8 +205,8 @@
   when:
       - ubuntu1604cis_rule_4_1_9
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -223,8 +224,8 @@
   when:
       - ubuntu1604cis_rule_4_1_10
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -242,8 +243,8 @@
   when:
       - ubuntu1604cis_rule_4_1_11
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -254,23 +255,22 @@
 - name: "SCORED | 4.1.12 | PATCH | Ensure use of privileged commands is collected"
   block:
 
-    - name: "SCORED | 4.1.12 | PATCH | Get list of setuid/setguid binaries"
-      shell: for i in  $(df | grep '^/dev' | awk '{ print $NF }'); do find $i -xdev -type f -perm -4000 -o -type f -perm -2000 2>/dev/null; done
-      register: priv_procs
-      changed_when: no
-      check_mode: no
+      - name: "SCORED | 4.1.12 | PATCH | Get list of setuid/setguid binaries"
+        shell: for i in  $(df | grep '^/dev' | awk '{ print $NF }'); do find $i -xdev -type f -perm -4000 -o -type f -perm -2000 2>/dev/null; done
+        register: priv_procs
+        changed_when: false
+        check_mode: false
 
-    - name: "SCORED | 4.1.12 | PATCH | Ensure use of privileged commands is collected"
-      template:
-          src: audit/ubuntu1604cis_rule_4_1_12.rules.j2
-          dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_12.rules
-          owner: root
-          group: root
-          mode: 0600
-      notify:
-        - load audit rules
-        - restart auditd
- 
+      - name: "SCORED | 4.1.12 | PATCH | Ensure use of privileged commands is collected"
+        template:
+            src: audit/ubuntu1604cis_rule_4_1_12.rules.j2
+            dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_12.rules
+            owner: root
+            group: root
+            mode: 0600
+        notify:
+            - load audit rules
+            - restart auditd
   when:
       - ubuntu1604cis_rule_4_1_12
   tags:
@@ -290,8 +290,8 @@
   when:
       - ubuntu1604cis_rule_4_1_13
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -309,8 +309,8 @@
   when:
       - ubuntu1604cis_rule_4_1_14
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -320,16 +320,16 @@
 
 - name: "SCORED | 4.1.15 | PATCH | Ensure changes to system administration scope (sudoers) is collected"
   template:
-    src: audit/ubuntu1604cis_rule_4_1_15.rules.j2
-    dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_15.rules
-    owner: root
-    group: root
-    mode: 0600
+      src: audit/ubuntu1604cis_rule_4_1_15.rules.j2
+      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_15.rules
+      owner: root
+      group: root
+      mode: 0600
   when:
       - ubuntu1604cis_rule_4_1_15
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -347,8 +347,8 @@
   when:
       - ubuntu1604cis_rule_4_1_16
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -366,8 +366,8 @@
   when:
       - ubuntu1604cis_rule_4_1_17
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -386,8 +386,8 @@
   when:
       - ubuntu1604cis_rule_4_1_18
   notify:
-    - load audit rules
-    - restart auditd
+      - load audit rules
+      - restart auditd
   tags:
       - level2
       - scored
@@ -399,7 +399,7 @@
   apt:
       name: "{{ ubuntu1604cis_syslog }}"
       state: present
-      install_recommends: no
+      install_recommends: false
   when:
       - ubuntu1604cis_rule_4_2_3
   tags:
@@ -412,7 +412,7 @@
 
 - name: "SCORED | 4.2.1.1 | PATCH | Ensure rsyslog Service is enabled"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_1_1
   tags:
@@ -426,7 +426,7 @@
 
 - name: "NOTSCORED | 4.2.1.2 | PATCH | Ensure logging is configured"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_1_2
   tags:
@@ -455,7 +455,7 @@
 
 - name: "SCORED | 4.2.1.4 | PATCH | Ensure rsyslog is configured to send logs to a remote log host"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_1_4
   tags:
@@ -469,7 +469,7 @@
 
 - name: "NOTSCORED | 4.2.1.5 | PATCH | Ensure remote rsyslog messages are only accepted on designated log hosts."
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_1_5
   tags:
@@ -483,7 +483,7 @@
 
 - name: "NOTSCORED | 4.2.1.5 | PATCH | Ensure remote rsyslog messages are only accepted on designated log hosts."
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_1_5
   tags:
@@ -497,7 +497,7 @@
 
 - name: "SCORED | 4.2.2.1 | PATCH | Ensure syslog-ng service is enabled"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_2_1
   tags:
@@ -511,7 +511,7 @@
 
 - name: "NOTSCORED | 4.2.2.2 | PATCH | Ensure logging is configured"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_2_2
   tags:
@@ -525,7 +525,7 @@
 
 - name: "SCORED | 4.2.2.3 | PATCH | Ensure syslog-ng default file permissions configured"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_2_3
   tags:
@@ -539,7 +539,7 @@
 
 - name: "NOTSCORED | 4.2.2.4 | PATCH | Ensure syslog-ng is configured to send logs to a remote log host"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_2_4
   tags:
@@ -553,7 +553,7 @@
 
 - name: "NOTSCORED | 4.2.2.5 | PATCH | Ensure remote syslog-ng messages are only accepted on designated log hosts"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_4_2_2_5
   tags:
@@ -567,8 +567,8 @@
 
 - name: "SCORED | 4.2.4 | PATCH | Ensure permissions on all logfiles are configured"
   command: find /var/log -type f -exec chmod g-wx,o-rwx {} +
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_4_2_4
   tags:
@@ -581,12 +581,12 @@
 
 - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
   replace:
-    path: "{{ item.path }}"
-    regexp: '^(\s*)(daily|weekly|monthly|yearly)$'
-    replace: "\\1{{ ubuntu1604cis_logrotate }}"
+      path: "{{ item.path }}"
+      regexp: '^(\s*)(daily|weekly|monthly|yearly)$'
+      replace: "\\1{{ ubuntu1604cis_logrotate }}"
   with_items:
-    - "{{ log_rotates.files }}"
-    - { path: "/etc/logrotate.conf" }
+      - "{{ log_rotates.files }}"
+      - { path: "/etc/logrotate.conf" }
   when:
       - ubuntu1604cis_rule_4_3
   tags:

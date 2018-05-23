@@ -1,6 +1,7 @@
+---
 - name: "NOTSCORED | 6.1.1 | PATCH | Audit system file permissions"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_1_1
   tags:
@@ -132,7 +133,7 @@
 
 - name: "SCORED | 6.1.10 | PATCH | Ensure no world writable files exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_1_10
   tags:
@@ -145,7 +146,7 @@
 
 - name: "SCORED | 6.1.11 | PATCH | Ensure no unowned files or directories exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_1_11
   tags:
@@ -158,7 +159,7 @@
 
 - name: "SCORED | 6.1.12 | PATCH | Ensure no ungrouped files or directories exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_1_12
   tags:
@@ -171,7 +172,7 @@
 
 - name: "NOTSCORED | 6.1.13 | PATCH | Audit SUID executables"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_1_13
   tags:
@@ -184,7 +185,7 @@
 
 - name: "NOTSCORED | 6.1.14 | PATCH | Audit SGID executables"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_1_14
   tags:
@@ -197,8 +198,8 @@
 
 - name: "SCORED | 6.2.1 | PATCH | Ensure password fields are not empty"
   command: passwd -l {{ item }}
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   with_items: "{{ empty_password_accounts.stdout_lines }}"
   when:
       - empty_password_accounts.rc
@@ -212,8 +213,8 @@
 
 - name: "SCORED | 6.2.2 | PATCH | Ensure no legacy '+' entries exist in /etc/passwd"
   command: sed -i '/^+/ d' /etc/passwd
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_6_2_2
   tags:
@@ -225,8 +226,8 @@
 
 - name: "SCORED | 6.2.3 | PATCH | Ensure no legacy '+' entries exist in /etc/shadow"
   command: sed -i '/^+/ d' /etc/shadow
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_6_2_3
   tags:
@@ -238,8 +239,8 @@
 
 - name: "SCORED | 6.2.4 | PATCH | Ensure no legacy '+' entries exist in /etc/group"
   command: sed -i '/^+/ d' /etc/group
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_6_2_4
   tags:
@@ -251,8 +252,8 @@
 
 - name: "SCORED | 6.2.5 | PATCH | Ensure root is the only UID 0 account"
   command: passwd -l {{ item }}
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   with_items: "{{ uid_zero_accounts_except_root.stdout_lines }}"
   when:
       - uid_zero_accounts_except_root.rc
@@ -266,7 +267,7 @@
 
 - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_6
   tags:
@@ -289,10 +290,10 @@
      done
     echo "${newsudopath[*]}"
   args:
-    executable: /bin/bash
+      executable: /bin/bash
   register: fixsudo
-  changed_when: no
-  check_mode: no
+  changed_when: false
+  check_mode: false
   when:
       - ubuntu1604cis_rule_6_2_6
   tags:
@@ -304,11 +305,11 @@
 
 - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
   lineinfile:
-    dest: /etc/sudoers
-    regexp: "(.*secure_path=).*"
-    line: '\1"{{ fixsudo.stdout_lines[0] }}"'
-    backrefs: yes
-  when: 
+      dest: /etc/sudoers
+      regexp: "(.*secure_path=).*"
+      line: '\1"{{ fixsudo.stdout_lines[0] }}"'
+      backrefs: true
+  when:
       - fixsudo.stdout_lines[0] != ""
   tags:
       - level1
@@ -319,7 +320,7 @@
 
 - name: "SCORED | 6.2.7 | PATCH | Ensure all users' home directories exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_7
   tags:
@@ -332,7 +333,7 @@
 
 - name: "SCORED | 6.2.8 | PATCH | Ensure users' home directories permissions are 750 or more restrictive"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_8
   tags:
@@ -345,7 +346,7 @@
 
 - name: "SCORED | 6.2.9 | PATCH | Ensure users own their home directories"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_9
   tags:
@@ -358,7 +359,7 @@
 
 - name: "SCORED | 6.2.10 | PATCH | Ensure users' dot files are not group or world writable"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_10
   tags:
@@ -413,7 +414,7 @@
 
 - name: "SCORED | 6.2.15 | PATCH | Ensure all groups in /etc/passwd exist in /etc/group"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_15
   tags:
@@ -426,7 +427,7 @@
 
 - name: "SCORED | 6.2.16 | PATCH | Ensure no duplicate UIDs exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_16
   tags:
@@ -439,7 +440,7 @@
 
 - name: "SCORED | 6.2.17 | PATCH | Ensure no duplicate GIDs exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_17
   tags:
@@ -452,7 +453,7 @@
 
 - name: "SCORED | 6.2.18 | PATCH | Ensure no duplicate user names exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_18
   tags:
@@ -465,7 +466,7 @@
 
 - name: "SCORED | 6.2.19 | PATCH | Ensure no duplicate group names exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_6_2_19
   tags:

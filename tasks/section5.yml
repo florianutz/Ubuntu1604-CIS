@@ -1,7 +1,8 @@
+---
 - name: "SCORED | 5.1.1 | PATCH | Ensure cron daemon is enabled"
   service:
       name: "{{ cron_service[ansible_os_family] }}"
-      enabled: yes
+      enabled: true
   when:
       - ubuntu1604cis_rule_5_1_1
   tags:
@@ -181,7 +182,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^Protocol"
+      regexp: '^Protocol'
       line: 'Protocol 2'
   when:
       - ubuntu1604cis_rule_5_2_2
@@ -197,7 +198,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^LogLevel"
+      regexp: '^LogLevel'
       line: 'LogLevel INFO'
   when:
       - ubuntu1604cis_rule_5_2_3
@@ -213,7 +214,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^X11Forwarding"
+      regexp: '^X11Forwarding'
       line: 'X11Forwarding no'
   when:
       - ubuntu1604cis_rule_5_2_4
@@ -245,7 +246,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^IgnoreRhosts"
+      regexp: '^IgnoreRhosts'
       line: 'IgnoreRhosts yes'
   when:
       - ubuntu1604cis_rule_5_2_6
@@ -261,7 +262,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^HostbasedAuthentication"
+      regexp: '^HostbasedAuthentication'
       line: 'HostbasedAuthentication no'
   when:
       - ubuntu1604cis_rule_5_2_7
@@ -277,7 +278,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^PermitRootLogin"
+      regexp: '^PermitRootLogin'
       line: 'PermitRootLogin no'
   when:
       - ubuntu1604cis_rule_5_2_8
@@ -293,7 +294,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^PermitEmptyPasswords"
+      regexp: '^PermitEmptyPasswords'
       line: 'PermitEmptyPasswords no'
   when:
       - ubuntu1604cis_rule_5_2_9
@@ -309,7 +310,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^PermitUserEnvironment"
+      regexp: '^PermitUserEnvironment'
       line: 'PermitUserEnvironment no'
   when:
       - ubuntu1604cis_rule_5_2_10
@@ -325,7 +326,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^MACs"
+      regexp: '^MACs'
       line: 'MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com'
   when:
       - ubuntu1604cis_rule_5_2_11
@@ -343,14 +344,14 @@
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
-            regexp: "^ClientAliveInterval"
+            regexp: '^ClientAliveInterval'
             line: "ClientAliveInterval {{ ubuntu1604cis_sshd['clientaliveinterval'] }}"
 
       - name: "SCORED | 5.2.12 | PATCH | Ensure SSH ClientAliveCountMax set to <= 3"
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
-            regexp: "^ClientAliveCountMax"
+            regexp: '^ClientAliveCountMax'
             line: "ClientAliveCountMax {{ ubuntu1604cis_sshd['clientalivecountmax'] }}"
   when:
       - ubuntu1604cis_rule_5_2_12
@@ -366,7 +367,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^LoginGraceTime"
+      regexp: '^LoginGraceTime'
       line: "LoginGraceTime 60"
   when:
       - ubuntu1604cis_rule_5_2_13
@@ -384,7 +385,7 @@
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
-            regexp: "^AllowUsers"
+            regexp: '^AllowUsers'
             line: "AllowUsers {{ ubuntu1604cis_sshd['allowusers'] }}"
         notify:
             - restart sshd
@@ -395,7 +396,7 @@
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
-            regexp: "^AllowGroups"
+            regexp: '^AllowGroups'
             line: "AllowGroups {{ ubuntu1604cis_sshd['allowgroups'] }}"
         notify:
             - restart sshd
@@ -406,7 +407,7 @@
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
-            regexp: "^DenyUsers"
+            regexp: '^DenyUsers'
             line: "DenyUsers {{ ubuntu1604cis_sshd['denyusers'] }}"
         notify:
             - restart sshd
@@ -417,7 +418,7 @@
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
-            regexp: "^DenyGroups"
+            regexp: '^DenyGroups'
             line: "DenyGroups {{ ubuntu1604cis_sshd['denygroups'] }}"
         notify:
             - restart sshd
@@ -437,7 +438,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^Banner"
+      regexp: '^Banner'
       line: 'Banner /etc/issue.net'
   when:
       - ubuntu1604cis_rule_5_2_15
@@ -455,16 +456,16 @@
         apt:
             name: libpam-pwquality
             state: present
-            install_recommends: no
+            install_recommends: false
 
       - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
         lineinfile:
             state: present
             dest: /etc/security/pwquality.conf
-            regexp: "^{{ item.key }}"
+            regexp: '^{{ item.key }}'
             line: '{{ item.key }} = {{ item.value }}'
         with_items:
-            - { key: 'minlen',  value: '14' }
+            - { key: 'minlen', value: '14' }
             - { key: 'dcredit', value: '-1' }
             - { key: 'ucredit', value: '-1' }
             - { key: 'ocredit', value: '-1' }
@@ -480,7 +481,7 @@
 
 - name: "SCORED | 5.3.2 | PATCH | Ensure lockout for failed password attempts is configured"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_5_3_2
   tags:
@@ -493,7 +494,7 @@
 
 - name: "SCORED | 5.3.3 | PATCH | Ensure password reuse is limited"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_5_3_3
   tags:
@@ -506,8 +507,8 @@
 
 - name: "SCORED | 5.3.4 | PATCH | Ensure password hashing algorithm is SHA-512"
   command: authconfig --passalgo=sha512 --update
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_5_3_4
   tags:
@@ -521,7 +522,7 @@
   lineinfile:
       state: present
       dest: /etc/login.defs
-      regexp: "^PASS_MAX_DAYS"
+      regexp: '^PASS_MAX_DAYS'
       line: "PASS_MAX_DAYS {{ ubuntu1604cis_pass['max_days'] }}"
   when:
       - ubuntu1604cis_rule_5_4_1_1
@@ -536,7 +537,7 @@
   lineinfile:
       state: present
       dest: /etc/login.defs
-      regexp: "^PASS_MIN_DAYS"
+      regexp: '^PASS_MIN_DAYS'
       line: "PASS_MIN_DAYS {{ ubuntu1604cis_pass['min_days'] }}"
   when:
       - ubuntu1604cis_rule_5_4_1_2
@@ -551,7 +552,7 @@
   lineinfile:
       state: present
       dest: /etc/login.defs
-      regexp: "^PASS_WARN_AGE"
+      regexp: '^PASS_WARN_AGE'
       line: "PASS_WARN_AGE {{ ubuntu1604cis_pass['warn_age'] }}"
   when:
       - ubuntu1604cis_rule_5_4_1_3
@@ -564,7 +565,7 @@
 
 - name: "SCORED | 5.4.1.4 | PATCH | Ensure inactive password lock is 30 days or less"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_5_4_1_4
   tags:
@@ -576,7 +577,7 @@
 
 - name: "SCORED | 5.4.2 | PATCH | Ensure system accounts are non-login"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_5_4_2
   tags:
@@ -588,8 +589,8 @@
 
 - name: "SCORED | 5.4.3 | PATCH | Ensure default group for the root account is GID 0"
   command: usermod -g 0 root
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_5_4_3
   tags:
@@ -603,13 +604,13 @@
       - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/bashrc"
         replace:
             path: /etc/bashrc
-            regexp: "(^\s+umask) 002"
+            regexp: '(^\s+umask) 002'
             replace: '\1 027'
 
       - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/profile"
         replace:
             path: /etc/profile
-            regexp: "(^\s+umask) 002"
+            regexp: '(^\s+umask) 002'
             replace: '\1 027'
   when:
       - ubuntu1604cis_rule_5_4_4
@@ -621,9 +622,9 @@
 
 - name: "NOTSCORED | 5.5 | PATCH | Ensure root login is restricted to system console"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
-    - ubuntu1604cis_rule_5_5
+      - ubuntu1604cis_rule_5_5
   tags:
       - level1
       - level2
@@ -636,10 +637,10 @@
   lineinfile:
       state: present
       dest: /etc/pam.d/su
-      regexp: "^(#)?auth\s+required\s+pam_wheel\.so"
+      regexp: '^(#)?auth\s+required\s+pam_wheel\.so'
       line: "auth           required        pam_wheel.so use_uid"
   when:
-    - ubuntu1604cis_rule_5_6
+      - ubuntu1604cis_rule_5_6
   tags:
       - level1
       - level2
@@ -651,7 +652,7 @@
       name: root
       groups: wheel
   when:
-    - ubuntu1604cis_rule_5_6
+      - ubuntu1604cis_rule_5_6
   tags:
       - level1
       - level2

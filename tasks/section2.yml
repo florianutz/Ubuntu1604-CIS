@@ -1,3 +1,4 @@
+---
 - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram,chargen-stream"
   block:
       - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram"
@@ -8,7 +9,7 @@
       - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram"
         command: chkconfig chargen-dgram off
         notify: restart xinetd
-        when: 
+        when:
             - chargen_dgram_service.stat.exists
 
       - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-stream"
@@ -19,7 +20,7 @@
       - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-stream"
         command: chkconfig chargen-stream off
         notify: restart xinetd
-        when: 
+        when:
             - chargen_stream_service.stat.exists
   when:
       - ubuntu1604cis_rule_2_1_1
@@ -105,7 +106,7 @@
       - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram"
         command: chkconfig echo-dgram off
         notify: restart xinetd
-        when: 
+        when:
             - echo_dgram_service.stat.exists
 
       - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-stream"
@@ -169,7 +170,7 @@
       - name: "SCORED | 2.1.6 | PATCH | Ensure tftp server is not enabled"
         command: chkconfig tftp off
         notify: restart xinetd
-        when: 
+        when:
             - tftp_service.stat.exists
             - ubuntu1604cis_tftp_server == false
         tags:
@@ -186,7 +187,7 @@
   service:
       name: xinetd
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - xinetd_service_status.stdout == "loaded"
       - not ubuntu1604cis_xinetd_required
@@ -203,19 +204,19 @@
         apt:
             name: "{{ ubuntu1604cis_time_synchronization }}"
             state: present
-            install_recommends: no
+            install_recommends: false
 
       - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service start"
         service:
             name: "{{ ubuntu1604cis_time_synchronization }}"
             state: started
-            enabled: yes
+            enabled: true
 
       - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop ntp"
         service:
             name: "{{ ntp_service[ansible_os_family] }}"
             state: stopped
-            enabled: no
+            enabled: false
         when:
             - ubuntu1604cis_time_synchronization == "chrony"
             - ntpd_service_status.stdout == "loaded"
@@ -224,8 +225,8 @@
         service:
             name: chronyd
             state: stopped
-            enabled: no
-        ignore_errors: yes
+            enabled: false
+        ignore_errors: true
         when:
             - ubuntu1604cis_time_synchronization == "ntp"
             - chronyd_service_status.stdout == "loaded"
@@ -288,7 +289,7 @@
       regexp: "^(#)?OPTIONS"
       line: "OPTIONS=\"-u chrony\""
       state: present
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_time_synchronization == "chrony"
       - ubuntu1604cis_rule_2_2_1_3
@@ -321,7 +322,7 @@
   service:
       name: avahi-daemon
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_avahi_server == false
       - avahi_service_status.stdout == "loaded"
@@ -338,7 +339,7 @@
   service:
       name: cups
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_cups_server == false and cups_service_status.stdout == "loaded"
       - ubuntu1604cis_rule_2_2_4
@@ -354,7 +355,7 @@
   service:
       name: dhcpd
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_dhcp_server == false
       - dhcpd_service_status.stdout == "loaded"
@@ -371,7 +372,7 @@
   service:
       name: slapd
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_ldap_server == false and slapd_service_status.stdout == "loaded"
       - ubuntu1604cis_rule_2_2_6
@@ -387,7 +388,7 @@
   service:
       name: nfs
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_nfs_rpc_server == false and nfs_service_status.stdout == "loaded"
       - ubuntu1604cis_rule_2_2_7
@@ -404,7 +405,7 @@
   service:
       name: rpcbind
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_nfs_rpc_server == false
       - rpcbind_service_status.stdout == "loaded"
@@ -422,7 +423,7 @@
   service:
       name: named
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_named_server == false and named_service_status.stdout == "loaded"
       - ubuntu1604cis_rule_2_2_8
@@ -436,7 +437,7 @@
   service:
       name: vsftpd
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_vsftpd_server == false
       - vsftpd_service_status.stdout == "loaded"
@@ -451,7 +452,7 @@
   service:
       name: httpd
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_httpd_server == false
       - httpd_service_status.stdout == "loaded"
@@ -466,7 +467,7 @@
   service:
       name: dovecot
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_dovecot_server == false
       - dovecot_service_status.stdout == "loaded"
@@ -481,7 +482,7 @@
   service:
       name: smb
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_smb_server == false and smb_service_status.stdout == "loaded"
       - ubuntu1604cis_rule_2_2_12
@@ -495,7 +496,7 @@
   service:
       name: squid
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_squid_server == false
       - squid_service_status.stdout == "loaded"
@@ -510,7 +511,7 @@
   service:
       name: snmpd
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_snmp_server == false
       - snmpd_service_status.stdout == "loaded"
@@ -540,7 +541,7 @@
   service:
       name: ypserv
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_nis_server == false and ypserv_service_status.stdout == "loaded"
       - ubuntu1604cis_rule_2_2_16
@@ -554,7 +555,7 @@
   service:
       name: rsh.socket
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_rsh_server == false
       - rsh_service_status.stdout == "loaded"
@@ -569,7 +570,7 @@
   service:
       name: rlogin.socket
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_rsh_server == false
       - rlogin_service_status.stdout == "loaded"
@@ -584,7 +585,7 @@
   service:
       name: rexec.socket
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_rsh_server == false
       - rexec_service_status.stdout == "loaded"
@@ -599,7 +600,7 @@
   service:
       name: telnet
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_telnet_server == false
       - telnet_service_status.stdout == "loaded"
@@ -614,7 +615,7 @@
   service:
       name: tftp
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_tftp_server == false
       - tftp_service_status.stdout == "loaded"
@@ -632,7 +633,7 @@
   service:
       name: rsyncd
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_rsyncd_server == false
       - rsyncd_service_status.stdout == "loaded"
@@ -647,7 +648,7 @@
   service:
       name: ntalk
       state: stopped
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_ntalk_server == false
       - ntalk_service_status.stdout == "loaded"

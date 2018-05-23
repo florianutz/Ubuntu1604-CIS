@@ -1,3 +1,4 @@
+---
 - name: "SCORED | 1.1.1.1 | PATCH | Ensure mounting of cramfs filesystems is disabled"
   lineinfile:
       dest: /etc/modprobe.d/CIS.conf
@@ -7,7 +8,7 @@
       owner: root
       group: root
       mode: 0644
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_rule_1_1_1_1
   tags:
@@ -20,8 +21,8 @@
 
 - name: "SCORED | 1.1.1.1 | PATCH | Remove cramfs module"
   modprobe:
-    name: cramfs
-    state: absent
+      name: cramfs
+      state: absent
   when:
       - ubuntu1604cis_rule_1_1_1_1
   tags:
@@ -38,7 +39,7 @@
       regexp: "^(#)?install freevxfs"
       line: "install freevxfs /bin/true"
       state: present
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_rule_1_1_1_2
   tags:
@@ -51,8 +52,8 @@
 
 - name: "SCORED | 1.1.1.2 | PATCH | Remove freevxfs module"
   modprobe:
-    name: freevxfs
-    state: absent
+      name: freevxfs
+      state: absent
   when:
       - ubuntu1604cis_rule_1_1_1_2
   tags:
@@ -62,14 +63,14 @@
       - freevxfs
       - filesystems
       - rule_1.1.1.2
-      
+
 - name: "SCORED | 1.1.1.3 | PATCH | Ensure mounting of jffs2 filesystems is disabled"
   lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install jffs2"
       line: "install jffs2 /bin/true"
       state: present
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_rule_1_1_1_3
   tags:
@@ -82,8 +83,8 @@
 
 - name: "SCORED | 1.1.1.3 | PATCH | Remove jffs2 module"
   modprobe:
-    name: jffs2
-    state: absent
+      name: jffs2
+      state: absent
   when:
       - ubuntu1604cis_rule_1_1_1_3
   tags:
@@ -100,7 +101,7 @@
       regexp: "^(#)?install hfs"
       line: "install hfs /bin/true"
       state: present
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_rule_1_1_1_4
   tags:
@@ -113,8 +114,8 @@
 
 - name: "SCORED | 1.1.1.4 | PATCH | Remove hfs module"
   modprobe:
-    name: hfs
-    state: absent
+      name: hfs
+      state: absent
   when:
       - ubuntu1604cis_rule_1_1_1_4
   tags:
@@ -131,7 +132,7 @@
       regexp: "^(#)?install hfsplus"
       line: "install hfsplus /bin/true"
       state: present
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_rule_1_1_1_5
   tags:
@@ -144,8 +145,8 @@
 
 - name: "SCORED | 1.1.1.5 | PATCH | Remove hfsplus module"
   modprobe:
-    name: hfsplus
-    state: absent
+      name: hfsplus
+      state: absent
   when:
       - ubuntu1604cis_rule_1_1_1_5
   tags:
@@ -162,7 +163,7 @@
       regexp: "^(#)?install squashfs"
       line: "install squashfs /bin/true"
       state: present
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_rule_1_1_1_6
   tags:
@@ -175,8 +176,8 @@
 
 - name: "SCORED | 1.1.1.6 | PATCH | Remove squashfs module"
   modprobe:
-    name: squashfs
-    state: absent
+      name: squashfs
+      state: absent
   when:
       - ubuntu1604cis_rule_1_1_1_6
   tags:
@@ -193,7 +194,7 @@
       regexp: "^(#)?install udf"
       line: "install udf /bin/true"
       state: present
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_rule_1_1_1_7
   tags:
@@ -206,8 +207,8 @@
 
 - name: "SCORED | 1.1.1.7 | PATCH | Remove udf module"
   modprobe:
-    name: udf
-    state: absent
+      name: udf
+      state: absent
   when:
       - ubuntu1604cis_rule_1_1_1_7
   tags:
@@ -224,7 +225,7 @@
       regexp: "^(#)?install vfat"
       line: "install vfat /bin/true"
       state: present
-      create: yes
+      create: true
   when:
       - ubuntu1604cis_rule_1_1_1_8
   tags:
@@ -237,8 +238,8 @@
 
 - name: "SCORED | 1.1.1.8 | PATCH | Remove FAT module"
   modprobe:
-    name: vfat
-    state: absent
+      name: vfat
+      state: absent
   when:
       - ubuntu1604cis_rule_1_1_1_8
   tags:
@@ -251,37 +252,38 @@
 
 - name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
   copy:
-    src: "{{ tmp_mount_file[ansible_os_family] }}"
-    dest: /etc/systemd/system/tmp.mount
-    owner: root
-    group: root
-    mode: 0644
-    force: yes
-    remote_src: True
-  notify: 
-    - systemd restart tmp.mount
+      src: "{{ tmp_mount_file[ansible_os_family] }}"
+      dest: /etc/systemd/system/tmp.mount
+      owner: root
+      group: root
+      mode: 0644
+      force: true
+      remote_src: true
+  notify:
+      - systemd restart tmp.mount
   when:
-    - ubuntu1604cis_rule_1_1_2
-    - ubuntu1604cis_skip_for_travis == false
+      - ubuntu1604cis_rule_1_1_2
+      - ubuntu1604cis_skip_for_travis == false
   tags:
-    - level2
-    - scored
-    - patch
-    - rule_1.1.2
+      - level2
+      - scored
+      - patch
+      - rule_1.1.2
 
 - name: "SCORED | 1.1.3 | PATCH | Ensure nodev option set on /tmp partition\n
          SCORED | 1.1.4 | PATCH | Ensure nosuid option set on /tmp partition\n
          | drop custom tmp.mount"
   ini_file:
-    path: "{{ item }}"
-    section: Mount
-    option: Options
-    value: "{{ tmp_mount_options[ansible_os_family] }}"
-    no_extra_spaces: yes
+      path: "{{ item }}"
+      section: Mount
+      option: Options
+      value: "{{ tmp_mount_options[ansible_os_family] }}"
+      no_extra_spaces: true
   with_items:
-    - "{{ tmp_mount_file[ansible_os_family] }}"
-    - /etc/systemd/system/tmp.mount
-  notify: systemd restart tmp.mount
+      - "{{ tmp_mount_file[ansible_os_family] }}"
+      - /etc/systemd/system/tmp.mount
+  notify:
+      - systemd restart tmp.mount
   when:
       - ubuntu1604cis_rule_1_1_3
       - ubuntu1604cis_rule_1_1_4
@@ -295,8 +297,8 @@
 - name: "SCORED | 1.1.5 | PATCH | Ensure separate partition exists for /var"
   shell: mount | grep "on /var "
   register: var_mounted
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_1_1_5
   tags:
@@ -309,8 +311,8 @@
 - name: "SCORED | 1.1.6 | PATCH | Ensure separate partition exists for /var/tmp"
   shell: mount | grep "on /var/tmp "
   register: var_tmp_mounted
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_1_1_6
   tags:
@@ -345,8 +347,8 @@
 - name: "SCORED | 1.1.10 | PATCH | Ensure separate partition exists for /var/log"
   shell: mount | grep "on /var/log "
   register: var_log_mounted
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_1_1_10
   tags:
@@ -359,8 +361,8 @@
 - name: "SCORED | 1.1.11 | PATCH | Ensure separate partition exists for /var/log/audit"
   shell: mount | grep "on /var/log/audit "
   register: var_log_audit_mounted
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_1_1_11
   tags:
@@ -373,8 +375,8 @@
 - name: "SCORED | 1.1.12 | PATCH | Ensure separate partition exists for /home"
   shell: mount | grep "on /home "
   register: home_mounted
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_1_1_12
   tags:
@@ -386,15 +388,16 @@
 
 - name: "SCORED | 1.1.13 | PATCH | Ensure nodev option set on /home partition"
   mount:
-    name: "/home"
-    src: "{{ item.device }}"
-    state: mounted
-    fstype: "{{ item.fstype }}"
-    opts: "nodev"
+      name: "/home"
+      src: "{{ item.device }}"
+      state: mounted
+      fstype: "{{ item.fstype }}"
+      opts: "nodev"
   when:
       - ubuntu1604cis_rule_1_1_13
       - item.mount == "/home"
-  with_items: "{{ ansible_mounts }}"
+  with_items:
+      - "{{ ansible_mounts }}"
   tags:
       - scored
       - level1
@@ -425,7 +428,7 @@
 
 - name: "NOTSCORED | 1.1.17 | PATCH | Ensure nodev option set on removable media partitions"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_1_17
   tags:
@@ -437,7 +440,7 @@
 
 - name: "NOTSCORED | 1.1.18 | PATCH | Ensure nosuid option set on removable media partitions"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_1_18
   tags:
@@ -449,7 +452,7 @@
 
 - name: "NOTSCORED | 1.1.19 | PATCH | Ensure noexec option set on removable media partitions"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_1_19
   tags:
@@ -461,11 +464,11 @@
 
 - name: "SCORED | 1.1.20 | PATCH | Ensure sticky bit is set on all world-writable directories"
   shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_1_1_20
-      #- sticky_bit_on_worldwritable_dirs_audit.rc == '0'
+      # - sticky_bit_on_worldwritable_dirs_audit.rc == '0'
   tags:
       - level1
       - level2
@@ -476,7 +479,7 @@
 - name: "SCORED | 1.1.21 | PATCH | Disable Automounting"
   service:
       name: autofs
-      enabled: no
+      enabled: false
   when:
       - ubuntu1604cis_allow_autofs == false and autofs_service_status.stdout == "loaded"
       - ubuntu1604cis_rule_1_1_21
@@ -488,7 +491,7 @@
 
 - name: "NOTSCORED | 1.2.1 | PATCH | Ensure package manager repositories are configured"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_2_1
   tags:
@@ -500,7 +503,7 @@
 
 - name: "NOTSCORED | 1.2.3 | PATCH | Ensure GPG keys are configured"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_2_3
   tags:
@@ -514,7 +517,7 @@
   apt:
       name: aide
       state: present
-      install_recommends: no
+      install_recommends: false
   when:
       - ubuntu1604cis_rule_1_3_1
   tags:
@@ -528,8 +531,8 @@
   command: /usr/bin/aide --init -B 'database_out=file:/var/lib/aide/aide.db.gz'
   args:
       creates: /var/lib/aide/aide.db.gz
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   async: 45
   poll: 0
   when:
@@ -594,7 +597,7 @@
 
 - name: "NOTSCORED | 1.4.3 | PATCH | Ensure authentication required for single user mode"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_4_3
   tags:
@@ -626,9 +629,9 @@
       name: fs.suid_dumpable
       value: 0
       state: present
-      reload: yes
-      sysctl_set: yes
-      ignoreerrors: yes
+      reload: true
+      sysctl_set: true
+      ignoreerrors: true
   when:
       - ubuntu1604cis_rule_1_5_1
   tags:
@@ -640,7 +643,7 @@
 
 - name: "NOTSCORED | 1.5.2 | PATCH | Ensure XD/NX support is enabled"
   shell: dmesg | grep -E "NX|XD" | grep " active"
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_5_2
   tags:
@@ -656,9 +659,9 @@
       name: kernel.randomize_va_space
       value: 2
       state: present
-      reload: yes
-      sysctl_set: yes
-      ignoreerrors: yes
+      reload: true
+      sysctl_set: true
+      ignoreerrors: true
   when:
       - ubuntu1604cis_rule_1_5_3
   tags:
@@ -681,8 +684,8 @@
 
 - name: "SCORED | 1.5.4 | PATCH | Ensure prelink is disabled"
   apt:
-    name: prelink
-    state: absent
+      name: prelink
+      state: absent
   when:
       - ubuntu1604cis_rule_1_5_4
   tags:
@@ -695,9 +698,9 @@
   replace:
       dest: /etc/default/grub
       regexp: '(selinux|enforcing)\s*=\s*0\s*'
-      follow: yes
+      follow: true
   register: selinux_grub_patch
-  ignore_errors: yes
+  ignore_errors: true
   notify: generate new grub config
   when:
       - ubuntu1604cis_rule_1_6_1_1
@@ -709,7 +712,7 @@
 
 - name: "SCORED | 1.6.1.2 | PATCH | Ensure the SELinux state is enforcing"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_6_1_2
   tags:
@@ -721,7 +724,7 @@
 
 - name: "SCORED | 1.6.1.3 | PATCH | Ensure SELinux policy is configured"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_6_1_3
   tags:
@@ -733,7 +736,7 @@
 
 - name: "SCORED | 1.6.1.4 | PATCH | Ensure no unconfined daemons exist"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_6_1_4
   tags:
@@ -745,7 +748,7 @@
 
 - name: "SCORED | 1.6.2.1 | PATCH | Ensure AppArmor is not disabled in bootloader configuration"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_6_2_1
   tags:
@@ -757,7 +760,7 @@
 
 - name: "SCORED | 1.6.2.2 | PATCH | Ensure all AppArmor Profiles are enforcing"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_6_2_2
   tags:
@@ -769,7 +772,7 @@
 
 - name: "SCORED | 1.6.3 | PATCH | Ensure SELinux or AppArmor are installed"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_1_6_3
   tags:
@@ -873,17 +876,17 @@
       regexp: "{{ item.regexp }}"
       line: "{{ item.line }}"
       state: present
-      create: yes
+      create: true
       owner: root
       group: root
       mode: 0644
   with_items:
-      - { file: '/etc/dconf/profile/gdm', regexp:  'user-db', line: 'user-db:user' }
-      - { file: '/etc/dconf/profile/gdm', regexp:  'system-db', line: 'system-db:gdm' }
-      - { file: '/etc/dconf/profile/gdm', regexp:  'file-db', line: 'file-db:/usr/share/gdm/greeter-dconf-defaults' }
-      - { file: '/etc/dconf/db/gdm.d/01-banner-message', regexp:  '\[org\/gnome\/login-screen\]', line: '[org/gnome/login-screen]' }
-      - { file: '/etc/dconf/db/gdm.d/01-banner-message', regexp:  'banner-message-enable', line: 'banner-message-enable=true' }
-      - { file: '/etc/dconf/db/gdm.d/01-banner-message', regexp:  'banner-message-text', line: "banner-message-text='{{ ubuntu1604cis_warning_banner }}' " }
+      - { file: '/etc/dconf/profile/gdm', regexp: 'user-db', line: 'user-db:user' }
+      - { file: '/etc/dconf/profile/gdm', regexp: 'system-db', line: 'system-db:gdm' }
+      - { file: '/etc/dconf/profile/gdm', regexp: 'file-db', line: 'file-db:/usr/share/gdm/greeter-dconf-defaults' }
+      - { file: '/etc/dconf/db/gdm.d/01-banner-message', regexp: '\[org\/gnome\/login-screen\]', line: '[org/gnome/login-screen]' }
+      - { file: '/etc/dconf/db/gdm.d/01-banner-message', regexp: 'banner-message-enable', line: 'banner-message-enable=true' }
+      - { file: '/etc/dconf/db/gdm.d/01-banner-message', regexp: 'banner-message-text', line: "banner-message-text='{{ ubuntu1604cis_warning_banner }}' " }
   when:
       - ubuntu1604cis_gui
       - ubuntu1604cis_rule_1_7_2
@@ -897,7 +900,7 @@
 
 - name: "NOTSCORED | 1.8 | PATCH | Ensure updates, patches, and additional security software are installed"
   apt:
-    upgrade: dist
+      upgrade: dist
   tags:
       - level1
       - level2

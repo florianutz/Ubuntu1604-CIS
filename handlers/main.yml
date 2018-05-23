@@ -2,79 +2,79 @@
 # handlers file for Ubuntu1604-CIS
 
 - name: sysctl flush ipv4 route table
-  become: yes
+  become: true
   sysctl:
       name: net.ipv4.route.flush
       value: 1
-      sysctl_set: yes
+      sysctl_set: true
   when: ansible_virtualization_type != "docker"
 
 - name: sysctl flush ipv6 route table
-  become: yes
+  become: true
   sysctl:
       name: net.ipv6.route.flush
       value: 1
-      sysctl_set: yes
+      sysctl_set: true
   when: ansible_virtualization_type != "docker"
 
 - name: systemd restart tmp.mount
-  become: yes
+  become: true
   systemd:
       name: tmp.mount
-      daemon_reload: yes
-      enabled: yes
-      masked: no
+      daemon_reload: true
+      enabled: true
+      masked: false
       state: reloaded
 
 - name: systemd restart var-tmp.mount
-  become: yes
+  become: true
   systemd:
       name: var-tmp.mount
-      daemon_reload: yes
-      enabled: yes
-      masked: no
+      daemon_reload: true
+      enabled: true
+      masked: false
       state: reloaded
 
 - name: generate new grub config
-  become: yes
+  become: true
   command: grub2-mkconfig -o "{{ grub_cfg.stat.lnk_source }}"
 
 - name: restart firewalld
-  become: yes
+  become: true
   service:
       name: firewalld
       state: restarted
 
 - name: restart xinetd
-  become: yes
+  become: true
   service:
       name: xinetd
       state: restarted
 
 - name: restart sshd
-  become: yes
+  become: true
   service:
       name: sshd
       state: restarted
 
 - name: reload dconf
-  become: yes
+  become: true
   command: dconf update
 
 - name: restart auditd
-  become: yes
+  become: true
   service:
       name: auditd
       state: restarted
   when:
-    - ubuntu1604cis_skip_for_travis == false
+      - ubuntu1604cis_skip_for_travis == false
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: load audit rules
-  become: yes
+  become: true
   command: /sbin/augenrules --load
   when:
-    - ubuntu1604cis_skip_for_travis == false
+      - ubuntu1604cis_skip_for_travis == false
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
