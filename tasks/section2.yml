@@ -1,221 +1,182 @@
-- name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram"
-  stat:
-      path: /etc/xinetd.d/chargen-dgram
-  register: chargen_dgram_service
+---
+- name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram,chargen-stream"
+  block:
+      - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram"
+        stat:
+            path: /etc/xinetd.d/chargen-dgram
+        register: chargen_dgram_service
+
+      - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram"
+        command: chkconfig chargen-dgram off
+        notify: restart xinetd
+        when:
+            - chargen_dgram_service.stat.exists
+
+      - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-stream"
+        stat:
+            path: /etc/xinetd.d/chargen-stream
+        register: chargen_stream_service
+
+      - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-stream"
+        command: chkconfig chargen-stream off
+        notify: restart xinetd
+        when:
+            - chargen_stream_service.stat.exists
+  when:
+      - ubuntu1604cis_rule_2_1_1
   tags:
       - level1
       - scored
       - services
       - patch
       - rule_2.1.1
+      - skip_ansible_lint
 
-- name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram"
-  command: chkconfig chargen-dgram off
-  notify: restart xinetd
-  when: chargen_dgram_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - services
-      - patch
-      - rule_2.1.1
+- name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-dgram,daytime-stream"
+  block:
+      - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-dgram"
+        stat:
+            path: /etc/xinetd.d/daytime-dgram
+        register: daytime_dgram_service
 
-- name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-stream"
-  stat:
-      path: /etc/xinetd.d/chargen-stream
-  register: chargen_stream_service
-  tags:
-      - level1
-      - scored
-      - services
-      - patch
-      - rule_2.1.1
+      - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-dgram"
+        command: chkconfig daytime-dgram off
+        notify: restart xinetd
+        when:
+            - daytime_dgram_service.stat.exists
 
-- name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-stream"
-  command: chkconfig chargen-stream off
-  notify: restart xinetd
-  when: chargen_stream_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - services
-      - patch
-      - rule_2.1.1
+      - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-stream"
+        stat:
+            path: /etc/xinetd.d/daytime-stream
+        register: daytime_stream_service
 
-- name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-dgram"
-  stat:
-      path: /etc/xinetd.d/daytime-dgram
-  register: daytime_dgram_service
+      - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-stream"
+        command: chkconfig daytime-stream off
+        notify: restart xinetd
+        when:
+            - daytime_stream_service.stat.exists
+  when:
+      - ubuntu1604cis_rule_2_1_2
   tags:
       - level1
       - scored
       - patch
       - rule_2.1.2
+      - skip_ansible_lint
 
-- name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-dgram"
-  command: chkconfig daytime-dgram off
-  notify: restart xinetd
-  when: daytime_dgram_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.2
+- name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-dgram,discard-stream"
+  block:
+      - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-dgram"
+        stat:
+            path: /etc/xinetd.d/discard-dgram
+        register: discard_dgram_service
 
-- name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-stream"
-  stat:
-      path: /etc/xinetd.d/daytime-stream
-  register: daytime_stream_service
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.2
+      - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-dgram"
+        command: chkconfig discard-dgram off
+        notify: restart xinetd
+        when:
+            - discard_dgram_service.stat.exists
 
-- name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-stream"
-  command: chkconfig daytime-stream off
-  notify: restart xinetd
-  when: daytime_stream_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.2
+      - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-stream"
+        stat:
+            path: /etc/xinetd.d/discard-stream
+        register: discard_stream_service
 
-- name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-dgram"
-  stat:
-      path: /etc/xinetd.d/discard-dgram
-  register: discard_dgram_service
+      - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-stream"
+        command: chkconfig discard-stream off
+        notify: restart xinetd
+        when:
+            - discard_stream_service.stat.exists
+  when:
+      - ubuntu1604cis_rule_2_1_3
   tags:
       - level1
       - scored
       - patch
       - rule_2.1.3
+      - skip_ansible_lint
 
-- name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-dgram"
-  command: chkconfig discard-dgram off
-  notify: restart xinetd
-  when: discard_dgram_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.3
+- name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram,echo-stream"
+  block:
+      - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram"
+        stat:
+            path: /etc/xinetd.d/echo-dgram
+        register: echo_dgram_service
 
-- name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-stream"
-  stat:
-      path: /etc/xinetd.d/discard-stream
-  register: discard_stream_service
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.3
+      - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram"
+        command: chkconfig echo-dgram off
+        notify: restart xinetd
+        when:
+            - echo_dgram_service.stat.exists
 
-- name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-stream"
-  command: chkconfig discard-stream off
-  notify: restart xinetd
-  when: discard_stream_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.3
+      - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-stream"
+        stat:
+            path: /etc/xinetd.d/echo-stream
+        register: echo_stream_service
 
-- name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram"
-  stat:
-      path: /etc/xinetd.d/echo-dgram
-  register: echo_dgram_service
+      - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-stream"
+        command: chkconfig echo-stream off
+        notify: restart xinetd
+        when:
+            - echo_stream_service.stat.exists
+  when:
+      - ubuntu1604cis_rule_2_1_4
   tags:
       - level1
       - scored
       - patch
       - rule_2.1.4
+      - skip_ansible_lint
 
-- name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram"
-  command: chkconfig echo-dgram off
-  notify: restart xinetd
-  when: echo_dgram_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.4
+- name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-dgram,time-stream"
+  block:
+      - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-dgram"
+        stat:
+            path: /etc/xinetd.d/time-dgram
+        register: time_dgram_service
 
-- name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-stream"
-  stat:
-      path: /etc/xinetd.d/echo-stream
-  register: echo_stream_service
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.4
+      - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-dgram"
+        command: chkconfig time-dgram off
+        notify: restart xinetd
+        when:
+            - time_dgram_service.stat.exists
 
-- name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-stream"
-  command: chkconfig echo-stream off
-  notify: restart xinetd
-  when: echo_stream_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.4
+      - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-stream"
+        stat:
+            path: /etc/xinetd.d/time-stream
+        register: time_stream_service
 
-- name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-dgram"
-  stat:
-      path: /etc/xinetd.d/time-dgram
-  register: time_dgram_service
+      - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-stream"
+        command: chkconfig time-stream off
+        notify: restart xinetd
+        when:
+            - time_stream_service.stat.exists
+  when:
+      - ubuntu1604cis_rule_2_1_5
   tags:
       - level1
       - scored
       - patch
       - rule_2.1.5
-
-- name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-dgram"
-  command: chkconfig time-dgram off
-  notify: restart xinetd
-  when: time_dgram_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.5
-
-- name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-stream"
-  stat:
-      path: /etc/xinetd.d/time-stream
-  register: time_stream_service
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.5
-
-- name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-stream"
-  command: chkconfig time-stream off
-  notify: restart xinetd
-  when: time_stream_service.stat.exists
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.5
+      - skip_ansible_lint
 
 - name: "SCORED | 2.1.6 | PATCH | Ensure tftp server is not enabled"
-  stat:
-      path: /etc/xinetd.d/tftp
-  register: tftp_service
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_2.1.6
+  block:
+      - name: "SCORED | 2.1.6 | PATCH | Ensure tftp server is not enabled"
+        stat:
+            path: /etc/xinetd.d/tftp
+        register: tftp_service
 
-- name: "SCORED | 2.1.6 | PATCH | Ensure tftp server is not enabled"
-  command: chkconfig tftp off
-  notify: restart xinetd
-  when: tftp_service.stat.exists and ubuntu1604cis_tftp_server == false
+      - name: "SCORED | 2.1.6 | PATCH | Ensure tftp server is not enabled"
+        command: chkconfig tftp off
+        notify: restart xinetd
+        when:
+            - tftp_service.stat.exists
+            - ubuntu1604cis_tftp_server == false
+        tags:
+            - skip_ansible_lint
+  when:
+      - ubuntu1604cis_rule_2_1_6
   tags:
       - level1
       - scored
@@ -226,83 +187,81 @@
   service:
       name: xinetd
       state: stopped
-      enabled: no
+      enabled: false
   when:
-      - xinetd_service_status.stdout == "loaded" and not ubuntu1604cis_xinetd_required
+      - xinetd_service_status.stdout == "loaded"
+      - not ubuntu1604cis_xinetd_required
+      - ubuntu1604cis_rule_2_1_7
   tags:
       - level1
       - patch
       - scored
       - rule_2.1.7
 
-- name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service install"
-  apt:
-      name: "{{ ubuntu1604cis_time_synchronization }}"
-      state: present
-      install_recommends: no
+- name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use"
+  block:
+      - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service install"
+        apt:
+            name: "{{ ubuntu1604cis_time_synchronization }}"
+            state: present
+            install_recommends: false
+
+      - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service start"
+        service:
+            name: "{{ ubuntu1604cis_time_synchronization }}"
+            state: started
+            enabled: true
+
+      - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop ntp"
+        service:
+            name: "{{ ntp_service[ansible_os_family] }}"
+            state: stopped
+            enabled: false
+        when:
+            - ubuntu1604cis_time_synchronization == "chrony"
+            - ntpd_service_status.stdout == "loaded"
+
+      - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop chrony"
+        service:
+            name: chronyd
+            state: stopped
+            enabled: false
+        ignore_errors: true
+        when:
+            - ubuntu1604cis_time_synchronization == "ntp"
+            - chronyd_service_status.stdout == "loaded"
+
+  when:
+      - ubuntu1604cis_rule_2_2_1_1
   tags:
       - level1
+      - notscored
+      - ntp
       - patch
       - rule_2.2.1.1
 
+- name: "SCORED | 2.2.1.2 | PATCH | Ensure ntp is configured"
+  block:
+      - name: "SCORED | 2.2.1.2 | PATCH | Ensure ntp is configured | modify /etc/ntp.conf"
+        template:
+            src: ntp.conf.j2
+            dest: /etc/ntp.conf
+            owner: root
+            group: root
+            mode: 0644
 
-
-- name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service start"
-  service:
-      name: "{{ ubuntu1604cis_time_synchronization }}"
-      state: started
-      enabled: yes
-  when: ansible_os_family == "Debian"
+      - name: "SCORED | 2.2.1.2 | PATCH | Ensure ntp is configured | modify /etc/init.d/ntp"
+        lineinfile:
+            dest: /etc/init.d/ntp
+            regexp: "^RUNASUSER"
+            line: "RUNASUSER=ntp"
+  when:
+      - ubuntu1604cis_time_synchronization == "ntp"
+      - ubuntu1604cis_rule_2_2_1_2
   tags:
       - level1
-      - patch
-      - rule_2.2.1.1
-
-- name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop ntp"
-  service:
-      name: "{{ ntp_service[ansible_os_family] }}"
-      state: stopped
-      enabled: no
-  when: ubuntu1604cis_time_synchronization == "chrony" and ntpd_service_status.stdout == "loaded"
-  tags:
-      - level1
-      - patch
-      - rule_2.2.1.1
-
-- name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop chrony"
-  service:
-      name: "{{ chrony_service[ansible_os_family] }}"
-      state: stopped
-      enabled: no
-  ignore_errors: yes
-  when: ubuntu1604cis_time_synchronization == "ntp" and chronyd_service_status.stdout == "loaded"
-  tags:
-      - level1
-      - patch
-      - rule_2.2.1.1
-
-- name: "SCORED | 2.2.1.2 | PATCH | Ensure ntp is configured | modify /etc/ntp.conf"
-  template:
-      src: ntp.conf.j2
-      dest: /etc/ntp.conf
-      owner: root
-      group: root
-      mode: 0644
-  when: ubuntu1604cis_time_synchronization == "ntp"
-  tags:
-      - level1
-      - patch
-      - rule_2.2.1.2
-
-
-- name: "SCORED | 2.2.1.2 | PATCH | Ensure ntp is configured | modify /etc/init.d/ntp"
-  lineinfile:
-      dest: /etc/init.d/ntp
-      regexp: "^RUNASUSER"
-      line: "RUNASUSER=ntp"
-  when: ubuntu1604cis_time_synchronization == "ntp" and ansible_os_family == "Debian"
-  tags:
-      - level1
+      - scored
+      - ntp
       - patch
       - rule_2.2.1.2
 
@@ -313,9 +272,14 @@
       owner: root
       group: root
       mode: 0644
-  when: ubuntu1604cis_time_synchronization == "chrony"
+  when:
+      - ubuntu1604cis_time_synchronization == "chrony"
+      - ubuntu1604cis_rule_2_2_1_3
   tags:
       - level1
+      - scored
+      - ntp
+      - chrony
       - patch
       - rule_2.2.1.3
 
@@ -325,20 +289,44 @@
       regexp: "^(#)?OPTIONS"
       line: "OPTIONS=\"-u chrony\""
       state: present
-      create: yes
-  when: ubuntu1604cis_time_synchronization == "chrony"
+      create: true
+  when:
+      - ubuntu1604cis_time_synchronization == "chrony"
+      - ubuntu1604cis_rule_2_2_1_3
   tags:
       - level1
+      - scored
+      - ntp
+      - chrony
       - patch
       - rule_2.2.1.3
 
+- name: "SCORED | 2.2.2 | PATCH | Ensure X Window System is not installed"
+  apt:
+      name: "{{item}}"
+      state: absent
+  with_items:
+      - "@X Window System"
+      - "x11*"
+  when:
+      - ubuntu1604cis_xwindows_required == false
+      - ubuntu1604cis_rule_2_2_2
+  tags:
+      - level1
+      - scored
+      - xwindows
+      - patch
+      - rule_2.2.2
 
 - name: "SCORED | 2.2.3 | PATCH | Ensure Avahi Server is not enabled"
   service:
       name: avahi-daemon
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_avahi_server == false and avahi_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_avahi_server == false
+      - avahi_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_3
   tags:
       - level1
       - scored
@@ -351,8 +339,10 @@
   service:
       name: cups
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_cups_server == false and cups_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_cups_server == false and cups_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_4
   tags:
       - level1
       - scored
@@ -365,8 +355,11 @@
   service:
       name: dhcpd
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_dhcp_server == false and dhcpd_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_dhcp_server == false
+      - dhcpd_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_5
   tags:
       - level1
       - scored
@@ -379,8 +372,10 @@
   service:
       name: slapd
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_ldap_server == false and slapd_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_ldap_server == false and slapd_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_6
   tags:
       - level1
       - scored
@@ -393,8 +388,10 @@
   service:
       name: nfs
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_nfs_rpc_server == false and nfs_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_nfs_rpc_server == false and nfs_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_7
   tags:
       - level1
       - scored
@@ -404,12 +401,15 @@
       - patch
       - rule_2.2.7
 
-- name: "SCORED | 2.2.7 | PATCH | Ensure NFS and RPC are not enabled"
+- name: "SCORED | 2.2.7 | PATCH | Ensure RPC is not enabled"
   service:
       name: rpcbind
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_nfs_rpc_server == false and rpcbind_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_nfs_rpc_server == false
+      - rpcbind_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_7
   tags:
       - level1
       - scored
@@ -423,10 +423,13 @@
   service:
       name: named
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_named_server == false and named_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_named_server == false and named_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_8
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.8
 
@@ -434,10 +437,14 @@
   service:
       name: vsftpd
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_vsftpd_server == false and vsftpd_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_vsftpd_server == false
+      - vsftpd_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_9
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.9
 
@@ -445,10 +452,14 @@
   service:
       name: httpd
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_httpd_server == false and httpd_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_httpd_server == false
+      - httpd_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_10
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.10
 
@@ -456,10 +467,14 @@
   service:
       name: dovecot
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_dovecot_server == false and dovecot_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_dovecot_server == false
+      - dovecot_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_11
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.11
 
@@ -467,10 +482,13 @@
   service:
       name: smb
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_smb_server == false and smb_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_smb_server == false and smb_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_12
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.12
 
@@ -478,10 +496,14 @@
   service:
       name: squid
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_squid_server == false and squid_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_squid_server == false
+      - squid_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_13
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.13
 
@@ -489,10 +511,14 @@
   service:
       name: snmpd
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_snmp_server == false and snmpd_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_snmp_server == false
+      - snmpd_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_14
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.14
 
@@ -500,10 +526,14 @@
   lineinfile:
       dest: /etc/postfix/main.cf
       regexp: "^(#)?inet_interfaces"
-      line: "inet_interfaces = loopback-only"
-  when: ubuntu1604cis_is_mail_server == false and postfix_installed.rc == 0
+      line: "inet_interfaces = localhost"
+  when:
+      - ubuntu1604cis_is_mail_server == false
+      - postfix_installed.rc == 0
+      - ubuntu1604cis_rule_2_2_15
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.15
 
@@ -511,10 +541,13 @@
   service:
       name: ypserv
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_nis_server == false and ypserv_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_nis_server == false and ypserv_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_16
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.16
 
@@ -522,10 +555,14 @@
   service:
       name: rsh.socket
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_rsh_server == false and rsh_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_rsh_server == false
+      - rsh_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_17
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.17
 
@@ -533,10 +570,14 @@
   service:
       name: rlogin.socket
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_rsh_server == false and rlogin_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_rsh_server == false
+      - rlogin_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_17
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.17
 
@@ -544,10 +585,14 @@
   service:
       name: rexec.socket
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_rsh_server == false and rexec_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_rsh_server == false
+      - rexec_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_17
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.17
 
@@ -555,10 +600,14 @@
   service:
       name: telnet
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_telnet_server == false and telnet_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_telnet_server == false
+      - telnet_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_18
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.18
 
@@ -566,10 +615,14 @@
   service:
       name: tftp
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_tftp_server == false and tftp_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_tftp_server == false
+      - tftp_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_19
   tags:
       - level1
+      - scored
       - scored
       - insecure_services
       - tftp
@@ -580,10 +633,14 @@
   service:
       name: rsyncd
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_rsyncd_server == false and rsyncd_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_rsyncd_server == false
+      - rsyncd_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_20
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.20
 
@@ -591,10 +648,14 @@
   service:
       name: ntalk
       state: stopped
-      enabled: no
-  when: ubuntu1604cis_ntalk_server == false and ntalk_service_status.stdout == "loaded"
+      enabled: false
+  when:
+      - ubuntu1604cis_ntalk_server == false
+      - ntalk_service_status.stdout == "loaded"
+      - ubuntu1604cis_rule_2_2_21
   tags:
       - level1
+      - scored
       - patch
       - rule_2.2.21
 
@@ -602,9 +663,12 @@
   apt:
       name: ypbind
       state: absent
-  when: ubuntu1604cis_ypbind_required == false
+  when:
+      - ubuntu1604cis_ypbind_required == false
+      - ubuntu1604cis_rule_2_3_1
   tags:
       - level1
+      - scored
       - patch
       - rule_2.3.1
 
@@ -612,9 +676,12 @@
   apt:
       name: rsh
       state: absent
-  when: ubuntu1604cis_rsh_required == false
+  when:
+      - ubuntu1604cis_rsh_required == false
+      - ubuntu1604cis_rule_2_3_2
   tags:
       - level1
+      - scored
       - patch
       - rule_2.3.2
 
@@ -622,9 +689,12 @@
   apt:
       name: talk
       state: absent
-  when: ubuntu1604cis_talk_required == false
+  when:
+      - ubuntu1604cis_talk_required == false
+      - ubuntu1604cis_rule_2_3_3
   tags:
       - level1
+      - scored
       - patch
       - rule_2.3.3
 
@@ -632,9 +702,12 @@
   apt:
       name: telnet
       state: absent
-  when: ubuntu1604cis_telnet_required == false
+  when:
+      - ubuntu1604cis_telnet_required == false
+      - ubuntu1604cis_rule_2_3_4
   tags:
       - level1
+      - scored
       - patch
       - rule_2.3.4
 
@@ -642,8 +715,11 @@
   apt:
       name: openldap-clients
       state: absent
-  when: ubuntu1604cis_openldap_clients_required == false
+  when:
+      - ubuntu1604cis_openldap_clients_required == false
+      - ubuntu1604cis_rule_2_3_5
   tags:
       - level1
+      - scored
       - patch
       - rule_2.3.5

@@ -1,13 +1,16 @@
+---
 - name: "SCORED | 5.1.1 | PATCH | Ensure cron daemon is enabled"
   service:
       name: "{{ cron_service[ansible_os_family] }}"
-      enabled: yes
+      enabled: true
   when:
       - ubuntu1604cis_rule_5_1_1
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - cron
       - rule_5.1.1
 
 - name: "SCORED | 5.1.2 | PATCH | Ensure permissions on /etc/crontab are configured"
@@ -21,7 +24,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - cron
       - rule_5.1.2
 
 - name: "SCORED | 5.1.3 | PATCH | Ensure permissions on /etc/cron.hourly are configured"
@@ -36,7 +41,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - cron
       - rule_5.1.3
 
 - name: "SCORED | 5.1.4 | PATCH | Ensure permissions on /etc/cron.daily are configured"
@@ -51,7 +58,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - cron
       - rule_5.1.4
 
 - name: "SCORED | 5.1.5 | PATCH | Ensure permissions on /etc/cron.weekly are configured"
@@ -66,7 +75,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - cron
       - rule_5.1.5
 
 - name: "SCORED | 5.1.6 | PATCH | Ensure permissions on /etc/cron.monthly are configured"
@@ -81,7 +92,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - cron
       - rule_5.1.6
 
 - name: "SCORED | 5.1.7 | PATCH | Ensure permissions on /etc/cron.d are configured"
@@ -96,71 +109,56 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - cron
       - rule_5.1.7
 
 - name: "SCORED | 5.1.8 | PATCH | Ensure at/cron is restricted to authorized users"
-  file:
-      dest: /etc/at.deny
-      state: absent
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.1.8
+  block:
+      - name: "SCORED | 5.1.8 | PATCH | Ensure at/cron is restricted to authorized users"
+        file:
+            dest: /etc/at.deny
+            state: absent
 
-- stat:
-      path: "/etc/at.allow"
-  register: p
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.1.8
+      - name: "SCORED | 5.1.8 | PATCH | Check if at.allow exists"
+        stat:
+            path: "/etc/at.allow"
+        register: at_allow
 
-- name: "SCORED | 5.1.8 | PATCH | Ensure at/cron is restricted to authorized users"
-  file:
-      dest: /etc/at.allow
-      state: '{{ "file" if  p.stat.exists else "touch"}}'
-      owner: root
-      group: root
-      mode: 0600
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.1.8
+      - name: "SCORED | 5.1.8 | PATCH | Ensure at/cron is restricted to authorized users"
+        file:
+            dest: /etc/at.allow
+            state: '{{ "file" if  at_allow.stat.exists else "touch"}}'
+            owner: root
+            group: root
+            mode: 0600
 
-- name: "SCORED | 5.1.8 | PATCH | Ensure at/cron is restricted to authorized users"
-  file:
-      dest: /etc/cron.deny
-      state: absent
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.1.8
+      - name: "SCORED | 5.1.8 | PATCH | Ensure at/cron is restricted to authorized users"
+        file:
+            dest: /etc/cron.deny
+            state: absent
 
-- stat:
-      path: "/etc/cron.allow"
-  register: p
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.1.8
+      - name: "SCORED | 5.1.8 | PATCH | Check if cron.allow exists"
+        stat:
+            path: "/etc/cron.allow"
+        register: cron_allow
 
-- name: "SCORED | 5.1.8 | PATCH | Ensure at/cron is restricted to authorized users"
-  file:
-      dest: /etc/cron.allow
-      state: '{{ "file" if  p.stat.exists else "touch"}}'
-      owner: root
-      group: root
-      mode: 0600
+      - name: "SCORED | 5.1.8 | PATCH | Ensure at/cron is restricted to authorized users"
+        file:
+            dest: /etc/cron.allow
+            state: '{{ "file" if  cron_allow.stat.exists else "touch"}}'
+            owner: root
+            group: root
+            mode: 0600
+  when:
+      - ubuntu1604cis_rule_5_1_8
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - cron
       - rule_5.1.8
 
 - name: "SCORED | 5.2.1 | PATCH | Ensure permissions on /etc/ssh/sshd_config are configured"
@@ -175,7 +173,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.1
 
 - name: "SCORED | 5.2.2 | PATCH | Ensure SSH Protocol is set to 2"
@@ -189,7 +189,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.2
 
 - name: "SCORED | 5.2.3 | PATCH | Ensure SSH LogLevel is set to INFO"
@@ -203,7 +205,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.3
 
 - name: "SCORED | 5.2.4 | PATCH | Ensure SSH X11 forwarding is disabled"
@@ -217,7 +221,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.4
 
 - name: "SCORED | 5.2.5 | PATCH | Ensure SSH MaxAuthTries is set to 4 or less"
@@ -231,7 +237,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.5
 
 - name: "SCORED | 5.2.6 | PATCH | Ensure SSH IgnoreRhosts is enabled"
@@ -245,7 +253,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.6
 
 - name: "SCORED | 5.2.7 | PATCH | Ensure SSH HostbasedAuthentication is disabled"
@@ -259,7 +269,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.7
 
 - name: "SCORED | 5.2.8 | PATCH | Ensure SSH root login is disabled"
@@ -273,7 +285,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.8
 
 - name: "SCORED | 5.2.9 | PATCH | Ensure SSH PermitEmptyPasswords is disabled"
@@ -287,7 +301,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.9
 
 - name: "SCORED | 5.2.10 | PATCH | Ensure SSH PermitUserEnvironment is disabled"
@@ -301,7 +317,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.10
 
 - name: "SCORED | 5.2.11 | PATCH | Ensure only approved MAC algorithms are used"
@@ -310,34 +328,39 @@
       dest: /etc/ssh/sshd_config
       regexp: '^MACs'
       line: 'MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com'
+  when:
+      - ubuntu1604cis_rule_5_2_11
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.11
 
 - name: "SCORED | 5.2.12 | PATCH | Ensure SSH Idle Timeout Interval is configured"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: '^ClientAliveInterval'
-      line: "ClientAliveInterval {{ ubuntu1604cis_sshd['clientaliveinterval'] }}"
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.2.12
+  block:
+      - name: "SCORED | 5.2.12 | PATCH | Ensure SSH Idle Timeout Interval is configured"
+        lineinfile:
+            state: present
+            dest: /etc/ssh/sshd_config
+            regexp: '^ClientAliveInterval'
+            line: "ClientAliveInterval {{ ubuntu1604cis_sshd['clientaliveinterval'] }}"
 
-- name: "SCORED | 5.2.12 | PATCH | Ensure SSH ClientAliveCountMax set to <= 3"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: '^ClientAliveCountMax'
-      line: "ClientAliveCountMax {{ ubuntu1604cis_sshd['clientalivecountmax'] }}"
+      - name: "SCORED | 5.2.12 | PATCH | Ensure SSH ClientAliveCountMax set to <= 3"
+        lineinfile:
+            state: present
+            dest: /etc/ssh/sshd_config
+            regexp: '^ClientAliveCountMax'
+            line: "ClientAliveCountMax {{ ubuntu1604cis_sshd['clientalivecountmax'] }}"
+  when:
+      - ubuntu1604cis_rule_5_2_12
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.12
 
 - name: "SCORED | 5.2.13 | PATCH | Ensure SSH LoginGraceTime is set to one minute or less"
@@ -345,72 +368,71 @@
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^LoginGraceTime'
-      line: 'LoginGraceTime 60'
+      line: "LoginGraceTime 60"
+  when:
+      - ubuntu1604cis_rule_5_2_13
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.13
 
-- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - allowusers"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: "^AllowUsers"
-      line: AllowUsers {{ ubuntu1604cis_sshd['allowusers'] }}
-  notify:
-      - restart sshd
-  when: "ubuntu1604cis_sshd['allowusers']|default('') != ''"
+- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited"
+  block:
+      - name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - allowusers"
+        lineinfile:
+            state: present
+            dest: /etc/ssh/sshd_config
+            regexp: '^AllowUsers'
+            line: "AllowUsers {{ ubuntu1604cis_sshd['allowusers'] }}"
+        notify:
+            - restart sshd
+        when:
+            - "ubuntu1604cis_sshd['allowusers']|default('') != ''"
+
+      - name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - allowgroups"
+        lineinfile:
+            state: present
+            dest: /etc/ssh/sshd_config
+            regexp: '^AllowGroups'
+            line: "AllowGroups {{ ubuntu1604cis_sshd['allowgroups'] }}"
+        notify:
+            - restart sshd
+        when:
+            - "ubuntu1604cis_sshd['allowgroups']|default('') != ''"
+
+      - name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - denyusers"
+        lineinfile:
+            state: present
+            dest: /etc/ssh/sshd_config
+            regexp: '^DenyUsers'
+            line: "DenyUsers {{ ubuntu1604cis_sshd['denyusers'] }}"
+        notify:
+            - restart sshd
+        when:
+            - "ubuntu1604cis_sshd['denyusers']|default('') != ''"
+
+      - name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - denygroups"
+        lineinfile:
+            state: present
+            dest: /etc/ssh/sshd_config
+            regexp: '^DenyGroups'
+            line: "DenyGroups {{ ubuntu1604cis_sshd['denygroups'] }}"
+        notify:
+            - restart sshd
+        when:
+            - "ubuntu1604cis_sshd['denygroups']|default('') != ''"
+  when:
+      - ubuntu1604cis_rule_5_2_14
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.14
-
-- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - allowgroups"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: "^AllowGroups"
-      line: AllowGroups {{ ubuntu1604cis_sshd['allowgroups'] }}
-  notify:
-      - restart sshd
-  when: "ubuntu1604cis_sshd['allowgroups']|default('') != ''"
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.2.14
-
-- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - denyusers"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: "^DenyUsers"
-      line: DenyUsers {{ ubuntu1604cis_sshd['denyusers'] }}
-  notify:
-      - restart sshd
-  when: "ubuntu1604cis_sshd['denyusers']|default('') != ''"
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.2.15
-
-- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - denygroups"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: "^DenyGroups"
-      line: DenyGroups {{ ubuntu1604cis_sshd['denygroups'] }}
-  notify:
-      - restart sshd
-  when: "ubuntu1604cis_sshd['denygroups']|default('') != ''"
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.2.15
 
 - name: "SCORED | 5.2.15 | PATCH | Ensure SSH warning banner is configured"
   lineinfile:
@@ -418,76 +440,81 @@
       dest: /etc/ssh/sshd_config
       regexp: '^Banner'
       line: 'Banner /etc/issue.net'
+  when:
+      - ubuntu1604cis_rule_5_2_15
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - sshd
       - rule_5.2.15
 
 - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
-  package:
-    name: libpam-pwquality
-    state: present
-  when: ansible_os_family == "Debian"
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.3.1
+  block:
+      - name: "SCORED | 5.3.1 | PATCH | Ensure lipam-pwquality is installed"
+        apt:
+            name: libpam-pwquality
+            state: present
+            install_recommends: false
 
-- name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
-  lineinfile:
-      state: present
-      dest: /etc/security/pwquality.conf
-      regexp: '^{{ item.key }}'
-      line: '{{ item.key }} = {{ item.value }}'
-  with_items:
-      - { key: 'minlen',  value: '14' }
-      - { key: 'dcredit', value: '-1' }
-      - { key: 'ucredit', value: '-1' }
-      - { key: 'ocredit', value: '-1' }
-      - { key: 'lcredit', value: '-1' }
+      - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
+        lineinfile:
+            state: present
+            dest: /etc/security/pwquality.conf
+            regexp: '^{{ item.key }}'
+            line: '{{ item.key }} = {{ item.value }}'
+        with_items:
+            - { key: 'minlen', value: '14' }
+            - { key: 'dcredit', value: '-1' }
+            - { key: 'ucredit', value: '-1' }
+            - { key: 'ocredit', value: '-1' }
+            - { key: 'lcredit', value: '-1' }
   when:
       - ubuntu1604cis_rule_5_3_1
   tags:
       - level1
       - level2
+      - scored
       - patch
       - rule_5.3.1
 
 - name: "SCORED | 5.3.2 | PATCH | Ensure lockout for failed password attempts is configured"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_5_3_2
   tags:
       - level1
       - level2
+      - scored
       - patch
       - rule_5.3.2
       - notimplemented
 
 - name: "SCORED | 5.3.3 | PATCH | Ensure password reuse is limited"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_5_3_3
   tags:
       - level1
       - level2
+      - scored
       - patch
       - rule_5.3.3
       - notimplemented
 
 - name: "SCORED | 5.3.4 | PATCH | Ensure password hashing algorithm is SHA-512"
   command: authconfig --passalgo=sha512 --update
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_5_3_4
   tags:
       - level1
       - level2
+      - scored
       - patch
       - rule_5.3.4
 
@@ -502,6 +529,7 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
       - rule_5.4.1.1
 
@@ -516,6 +544,7 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
       - rule_5.4.1.2
 
@@ -530,12 +559,13 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
       - rule_5.4.1.3
 
 - name: "SCORED | 5.4.1.4 | PATCH | Ensure inactive password lock is 30 days or less"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_5_4_1_4
   tags:
@@ -547,7 +577,7 @@
 
 - name: "SCORED | 5.4.2 | PATCH | Ensure system accounts are non-login"
   command: /bin/true
-  changed_when: no
+  changed_when: false
   when:
       - ubuntu1604cis_rule_5_4_2
   tags:
@@ -559,8 +589,8 @@
 
 - name: "SCORED | 5.4.3 | PATCH | Ensure default group for the root account is GID 0"
   command: usermod -g 0 root
-  changed_when: no
-  failed_when: no
+  changed_when: false
+  failed_when: false
   when:
       - ubuntu1604cis_rule_5_4_3
   tags:
@@ -569,22 +599,28 @@
       - patch
       - rule_5.4.3
 
-- name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/bashrc"
-  replace:
-      path: "{{ bashrc_file[ansible_os_family] }}"
-      regexp: '(^\s+umask) 002'
-      replace: '\1 027'
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.4.4
+- name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive"
+  block:
 
-- name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/profile"
-  replace:
-      path: /etc/profile
-      regexp: '(^\s+umask) 002'
-      replace: '\1 027'
+      - name: "SCORED | 5.4.4 | PATCH | Check if bashrc exists"
+        stat:
+            path: "/etc/bashrc"
+        register: bashrc_present
+
+      - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/bashrc"
+        replace:
+            path: /etc/bashrc
+            regexp: '(^\s+umask) 002'
+            replace: '\1 027'
+        when: bashrc_present.stat.exists
+
+      - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/profile"
+        replace:
+            path: /etc/profile
+            regexp: '(^\s+umask) 002'
+            replace: '\1 027'
+  when:
+      - ubuntu1604cis_rule_5_4_4
   tags:
       - level1
       - level2
@@ -593,12 +629,15 @@
 
 - name: "NOTSCORED | 5.5 | PATCH | Ensure root login is restricted to system console"
   command: /bin/true
-  changed_when: no
+  changed_when: false
+  when:
+      - ubuntu1604cis_rule_5_5
   tags:
       - level1
       - level2
       - patch
       - rule_5.5
+      - notscored
       - notimplemented
 
 - name: "SCORED | 5.6 | PATCH | Ensure access to the su command is restricted"
@@ -606,8 +645,9 @@
       state: present
       dest: /etc/pam.d/su
       regexp: '^(#)?auth\s+required\s+pam_wheel\.so'
-      line: 'auth           required        pam_wheel.so use_uid'
-  when: ansible_os_family == "RedHat"
+      line: "auth           required        pam_wheel.so use_uid"
+  when:
+      - ubuntu1604cis_rule_5_6
   tags:
       - level1
       - level2
@@ -618,7 +658,8 @@
   user:
       name: root
       groups: wheel
-  when: ansible_os_family == "RedHat"
+  when:
+      - ubuntu1604cis_rule_5_6
   tags:
       - level1
       - level2
