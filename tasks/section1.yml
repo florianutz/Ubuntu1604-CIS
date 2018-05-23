@@ -250,15 +250,16 @@
       - rule_1.1.1.8
 
 - name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
-    copy:
-        src: "{{ tmp_mount_file[ansible_os_family] }}"
-        dest: /etc/systemd/system/tmp.mount
-        owner: root
-        group: root
-        mode: 0644
-        force: yes
-        remote_src: True
-  notify: systemd restart tmp.mount
+  copy:
+    src: "{{ tmp_mount_file[ansible_os_family] }}"
+    dest: /etc/systemd/system/tmp.mount
+    owner: root
+    group: root
+    mode: 0644
+    force: yes
+    remote_src: True
+  notify: 
+    - systemd restart tmp.mount
   when:
       - ubuntu1604cis_rule_1_1_2
       - ubuntu1604cis_skip_for_travis == false
