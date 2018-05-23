@@ -25,6 +25,7 @@
       enabled: true
       masked: false
       state: reloaded
+  when: ansible_virtualization_type != "docker"
 
 - name: systemd restart var-tmp.mount
   become: true
