@@ -581,10 +581,15 @@
 
 - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
   block:
-      - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
+      - name: "NOTSCORED | 4.3 | PATCH | Register logrotate.d files"
         find:
             paths: /etc/logrotate.d/
         register: log_rotates
+
+      - name: - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate.conf exists"
+        file:
+          path: /etc/logrotate.conf
+          state: touch
 
       - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
         replace:
