@@ -229,7 +229,7 @@
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: "^(#)?MaxAuthTries \d"
+      regexp: '^(#)?MaxAuthTries \d'
       line: 'MaxAuthTries 4'
   when:
       - ubuntu1604cis_rule_5_2_5
