@@ -586,7 +586,7 @@
             paths: /etc/logrotate.d/
         register: log_rotates
 
-      - name: - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate.conf exists"
+      - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate.conf exists"
         file:
           path: /etc/logrotate.conf
           state: touch
