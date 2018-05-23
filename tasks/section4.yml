@@ -590,6 +590,7 @@
         file:
             path: /etc/logrotate.conf
             state: touch
+        changed_when: false
 
       - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
         replace:

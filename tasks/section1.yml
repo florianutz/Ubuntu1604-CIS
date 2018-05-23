@@ -99,7 +99,7 @@
   lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install hfs"
-      line: "install hfs /bin/true"
+      line: "install hfs /bin/true(\\s|$)"
       state: present
       create: true
   when:
@@ -129,7 +129,7 @@
 - name: "SCORED | 1.1.1.5 | PATCH | Ensure mounting of hfsplus filesystems is disabled"
   lineinfile:
       dest: /etc/modprobe.d/CIS.conf
-      regexp: "^(#)?install hfsplus"
+      regexp: "^(#)?install hfsplus(\\s|$)"
       line: "install hfsplus /bin/true"
       state: present
       create: true
