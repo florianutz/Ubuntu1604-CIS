@@ -6,11 +6,13 @@
       state: present
   when:
       - ubuntu1604cis_rule_4_1_1_1
-  notify: restart auditd
+  notify:
+      - restart auditd
   tags:
       - level2
-      - auditd
+      - notscored
       - patch
+      - auditd
       - rule_4.1.1.1
 
 - name: "SCORED | 4.1.1.2 | PATCH | Ensure system is disabled when audit logs are full"
@@ -21,11 +23,13 @@
       state: present
   when:
       - ubuntu1604cis_rule_4_1_1_2
-  notify: restart auditd
+  notify:
+      - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.1.2
 
 - name: "SCORED | 4.1.1.2 | PATCH | Ensure email on non-admin audit space alert"
@@ -36,11 +40,13 @@
       state: present
   when:
       - ubuntu1604cis_rule_4_1_1_2
-  notify: restart auditd
+  notify:
+      - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.1.2
 
 - name: "SCORED | 4.1.1.3 | PATCH | Ensure audit logs are not automatically deleted"
@@ -51,11 +57,13 @@
       state: present
   when:
       - ubuntu1604cis_rule_4_1_1_3
-  notify: restart auditd
+  notify:
+      - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.1.3
 
 - name: "SCORED | 4.1.2 | PATCH | Ensure auditd service is enabled"
@@ -68,8 +76,9 @@
       - ubuntu1604cis_rule_4_1_2
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.2
 
 - name: "SCORED | 4.1.3 | PATCH | Ensure auditing for processes that start prior to auditd is enabled"
@@ -79,13 +88,15 @@
       replace: '\1"\2 audit=1"'
       follow: yes
   ignore_errors: yes
-  notify: generate new grub config
+  notify:
+      - generate new grub config
   when:
       - ubuntu1604cis_rule_4_1_3
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.3
 
 - name: "SCORED | 4.1.4 | PATCH | Ensure events that modify date and time information are collected"
@@ -102,8 +113,9 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.4
 
 - name: "SCORED | 4.1.5 | PATCH | Ensure events that modify user/group information are collected"
@@ -120,10 +132,10 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.5
-      - notimplemented
 
 - name: "SCORED | 4.1.6 | PATCH | Ensure events that modify the system's network environment are collected"
   template:
@@ -139,10 +151,10 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.6
-      - notimplemented
 
 - name: "SCORED | 4.1.7 | PATCH | Ensure events that modify the system's Mandatory Access Controls are collected"
   template:
@@ -158,8 +170,9 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.7
 
 - name: "SCORED | 4.1.8 | PATCH | Ensure login and logout events are collected"
@@ -176,10 +189,10 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.8
-      - notimplemented
 
 - name: "SCORED | 4.1.9 | PATCH | Ensure session initiation information is collected"
   template:
@@ -195,10 +208,10 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.9
-      - notimplemented
 
 - name: "SCORED | 4.1.10 | PATCH | Ensure discretionary access control permission modification events are collected"
   template:
@@ -214,10 +227,10 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.10
-      - notimplemented
 
 - name: "SCORED | 4.1.11 | PATCH | Ensure unsuccessful unauthorized file access attempts are collected"
   template:
@@ -233,40 +246,38 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.11
-      - notimplemented
 
 - name: "SCORED | 4.1.12 | PATCH | Ensure use of privileged commands is collected"
-  shell: for i in  $(df | grep '^/dev' | awk '{ print $NF }'); do find $i -xdev -type f -perm -4000 -o -type f -perm -2000 2>/dev/null; done
-  register: priv_procs
-  changed_when: no
-  check_mode: no
-  when:
-      - ubuntu1604cis_rule_4_1_12
-  tags:
-      - level2
-      - auditd
-      - patch
-      - rule_4.1.12
+  block:
 
-- name: "SCORED | 4.1.12 | PATCH | Ensure use of privileged commands is collected"
-  template:
-      src: audit/ubuntu1604cis_rule_4_1_12.rules.j2
-      dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_12.rules
-      owner: root
-      group: root
-      mode: 0600
-  notify:
+    - name: "SCORED | 4.1.12 | PATCH | Get list of setuid/setguid binaries"
+      shell: for i in  $(df | grep '^/dev' | awk '{ print $NF }'); do find $i -xdev -type f -perm -4000 -o -type f -perm -2000 2>/dev/null; done
+      register: priv_procs
+      changed_when: no
+      check_mode: no
+
+    - name: "SCORED | 4.1.12 | PATCH | Ensure use of privileged commands is collected"
+      template:
+          src: audit/ubuntu1604cis_rule_4_1_12.rules.j2
+          dest: /etc/audit/rules.d/ubuntu1604cis_rule_4_1_12.rules
+          owner: root
+          group: root
+          mode: 0600
+      notify:
     - load audit rules
     - restart auditd
+ 
   when:
       - ubuntu1604cis_rule_4_1_12
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.12
 
 - name: "SCORED | 4.1.13 | PATCH | Ensure successful file system mounts are collected"
@@ -283,8 +294,9 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.13
 
 - name: "SCORED | 4.1.14 | PATCH | Ensure file deletion events by users are collected"
@@ -301,10 +313,10 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.14
-      - notimplemented
 
 - name: "SCORED | 4.1.15 | PATCH | Ensure changes to system administration scope (sudoers) is collected"
   template:
@@ -320,8 +332,9 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.15
 
 - name: "SCORED | 4.1.16 | PATCH | Ensure system administrator actions (sudolog) are collected"
@@ -338,8 +351,9 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.16
 
 - name: "SCORED | 4.1.17 | PATCH | Ensure kernel module loading and unloading is collected"
@@ -356,8 +370,9 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.17
       - notimplemented
 
@@ -375,8 +390,9 @@
     - restart auditd
   tags:
       - level2
-      - auditd
+      - scored
       - patch
+      - auditd
       - rule_4.1.18
 
 - name: "SCORED | 4.2.3 | PATCH | Ensure rsyslog or syslog-ng is installed"
@@ -389,7 +405,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - syslog
       - rule_4.2.3
 
 - name: "SCORED | 4.2.1.1 | PATCH | Ensure rsyslog Service is enabled"
@@ -400,7 +418,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - syslog
       - rule_4.2.1.1
       - notimplemented
 
@@ -412,7 +432,9 @@
   tags:
       - level1
       - level2
+      - notscored
       - patch
+      - syslog
       - rule_4.2.1.2
       - notimplemented
 
@@ -426,7 +448,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - syslog
       - rule_4.2.1.3
 
 - name: "SCORED | 4.2.1.4 | PATCH | Ensure rsyslog is configured to send logs to a remote log host"
@@ -437,7 +461,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - syslog
       - rule_4.2.1.4
       - notimplemented
 
@@ -449,7 +475,9 @@
   tags:
       - level1
       - level2
+      - notscored
       - patch
+      - syslog
       - rule_4.2.1.5
       - notimplemented
 
@@ -461,7 +489,9 @@
   tags:
       - level1
       - level2
+      - notscored
       - patch
+      - syslog
       - rule_4.2.1.5
       - notimplemented
 
@@ -473,7 +503,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - syslog
       - rule_4.2.2.1
       - notimplemented
 
@@ -485,7 +517,9 @@
   tags:
       - level1
       - level2
+      - notscored
       - patch
+      - syslog
       - rule_4.2.2.2
       - notimplemented
 
@@ -497,7 +531,9 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - syslog
       - rule_4.2.2.3
       - notimplemented
 
@@ -509,7 +545,9 @@
   tags:
       - level1
       - level2
+      - notscored
       - patch
+      - syslog
       - rule_4.2.2.4
       - notimplemented
 
@@ -521,7 +559,9 @@
   tags:
       - level1
       - level2
+      - notscored
       - patch
+      - syslog
       - rule_4.2.2.5
       - notimplemented
 
@@ -534,14 +574,25 @@
   tags:
       - level1
       - level2
+      - scored
       - patch
+      - syslog
       - rule_4.2.4
 
 - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
-  command: /bin/true
-  changed_when: no
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^(\s*)(daily|weekly|monthly|yearly)$'
+    replace: "\\1{{ ubuntu1604cis_logrotate }}"
+  with_items:
+    - "{{ log_rotates.files }}"
+    - { path: "/etc/logrotate.conf" }
+  when:
+      - ubuntu1604cis_rule_4_3
   tags:
       - level1
       - level2
+      - notscored
       - patch
+      - syslog
       - rule_4.3

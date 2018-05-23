@@ -211,6 +211,8 @@ ubuntu1604cis_rule_5_4_1_4: true
 ubuntu1604cis_rule_5_4_2: true
 ubuntu1604cis_rule_5_4_3: true
 ubuntu1604cis_rule_5_4_4: true
+ubuntu1604cis_rule_5_5: true
+ubuntu1604cis_rule_5_6: false
 
 # Section 6 rules
 ubuntu1604cis_rule_6_1_1: true
@@ -350,15 +352,14 @@ ubuntu1604cis_warning_banner: |
     Authorized uses only. All activity may be monitored and reported.
 # End Banner
 
-## Section4 vars
-
+## Section 4 Vars
 ubuntu1604cis_auditd:
     admin_space_left_action: halt
     max_log_file_action: keep_logs
 
 ubuntu1604cis_logrotate: "daily"
 
-## Section5 vars
+## Section 5 Vars
 ubuntu1604cis_sshd:
     clientalivecountmax: 3
     clientaliveinterval: 300
@@ -375,6 +376,7 @@ ubuntu1604cis_pass:
     max_days: 90
     min_days: 7
     warn_age: 7
+
 # Syslog system
 ubuntu1604cis_syslog: rsyslog
 #ubuntu1604cis_syslog: syslog-ng
@@ -385,7 +387,7 @@ ubuntu1604cis_vartmp:
     opts: "defaults, nodev, nosuid, noexec, bind"
     enabled: no
 
-######Multi OS###########
+###### Multi OS Vars ###########
 prelim_check_package_command:
   RedHat: rpm -q
   Debian: dpkg -V
@@ -420,6 +422,5 @@ chrony_config_file:
   RedHat: /etc/chrony.conf
   Debian: /etc/chrony/chrony.conf
 
-###firewall
-
+### Firewall
 ubuntu1604cis_setup_firewall: false

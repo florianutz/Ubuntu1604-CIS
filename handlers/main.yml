@@ -62,18 +62,17 @@
   command: dconf update
 
 - name: restart auditd
-  command: /sbin/service auditd restart
-  changed_when: no
-  check_mode: no
-  failed_when: no
-  args:
-    warn: no
+  become: yes
+  service:
+      name: auditd
+      state: restarted
   when:
     - ubuntu1604cis_skip_for_travis == false
   tags:
     - skip_ansible_lint
 
 - name: load audit rules
+  become: yes
   command: /sbin/augenrules --load
   when:
     - ubuntu1604cis_skip_for_travis == false
