@@ -98,8 +98,8 @@
 - name: "SCORED | 1.1.1.4 | PATCH | Ensure mounting of hfs filesystems is disabled"
   lineinfile:
       dest: /etc/modprobe.d/CIS.conf
-      regexp: "^(#)?install hfs"
-      line: "install hfs /bin/true(\\s|$)"
+      regexp: "^(#)?install hfs(\\s|$)"
+      line: "install hfs /bin/true"
       state: present
       create: true
   when:
