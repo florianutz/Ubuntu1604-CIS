@@ -588,8 +588,8 @@
 
       - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate.conf exists"
         file:
-          path: /etc/logrotate.conf
-          state: touch
+            path: /etc/logrotate.conf
+            state: touch
 
       - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
         replace:

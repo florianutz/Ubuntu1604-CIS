@@ -601,11 +601,18 @@
 
 - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive"
   block:
+
+      - name: "SCORED | 5.4.4 | PATCH | Check if bashrc exists"
+        stat:
+            path: "/etc/bashrc"
+        register: bashrc_present
+
       - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/bashrc"
         replace:
             path: /etc/bashrc
             regexp: '(^\s+umask) 002'
             replace: '\1 027'
+        when: bashrc_present.stat.exists
 
       - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/profile"
         replace:
