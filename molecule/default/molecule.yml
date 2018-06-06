@@ -9,7 +9,7 @@ lint:
 platforms:
   - name: instance
     image: solita/ubuntu-systemd:latest
-    privileged: True
+    privileged: true
     command: /sbin/init
 provisioner:
   name: ansible

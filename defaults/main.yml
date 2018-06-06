@@ -76,19 +76,178 @@ ubuntu1604cis_rule_1_7_1_6: true
 ubuntu1604cis_rule_1_7_2: true
 
 # Section 2 rules
-#ubuntu1604cis_rule_2_1_1: true
+ubuntu1604cis_rule_2_1_1: true
+ubuntu1604cis_rule_2_1_2: true
+ubuntu1604cis_rule_2_1_3: true
+ubuntu1604cis_rule_2_1_4: true
+ubuntu1604cis_rule_2_1_5: true
+ubuntu1604cis_rule_2_1_6: true
+ubuntu1604cis_rule_2_1_7: true
+ubuntu1604cis_rule_2_2_1_1: true
+ubuntu1604cis_rule_2_2_1_2: true
+ubuntu1604cis_rule_2_2_1_3: true
+ubuntu1604cis_rule_2_2_2: true
+ubuntu1604cis_rule_2_2_3: true
+ubuntu1604cis_rule_2_2_4: true
+ubuntu1604cis_rule_2_2_5: true
+ubuntu1604cis_rule_2_2_6: true
+ubuntu1604cis_rule_2_2_7: true
+ubuntu1604cis_rule_2_2_8: true
+ubuntu1604cis_rule_2_2_9: true
+ubuntu1604cis_rule_2_2_10: true
+ubuntu1604cis_rule_2_2_11: true
+ubuntu1604cis_rule_2_2_12: true
+ubuntu1604cis_rule_2_2_13: true
+ubuntu1604cis_rule_2_2_14: true
+ubuntu1604cis_rule_2_2_15: true
+ubuntu1604cis_rule_2_2_16: true
+ubuntu1604cis_rule_2_2_17: true
+ubuntu1604cis_rule_2_2_18: true
+ubuntu1604cis_rule_2_2_19: true
+ubuntu1604cis_rule_2_2_20: true
+ubuntu1604cis_rule_2_2_21: true
+ubuntu1604cis_rule_2_3_1: true
+ubuntu1604cis_rule_2_3_2: true
+ubuntu1604cis_rule_2_3_3: true
+ubuntu1604cis_rule_2_3_4: true
+ubuntu1604cis_rule_2_3_5: true
 
 # Section 3 rules
-#ubuntu1604cis_rule_3_1_1: true
+ubuntu1604cis_rule_3_1_1: true
+ubuntu1604cis_rule_3_1_2: true
+ubuntu1604cis_rule_3_2_1: true
+ubuntu1604cis_rule_3_2_2: true
+ubuntu1604cis_rule_3_2_3: true
+ubuntu1604cis_rule_3_2_4: true
+ubuntu1604cis_rule_3_2_5: true
+ubuntu1604cis_rule_3_2_6: true
+ubuntu1604cis_rule_3_2_7: true
+ubuntu1604cis_rule_3_2_8: true
+ubuntu1604cis_rule_3_3_1: true
+ubuntu1604cis_rule_3_3_2: true
+ubuntu1604cis_rule_3_3_3: true
+ubuntu1604cis_rule_3_4_1: true
+ubuntu1604cis_rule_3_4_2: true
+ubuntu1604cis_rule_3_4_3: true
+ubuntu1604cis_rule_3_4_4: true
+ubuntu1604cis_rule_3_4_5: true
+ubuntu1604cis_rule_3_5_1: true
+ubuntu1604cis_rule_3_5_2: true
+ubuntu1604cis_rule_3_5_3: true
+ubuntu1604cis_rule_3_5_4: true
+ubuntu1604cis_rule_3_6_1: true
+ubuntu1604cis_rule_3_6_2: true
+ubuntu1604cis_rule_3_6_3: true
+ubuntu1604cis_rule_3_6_4: true
+ubuntu1604cis_rule_3_6_5: true
 
 # Section 4 rules
-#ubuntu1604cis_rule_4_1_1_1: true
+ubuntu1604cis_rule_4_1_1_1: true
+ubuntu1604cis_rule_4_1_1_2: true
+ubuntu1604cis_rule_4_1_1_3: true
+ubuntu1604cis_rule_4_1_2: true
+ubuntu1604cis_rule_4_1_3: true
+ubuntu1604cis_rule_4_1_4: true
+ubuntu1604cis_rule_4_1_5: true
+ubuntu1604cis_rule_4_1_6: true
+ubuntu1604cis_rule_4_1_7: true
+ubuntu1604cis_rule_4_1_8: true
+ubuntu1604cis_rule_4_1_9: true
+ubuntu1604cis_rule_4_1_10: true
+ubuntu1604cis_rule_4_1_11: true
+ubuntu1604cis_rule_4_1_12: true
+ubuntu1604cis_rule_4_1_13: true
+ubuntu1604cis_rule_4_1_14: true
+ubuntu1604cis_rule_4_1_15: true
+ubuntu1604cis_rule_4_1_16: true
+ubuntu1604cis_rule_4_1_17: true
+ubuntu1604cis_rule_4_1_18: true
+ubuntu1604cis_rule_4_2_3: true
+ubuntu1604cis_rule_4_2_1_1: true
+ubuntu1604cis_rule_4_2_1_2: true
+ubuntu1604cis_rule_4_2_1_3: true
+ubuntu1604cis_rule_4_2_1_4: true
+ubuntu1604cis_rule_4_2_1_5: true
+ubuntu1604cis_rule_4_2_2_1: true
+ubuntu1604cis_rule_4_2_2_2: true
+ubuntu1604cis_rule_4_2_2_3: true
+ubuntu1604cis_rule_4_2_2_4: true
+ubuntu1604cis_rule_4_2_2_5: true
+ubuntu1604cis_rule_4_2_4: true
+ubuntu1604cis_rule_4_3: true
 
 # Section 5 rules
-#ubuntu1604cis_rule_5_1_1: true
+ubuntu1604cis_rule_5_1_1: true
+ubuntu1604cis_rule_5_1_2: true
+ubuntu1604cis_rule_5_1_3: true
+ubuntu1604cis_rule_5_1_4: true
+ubuntu1604cis_rule_5_1_5: true
+ubuntu1604cis_rule_5_1_6: true
+ubuntu1604cis_rule_5_1_7: true
+ubuntu1604cis_rule_5_1_8: true
+ubuntu1604cis_rule_5_2_1: true
+ubuntu1604cis_rule_5_2_2: true
+ubuntu1604cis_rule_5_2_3: true
+ubuntu1604cis_rule_5_2_4: true
+ubuntu1604cis_rule_5_2_5: true
+ubuntu1604cis_rule_5_2_6: true
+ubuntu1604cis_rule_5_2_7: true
+ubuntu1604cis_rule_5_2_8: true
+ubuntu1604cis_rule_5_2_9: true
+ubuntu1604cis_rule_5_2_10: true
+ubuntu1604cis_rule_5_2_11: true
+ubuntu1604cis_rule_5_2_12: true
+ubuntu1604cis_rule_5_2_13: true
+ubuntu1604cis_rule_5_2_14: true
+ubuntu1604cis_rule_5_2_15: true
+ubuntu1604cis_rule_5_2_16: true
+ubuntu1604cis_rule_5_3_1: true
+ubuntu1604cis_rule_5_3_2: true
+ubuntu1604cis_rule_5_3_3: true
+ubuntu1604cis_rule_5_3_4: true
+ubuntu1604cis_rule_5_4_1_1: true
+ubuntu1604cis_rule_5_4_1_2: true
+ubuntu1604cis_rule_5_4_1_3: true
+ubuntu1604cis_rule_5_4_1_4: true
+ubuntu1604cis_rule_5_4_2: true
+ubuntu1604cis_rule_5_4_3: true
+ubuntu1604cis_rule_5_4_4: true
+ubuntu1604cis_rule_5_5: true
+ubuntu1604cis_rule_5_6: false
 
 # Section 6 rules
-#ubuntu1604cis_rule_6_1_1: true
+ubuntu1604cis_rule_6_1_1: true
+ubuntu1604cis_rule_6_1_2: true
+ubuntu1604cis_rule_6_1_3: true
+ubuntu1604cis_rule_6_1_4: true
+ubuntu1604cis_rule_6_1_5: true
+ubuntu1604cis_rule_6_1_6: true
+ubuntu1604cis_rule_6_1_7: true
+ubuntu1604cis_rule_6_1_8: true
+ubuntu1604cis_rule_6_1_9: true
+ubuntu1604cis_rule_6_1_10: true
+ubuntu1604cis_rule_6_1_11: true
+ubuntu1604cis_rule_6_1_12: true
+ubuntu1604cis_rule_6_1_13: true
+ubuntu1604cis_rule_6_1_14: true
+ubuntu1604cis_rule_6_2_1: true
+ubuntu1604cis_rule_6_2_2: true
+ubuntu1604cis_rule_6_2_3: true
+ubuntu1604cis_rule_6_2_4: true
+ubuntu1604cis_rule_6_2_5: true
+ubuntu1604cis_rule_6_2_6: true
+ubuntu1604cis_rule_6_2_7: true
+ubuntu1604cis_rule_6_2_8: true
+ubuntu1604cis_rule_6_2_9: true
+ubuntu1604cis_rule_6_2_10: true
+ubuntu1604cis_rule_6_2_11: true
+ubuntu1604cis_rule_6_2_12: true
+ubuntu1604cis_rule_6_2_14: true
+ubuntu1604cis_rule_6_2_15: true
+ubuntu1604cis_rule_6_2_16: true
+ubuntu1604cis_rule_6_2_17: true
+ubuntu1604cis_rule_6_2_18: true
+ubuntu1604cis_rule_6_2_19: true
 
 # Service configuration booleans set true to keep service
 ubuntu1604cis_avahi_server: false
@@ -154,10 +313,10 @@ ubuntu1604cis_aide_cron:
 ubuntu1604cis_selinux_pol: targeted
 
 # Whether or not to run tasks related to auditing/patching the desktop environment
-ubuntu1604cis_gui: no
+ubuntu1604cis_gui: false
 
 # Set to 'true' if X Windows is needed in your environment
-ubuntu1604cis_xwindows_required: no
+ubuntu1604cis_xwindows_required: false
 
 ubuntu1604cis_openldap_clients_required: false
 ubuntu1604cis_telnet_required: false
@@ -167,53 +326,69 @@ ubuntu1604cis_ypbind_required: false
 
 # Time Synchronization
 ubuntu1604cis_time_synchronization: chrony
-#ubuntu1604cis_time_synchronization: ntp
+# ubuntu1604cis_time_synchronization: ntp
 
 ubuntu1604cis_time_synchronization_servers:
-    - 0.pool.ntp.org
-    - 1.pool.ntp.org
-    - 2.pool.ntp.org
-    - 3.pool.ntp.org
+  -0.pool.ntp.org
+  -1.pool.ntp.org
+  -2.pool.ntp.org
+  -3.pool.ntp.org
 
 # 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 ubuntu1604cis_host_allow:
-    - "10.0.0.0/255.0.0.0"
-    - "172.16.0.0/255.240.0.0"
-    - "192.168.0.0/255.255.0.0"
-    - "0.0.0.0/0.0.0.0"
+  -"10.0.0.0/255.0.0.0"
+  -"172.16.0.0/255.240.0.0"
+  -"192.168.0.0/255.255.0.0"
+  -"0.0.0.0/0.0.0.0"
 
 ubuntu1604cis_firewall: firewalld
-#ubuntu1604cis_firewall: iptables
+# ubuntu1604cis_firewall: iptables
 
 ubuntu1604cis_firewall_services:
-    - ssh
-    - dhcpv6-client
+  -ssh
+  -dhcpv6-client
 
 # Warning Banner Content (issue, issue.net, motd)
 ubuntu1604cis_warning_banner: |
     Authorized uses only. All activity may be monitored and reported.
 # End Banner
 
+## Section 4 Vars
+ubuntu1604cis_auditd:
+  admin_space_left_action: halt
+  max_log_file_action: keep_logs
+
+ubuntu1604cis_logrotate: "daily"
+
+## Section 5 Vars
 ubuntu1604cis_sshd:
-    clientalivecountmax: 3
-    clientaliveinterval: 300
-    # - make sure you understand the precedence when working with these values!!
-    #allowusers:
-    #allowgroups: systems dba
-    #denyusers:
-    #denygroups:
+  clientalivecountmax: 3
+  clientaliveinterval: 300
+  ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
+  macs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
+  logingracetime: 60
+  ### Make sure you understand the precedence when working with these values!!
+  # allowusers:
+  # allowgroups: systems dba
+  # denyusers:
+  # denygroups:
+
+ubuntu1604cis_pass:
+  max_days: 90
+  min_days: 7
+  warn_age: 7
 
 # Syslog system
 ubuntu1604cis_syslog: rsyslog
-#ubuntu1604cis_syslog: syslog-ng
+# ubuntu1604cis_syslog: syslog-ng
 
 ubuntu1604cis_vartmp:
-    source: /tmp
-    fstype: none
-    opts: "defaults, nodev, nosuid, noexec, bind"
-    enabled: no
+  source: /tmp
+  fstype: falsene
+  opts: "defaults, nodev, nosuid, noexec, bind"
+  enabled: false
 
-######Multi OS###########
+###### Multi OS Vars ###########
 prelim_check_package_command:
   RedHat: rpm -q
   Debian: dpkg -V
@@ -248,6 +423,5 @@ chrony_config_file:
   RedHat: /etc/chrony.conf
   Debian: /etc/chrony/chrony.conf
 
-###firewall
-
+### Firewall
 ubuntu1604cis_setup_firewall: false
