@@ -188,11 +188,7 @@
       - filesystems
       - rule_1.1.1.6
 
-<<<<<<< HEAD
 - name: "SCORED | 1.1.1.7 | PATCH | Ensure mounting of udf filesystems is disabled"
-=======
-- name: "SCORED | 1.1.1.6 | PATCH | Ensure mounting of udf filesystems is disabled"
->>>>>>> master
   lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install udf(\\s|$)"
@@ -209,7 +205,6 @@
       - filesystems
       - rule_1.1.1.7
 
-<<<<<<< HEAD
 - name: "SCORED | 1.1.1.7 | PATCH | Remove udf module"
   modprobe:
       name: udf
@@ -254,24 +249,6 @@
       - vfat
       - filesystems
       - rule_1.1.1.8
-=======
-- name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
-  copy:
-    src: "{{ tmp_mount_file[ansible_os_family] }}"
-    dest: /etc/systemd/system/tmp.mount
-    owner: root
-    group: root
-    mode: 0644
-    force: yes
-    remote_src: True
-  notify: systemd restart tmp.mount
-  #when: ansible_os_family == "Debian"
-  tags:
-    - level2
-    - scored
-    - patch
-    - rule_1.1.2
->>>>>>> master
 
 - name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
   copy:
@@ -284,6 +261,22 @@
       remote_src: true
   notify:
       - systemd restart tmp.mount
+  when:
+      - ubuntu1604cis_rule_1_1_2
+      - ubuntu1604cis_skip_for_travis == false
+  tags:
+      - level2
+      - scored
+      - patch
+      - rule_1.1.2
+
+- name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
+  systemd:
+      name: tmp.mount
+      daemon_reload: yes
+      enabled: yes
+      masked: no
+      state: started
   when:
       - ubuntu1604cis_rule_1_1_2
       - ubuntu1604cis_skip_for_travis == false
