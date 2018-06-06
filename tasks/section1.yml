@@ -73,7 +73,7 @@
       - rule_1.1.1.5
       - hfsplus
 
-- name: "SCORED | 1.1.1.6 | PATCH | Ensure mounting of udf filesystems is disabled"
+- name: "SCORED | 1.1.1.7 | PATCH | Ensure mounting of udf filesystems is disabled"
   lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install udf(\\s|$)"
@@ -85,7 +85,7 @@
       - level1
       - scored
       - patch
-      - rule_1.1.1.6
+      - rule_1.1.1.7
       - udf
 
 - name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
