@@ -270,6 +270,22 @@
       - patch
       - rule_1.1.2
 
+- name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
+  systemd:
+      name: tmp.mount
+      daemon_reload: yes
+      enabled: yes
+      masked: no
+      state: started
+  when:
+      - ubuntu1604cis_rule_1_1_2
+      - ubuntu1604cis_skip_for_travis == false
+  tags:
+      - level2
+      - scored
+      - patch
+      - rule_1.1.2
+
 - name: "SCORED | 1.1.3 | PATCH | Ensure nodev option set on /tmp partition\n
          SCORED | 1.1.4 | PATCH | Ensure nosuid option set on /tmp partition\n
          | drop custom tmp.mount"
