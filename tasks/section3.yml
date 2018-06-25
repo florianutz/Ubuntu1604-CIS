@@ -447,7 +447,7 @@
   when: ubuntu1604cis_firewall == "iptables" and ubuntu1604cis_setup_firewall
   tags:
       - level1
-      - scored
+      - notscored
       - patch
       - rule_3.6.4
       - notimplemented
