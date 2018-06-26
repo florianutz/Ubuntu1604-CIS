@@ -336,10 +336,10 @@ ubuntu1604cis_time_synchronization_servers:
 
 # 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 ubuntu1604cis_host_allow:
-  -"10.0.0.0/255.0.0.0"
-  -"172.16.0.0/255.240.0.0"
-  -"192.168.0.0/255.255.0.0"
-  -"0.0.0.0/0.0.0.0"
+  - "10.0.0.0/255.0.0.0"
+  - "172.16.0.0/255.240.0.0"
+  - "192.168.0.0/255.255.0.0"
+  - "0.0.0.0/0.0.0.0"
 
 ubuntu1604cis_firewall: firewalld
 # ubuntu1604cis_firewall: iptables
