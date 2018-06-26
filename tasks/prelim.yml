@@ -210,3 +210,8 @@
   register: rhnsd_service_status
   changed_when: false
   check_mode: false
+
+- name: "PRELIM | Check the grub configuration"
+  stat:
+    path: /boot/grub/grub.cfg
+  register: grub_cfg
