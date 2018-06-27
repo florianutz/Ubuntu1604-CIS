@@ -484,7 +484,6 @@
   changed_when: false
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - rule_3.7

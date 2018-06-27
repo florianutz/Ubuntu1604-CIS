@@ -7,7 +7,6 @@
       - ubuntu1604cis_rule_5_1_1
   tags:
       - level1
-      - level2
       - scored
       - patch
       - cron
@@ -23,7 +22,6 @@
       - ubuntu1604cis_rule_5_1_2
   tags:
       - level1
-      - level2
       - scored
       - patch
       - cron
@@ -40,7 +38,6 @@
       - ubuntu1604cis_rule_5_1_3
   tags:
       - level1
-      - level2
       - scored
       - patch
       - cron
@@ -57,7 +54,6 @@
       - ubuntu1604cis_rule_5_1_4
   tags:
       - level1
-      - level2
       - scored
       - patch
       - cron
@@ -74,7 +70,6 @@
       - ubuntu1604cis_rule_5_1_5
   tags:
       - level1
-      - level2
       - scored
       - patch
       - cron
@@ -91,7 +86,6 @@
       - ubuntu1604cis_rule_5_1_6
   tags:
       - level1
-      - level2
       - scored
       - patch
       - cron
@@ -108,7 +102,6 @@
       - ubuntu1604cis_rule_5_1_7
   tags:
       - level1
-      - level2
       - scored
       - patch
       - cron
@@ -155,7 +148,6 @@
       - ubuntu1604cis_rule_5_1_8
   tags:
       - level1
-      - level2
       - scored
       - patch
       - cron
@@ -172,7 +164,6 @@
       - ubuntu1604cis_rule_5_2_1
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -188,7 +179,6 @@
       - ubuntu1604cis_rule_5_2_2
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -204,7 +194,6 @@
       - ubuntu1604cis_rule_5_2_3
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -220,7 +209,6 @@
       - ubuntu1604cis_rule_5_2_4
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -236,7 +224,6 @@
       - ubuntu1604cis_rule_5_2_5
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -252,7 +239,6 @@
       - ubuntu1604cis_rule_5_2_6
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -268,7 +254,6 @@
       - ubuntu1604cis_rule_5_2_7
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -284,7 +269,6 @@
       - ubuntu1604cis_rule_5_2_8
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -300,7 +284,6 @@
       - ubuntu1604cis_rule_5_2_9
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -316,7 +299,6 @@
       - ubuntu1604cis_rule_5_2_10
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -332,7 +314,6 @@
       - ubuntu1604cis_rule_5_2_11
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -357,7 +338,6 @@
       - ubuntu1604cis_rule_5_2_12
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -373,7 +353,6 @@
       - ubuntu1604cis_rule_5_2_13
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -428,7 +407,6 @@
       - ubuntu1604cis_rule_5_2_14
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -444,7 +422,6 @@
       - ubuntu1604cis_rule_5_2_15
   tags:
       - level1
-      - level2
       - scored
       - patch
       - sshd
@@ -474,7 +451,6 @@
       - ubuntu1604cis_rule_5_3_1
   tags:
       - level1
-      - level2
       - scored
       - patch
       - rule_5.3.1
@@ -486,7 +462,6 @@
       - ubuntu1604cis_rule_5_3_2
   tags:
       - level1
-      - level2
       - scored
       - patch
       - rule_5.3.2
@@ -499,7 +474,6 @@
       - ubuntu1604cis_rule_5_3_3
   tags:
       - level1
-      - level2
       - scored
       - patch
       - rule_5.3.3
@@ -513,7 +487,6 @@
       - ubuntu1604cis_rule_5_3_4
   tags:
       - level1
-      - level2
       - scored
       - patch
       - rule_5.3.4
@@ -528,7 +501,6 @@
       - ubuntu1604cis_rule_5_4_1_1
   tags:
       - level1
-      - level2
       - scored
       - patch
       - rule_5.4.1.1
@@ -543,7 +515,6 @@
       - ubuntu1604cis_rule_5_4_1_2
   tags:
       - level1
-      - level2
       - scored
       - patch
       - rule_5.4.1.2
@@ -558,7 +529,6 @@
       - ubuntu1604cis_rule_5_4_1_3
   tags:
       - level1
-      - level2
       - scored
       - patch
       - rule_5.4.1.3
@@ -570,7 +540,6 @@
       - ubuntu1604cis_rule_5_4_1_4
   tags:
       - level1
-      - level2
       - patch
       - rule_5.4.1.4
       - notimplemented
@@ -582,7 +551,6 @@
       - ubuntu1604cis_rule_5_4_2
   tags:
       - level1
-      - level2
       - patch
       - rule_5.4.2
       - notimplemented
@@ -595,7 +563,6 @@
       - ubuntu1604cis_rule_5_4_3
   tags:
       - level1
-      - level2
       - patch
       - rule_5.4.3
 
@@ -623,7 +590,6 @@
       - ubuntu1604cis_rule_5_4_4
   tags:
       - level1
-      - level2
       - patch
       - rule_5.4.4
 
@@ -634,7 +600,6 @@
       - ubuntu1604cis_rule_5_5
   tags:
       - level1
-      - level2
       - patch
       - rule_5.5
       - notscored
@@ -650,7 +615,6 @@
       - ubuntu1604cis_rule_5_6
   tags:
       - level1
-      - level2
       - patch
       - rule_5.6
 
@@ -662,6 +626,5 @@
       - ubuntu1604cis_rule_5_6
   tags:
       - level1
-      - level2
       - patch
       - rule_5.6

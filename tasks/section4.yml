@@ -404,7 +404,6 @@
       - ubuntu1604cis_rule_4_2_3
   tags:
       - level1
-      - level2
       - scored
       - patch
       - syslog
@@ -417,7 +416,6 @@
       - ubuntu1604cis_rule_4_2_1_1
   tags:
       - level1
-      - level2
       - scored
       - patch
       - syslog
@@ -431,7 +429,6 @@
       - ubuntu1604cis_rule_4_2_1_2
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - syslog
@@ -447,7 +444,6 @@
       - ubuntu1604cis_rule_4_2_1_3
   tags:
       - level1
-      - level2
       - scored
       - patch
       - syslog
@@ -460,7 +456,6 @@
       - ubuntu1604cis_rule_4_2_1_4
   tags:
       - level1
-      - level2
       - scored
       - patch
       - syslog
@@ -474,7 +469,6 @@
       - ubuntu1604cis_rule_4_2_1_5
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - syslog
@@ -488,7 +482,6 @@
       - ubuntu1604cis_rule_4_2_1_5
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - syslog
@@ -502,7 +495,6 @@
       - ubuntu1604cis_rule_4_2_2_1
   tags:
       - level1
-      - level2
       - scored
       - patch
       - syslog
@@ -516,7 +508,6 @@
       - ubuntu1604cis_rule_4_2_2_2
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - syslog
@@ -530,7 +521,6 @@
       - ubuntu1604cis_rule_4_2_2_3
   tags:
       - level1
-      - level2
       - scored
       - patch
       - syslog
@@ -544,7 +534,6 @@
       - ubuntu1604cis_rule_4_2_2_4
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - syslog
@@ -558,7 +547,6 @@
       - ubuntu1604cis_rule_4_2_2_5
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - syslog
@@ -573,7 +561,6 @@
       - ubuntu1604cis_rule_4_2_4
   tags:
       - level1
-      - level2
       - scored
       - patch
       - syslog
@@ -604,7 +591,6 @@
       - ubuntu1604cis_rule_4_3
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - syslog
