@@ -540,6 +540,7 @@
       - ubuntu1604cis_rule_5_4_1_4
   tags:
       - level1
+      - scored
       - patch
       - rule_5.4.1.4
       - notimplemented
@@ -554,6 +555,7 @@
       - patch
       - rule_5.4.2
       - notimplemented
+      - scored
 
 - name: "SCORED | 5.4.3 | PATCH | Ensure default group for the root account is GID 0"
   command: usermod -g 0 root
@@ -565,6 +567,7 @@
       - level1
       - patch
       - rule_5.4.3
+      - scored
 
 - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive"
   block:
@@ -592,6 +595,7 @@
       - level1
       - patch
       - rule_5.4.4
+      - scored
 
 - name: "NOTSCORED | 5.5 | PATCH | Ensure root login is restricted to system console"
   command: /bin/true
@@ -617,6 +621,7 @@
       - level1
       - patch
       - rule_5.6
+      - scored
 
 - name: "SCORED | 5.6 | PATCH | Ensure access to the su command is restricted - wheel group contains root"
   user:
@@ -628,3 +633,4 @@
       - level1
       - patch
       - rule_5.6
+      - scored
