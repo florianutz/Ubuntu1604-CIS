@@ -729,7 +729,7 @@
       - ubuntu1604cis_rule_1_6_1_2
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.1.2
       - notimplemented
@@ -741,7 +741,7 @@
       - ubuntu1604cis_rule_1_6_1_3
   tags:
       - level1
-      - notscored
+      - scored
       - patc3
       - rule_1.6.1.2
       - notimplemented
@@ -753,7 +753,7 @@
       - ubuntu1604cis_rule_1_6_1_4
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.1.4
       - notimplemented
@@ -765,7 +765,7 @@
       - ubuntu1604cis_rule_1_6_2_1
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.2.1
       - notimplemented
@@ -777,7 +777,7 @@
       - ubuntu1604cis_rule_1_6_2_2
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.2.2
       - notimplemented
@@ -789,7 +789,7 @@
       - ubuntu1604cis_rule_1_6_3
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.3
       - notimplemented
