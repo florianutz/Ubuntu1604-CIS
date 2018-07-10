@@ -7,6 +7,8 @@ services:
 
 before_install:
   - docker pull solita/ubuntu-systemd
+  - pip install docker-py
+  - pip install molecule
 
 script:
   - make test
