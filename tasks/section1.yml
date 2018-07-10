@@ -417,7 +417,6 @@
   tags:
       - scored
       - level1
-      - level2
       - patch
       - rule_1.1.13
 
@@ -487,7 +486,6 @@
       # - sticky_bit_on_worldwritable_dirs_audit.rc == '0'
   tags:
       - level1
-      - level2
       - scored
       - patch
       - rule_1.1.20
@@ -618,7 +616,6 @@
       - ubuntu1604cis_rule_1_4_3
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - rule_1.4.3
@@ -664,7 +661,6 @@
       - ubuntu1604cis_rule_1_5_2
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - rule_1.5.2
@@ -733,7 +729,7 @@
       - ubuntu1604cis_rule_1_6_1_2
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.1.2
       - notimplemented
@@ -745,7 +741,7 @@
       - ubuntu1604cis_rule_1_6_1_3
   tags:
       - level1
-      - notscored
+      - scored
       - patc3
       - rule_1.6.1.2
       - notimplemented
@@ -757,7 +753,7 @@
       - ubuntu1604cis_rule_1_6_1_4
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.1.4
       - notimplemented
@@ -769,7 +765,7 @@
       - ubuntu1604cis_rule_1_6_2_1
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.2.1
       - notimplemented
@@ -781,7 +777,7 @@
       - ubuntu1604cis_rule_1_6_2_2
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.2.2
       - notimplemented
@@ -793,7 +789,7 @@
       - ubuntu1604cis_rule_1_6_3
   tags:
       - level1
-      - notscored
+      - scored
       - patch
       - rule_1.6.3
       - notimplemented
@@ -908,7 +904,6 @@
       - ubuntu1604cis_rule_1_7_2
   tags:
       - level1
-      - level2
       - scored
       - patch
       - banner
@@ -919,7 +914,6 @@
       upgrade: dist
   tags:
       - level1
-      - level2
       - notscored
       - patch
       - rule_1.8

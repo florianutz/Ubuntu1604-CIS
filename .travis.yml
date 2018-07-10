@@ -6,10 +6,8 @@ services:
   - docker
 
 before_install:
-  - docker pull centos/systemd
+  - docker pull solita/ubuntu-systemd
+  - make bin/python
 
 script:
   - make test
-
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
