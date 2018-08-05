@@ -11,10 +11,10 @@ python:
 
 before_install:
   - docker pull solita/ubuntu-systemd
-  - make bin/python
+  # - make bin/python
 
 script:
-  - make test
+  - make travis
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
