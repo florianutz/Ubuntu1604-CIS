@@ -586,7 +586,9 @@
       owner: root
       group: root
       mode: 0600
-  when: ansible_os_family == "Debian"
+  when: 
+      - ansible_os_family == "Debian"
+      - ubuntu1604cis_rule_1_4_1
   tags:
       - level1
       - scored
