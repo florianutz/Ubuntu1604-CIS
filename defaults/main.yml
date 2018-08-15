@@ -329,10 +329,10 @@ ubuntu1604cis_time_synchronization: chrony
 # ubuntu1604cis_time_synchronization: ntp
 
 ubuntu1604cis_time_synchronization_servers:
-  -0.pool.ntp.org
-  -1.pool.ntp.org
-  -2.pool.ntp.org
-  -3.pool.ntp.org
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+  - 2.pool.ntp.org
+  - 3.pool.ntp.org
 
 # 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 ubuntu1604cis_host_allow:
@@ -345,8 +345,8 @@ ubuntu1604cis_firewall: firewalld
 # ubuntu1604cis_firewall: iptables
 
 ubuntu1604cis_firewall_services:
-  -ssh
-  -dhcpv6-client
+  - ssh
+  - dhcpv6-client
 
 # Warning Banner Content (issue, issue.net, motd)
 ubuntu1604cis_warning_banner: |
