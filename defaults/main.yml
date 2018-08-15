@@ -384,7 +384,7 @@ ubuntu1604cis_syslog: rsyslog
 
 ubuntu1604cis_vartmp:
   source: /tmp
-  fstype: falsene
+  fstype: false
   opts: "defaults, nodev, nosuid, noexec, bind"
   enabled: false
 
