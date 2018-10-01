@@ -169,6 +169,7 @@ Example Playbook
   roles:
     - Ubuntu1604-CIS
 ```
+You can locally test-run this (in a virtual machine) via `$ sudo ansible-playbook -K Playbook.yml`
 
 Tags
 ----
