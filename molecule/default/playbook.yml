@@ -7,10 +7,9 @@
   pre_tasks:
     - name: install packages for testing under docker
       apt:
-        name: "{{ item }}"
-        state: present
-      with_items:
+        name:
         - openssh-server
+        state: present
     - name: pretask2
       file:
         name: /boot/grub
