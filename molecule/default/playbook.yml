@@ -8,7 +8,7 @@
     - name: install packages for testing under docker
       apt:
         name:
-        - openssh-server
+          - openssh-server
         state: present
     - name: pretask2
       file:
