@@ -198,9 +198,10 @@
       - rule_6.2.1
 
 - name: "SCORED | 6.2.2 | PATCH | Ensure no legacy '+' entries exist in /etc/passwd"
-  command: sed -i '/^+/ d' /etc/passwd
-  changed_when: false
-  failed_when: false
+  lineinfile:
+      regexp: '^+'
+      state: absent
+      path: /etc/passwd
   when:
       - ubuntu1604cis_rule_6_2_2
   tags:
@@ -210,9 +211,10 @@
       - rule_6.2.2
 
 - name: "SCORED | 6.2.3 | PATCH | Ensure no legacy '+' entries exist in /etc/shadow"
-  command: sed -i '/^+/ d' /etc/shadow
-  changed_when: false
-  failed_when: false
+  lineinfile:
+      regexp: '^+'
+      state: absent
+      path: /etc/shadow
   when:
       - ubuntu1604cis_rule_6_2_3
   tags:
@@ -222,9 +224,10 @@
       - rule_6.2.3
 
 - name: "SCORED | 6.2.4 | PATCH | Ensure no legacy '+' entries exist in /etc/group"
-  command: sed -i '/^+/ d' /etc/group
-  changed_when: false
-  failed_when: false
+  lineinfile:
+      regexp: '^+'
+      state: absent
+      path: /etc/group
   when:
       - ubuntu1604cis_rule_6_2_4
   tags:
