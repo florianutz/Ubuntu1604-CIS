@@ -311,7 +311,9 @@
       - rule_1.1.4
 
 - name: "SCORED | 1.1.5 | PATCH | Ensure separate partition exists for /var"
-  shell: mount | grep "on /var "
+  shell: |
+      set -o pipefail
+      mount | grep "on /var "
   register: var_mounted
   changed_when: false
   failed_when: false
@@ -325,7 +327,9 @@
       - skip_ansible_lint
 
 - name: "SCORED | 1.1.6 | PATCH | Ensure separate partition exists for /var/tmp"
-  shell: mount | grep "on /var/tmp "
+  shell: |
+      set -o pipefail
+      mount | grep "on /var/tmp "
   register: var_tmp_mounted
   changed_when: false
   failed_when: false
@@ -361,7 +365,9 @@
       - rule_1.1.9
 
 - name: "SCORED | 1.1.10 | PATCH | Ensure separate partition exists for /var/log"
-  shell: mount | grep "on /var/log "
+  shell: |
+      set -o pipefail
+      mount | grep "on /var/log "
   register: var_log_mounted
   changed_when: false
   failed_when: false
@@ -375,7 +381,9 @@
       - skip_ansible_lint
 
 - name: "SCORED | 1.1.11 | PATCH | Ensure separate partition exists for /var/log/audit"
-  shell: mount | grep "on /var/log/audit "
+  shell: |
+      set -o pipefail
+      mount | grep "on /var/log/audit "
   register: var_log_audit_mounted
   changed_when: false
   failed_when: false
@@ -389,7 +397,9 @@
       - skip_ansible_lint
 
 - name: "SCORED | 1.1.12 | PATCH | Ensure separate partition exists for /home"
-  shell: mount | grep "on /home "
+  shell: |
+      set -o pipefail
+      mount | grep "on /home "
   register: home_mounted
   changed_when: false
   failed_when: false
@@ -478,7 +488,9 @@
       - notimplemented
 
 - name: "SCORED | 1.1.20 | PATCH | Ensure sticky bit is set on all world-writable directories"
-  shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
+  shell: |
+      set -o pipefail
+      df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
   changed_when: false
   failed_when: false
   when:
@@ -658,7 +670,9 @@
       - rule_1.5.1
 
 - name: "NOTSCORED | 1.5.2 | PATCH | Ensure XD/NX support is enabled"
-  shell: dmesg | grep -E "NX|XD" | grep " active"
+  shell: |
+      set -o pipefail
+      dmesg | grep -E "NX|XD" | grep " active"
   changed_when: false
   when:
       - ubuntu1604cis_rule_1_5_2
