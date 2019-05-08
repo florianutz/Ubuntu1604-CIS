@@ -290,7 +290,7 @@
       line: '\1"{{ fixsudo.stdout_lines[0] }}"'
       backrefs: true
   when:
-      - fixsudo.stdout_lines[0] != ""
+      - fixsudo.stdout_lines[0]
   tags:
       - level1
       - scored
