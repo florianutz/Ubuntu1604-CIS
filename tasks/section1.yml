@@ -263,7 +263,7 @@
       - systemd restart tmp.mount
   when:
       - ubuntu1604cis_rule_1_1_2
-      - ubuntu1604cis_skip_for_travis == false
+      - ! ubuntu1604cis_skip_for_travis
   tags:
       - level2
       - scored
@@ -279,7 +279,7 @@
       state: started
   when:
       - ubuntu1604cis_rule_1_1_2
-      - ubuntu1604cis_skip_for_travis == false
+      - ! ubuntu1604cis_skip_for_travis
   tags:
       - level2
       - scored
@@ -495,7 +495,8 @@
       name: autofs
       enabled: false
   when:
-      - ubuntu1604cis_allow_autofs == false and autofs_service_status.stdout == "loaded"
+      - ! ubuntu1604cis_allow_autofs
+      - autofs_service_status.stdout == "loaded"
       - ubuntu1604cis_rule_1_1_21
   tags:
       - level1
@@ -586,7 +587,7 @@
       owner: root
       group: root
       mode: 0600
-  when: 
+  when:
       - ansible_os_family == "Debian"
       - ubuntu1604cis_rule_1_4_1
   tags:
