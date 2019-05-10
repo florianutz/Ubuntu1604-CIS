@@ -5,6 +5,8 @@
   shell: |
       set -o pipefail
       dpkg --list | grep ^rc | tr -s ' ' | cut -d ' ' -f 2
+  args:
+      executable: /bin/bash
   register: apt_rc_packages
   changed_when: false
 

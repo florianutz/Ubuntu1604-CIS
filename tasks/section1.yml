@@ -314,6 +314,8 @@
   shell: |
       set -o pipefail
       mount | grep "on /var "
+  args:
+      executable: /bin/bash
   register: var_mounted
   changed_when: false
   failed_when: false
@@ -330,6 +332,8 @@
   shell: |
       set -o pipefail
       mount | grep "on /var/tmp "
+  args:
+      executable: /bin/bash
   register: var_tmp_mounted
   changed_when: false
   failed_when: false
@@ -368,6 +372,8 @@
   shell: |
       set -o pipefail
       mount | grep "on /var/log "
+  args:
+      executable: /bin/bash
   register: var_log_mounted
   changed_when: false
   failed_when: false
@@ -384,6 +390,8 @@
   shell: |
       set -o pipefail
       mount | grep "on /var/log/audit "
+  args:
+      executable: /bin/bash
   register: var_log_audit_mounted
   changed_when: false
   failed_when: false
@@ -400,6 +408,8 @@
   shell: |
       set -o pipefail
       mount | grep "on /home "
+  args:
+      executable: /bin/bash
   register: home_mounted
   changed_when: false
   failed_when: false
@@ -491,6 +501,8 @@
   shell: |
       set -o pipefail
       df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
+  args:
+      executable: /bin/bash
   changed_when: false
   failed_when: false
   when:
@@ -673,6 +685,8 @@
   shell: |
       set -o pipefail
       dmesg | grep -E "NX|XD" | grep " active"
+  args:
+      executable: /bin/bash
   changed_when: false
   when:
       - ubuntu1604cis_rule_1_5_2
