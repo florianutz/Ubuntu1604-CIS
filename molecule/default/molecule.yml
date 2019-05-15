@@ -16,6 +16,16 @@ provisioner:
   lint:
     name: ansible-lint
     enabled: false
+  config_options:
+    defaults:
+      bin_ansible_callbacks: True
+      callback_whitelist: profile_tasks,timer
+      fact_caching: jsonfile
+      fact_caching_connection: ./cache
+      poll_interval: 3
+      forks: 100
+    connection:
+      pipelining: true
 scenario:
   name: default
 verifier:
