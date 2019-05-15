@@ -15,7 +15,7 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
-    enabled: true
+    enabled: false
   config_options:
     defaults:
       bin_ansible_callbacks: True
