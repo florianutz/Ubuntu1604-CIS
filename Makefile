@@ -53,10 +53,6 @@ lint: bin/python
 test: bin/python
 	( . bin/activate && bin/molecule test )
 
-travis: 
-	pip install -r requirements.txt
-	molecule test
-
 .PHONY: compare
 compare:
 	rm -rf .molecule
