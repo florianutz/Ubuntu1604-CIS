@@ -113,11 +113,11 @@ ubuntu1604cis_aide_cron:
 
 ##### Client application requirements
 ```
-ubuntu1604cis_openldap_clients_required: false
+ubuntu1604cis_ldap_utils_required: false
 ubuntu1604cis_telnet_required: false
 ubuntu1604cis_talk_required: false
 ubuntu1604cis_rsh_required: false
-ubuntu1604cis_ypbind_required: false
+ubuntu1604cis_nis_required: false
 ```
 
 ##### Time Synchronization

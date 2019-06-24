@@ -113,7 +113,7 @@
       - notimplemented
 
 name: "SCORED | 2.1.10 | PATCH | Ensure xinetd is not enabled"
-  service:
+  systemd:
       name: xinetd
       state: absent
       enabled: false
@@ -129,7 +129,7 @@ name: "SCORED | 2.1.10 | PATCH | Ensure xinetd is not enabled"
 
 
 name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
-  service:
+  systemd:
       name: openbsd-inetd
       state: absent
       enabled: false
@@ -153,13 +153,13 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
             install_recommends: false
 
       - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service start"
-        service:
+        systemd:
             name: "{{ ubuntu1604cis_time_synchronization }}"
             state: started
             enabled: true
 
       - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop ntp"
-        service:
+        systemd:
             name: "{{ ntp_service[ansible_os_family] }}"
             state: stopped
             enabled: false
@@ -168,7 +168,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
             - ntpd_service_status.stdout == "loaded"
 
       - name: "NOTSCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop chrony"
-        service:
+        systemd:
             name: chronyd
             state: stopped
             enabled: false
@@ -265,7 +265,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.2
 
 - name: "SCORED | 2.2.3 | PATCH | Ensure Avahi Server is not enabled"
-  service:
+  systemd:
       name: avahi-daemon
       state: stopped
       enabled: false
@@ -282,7 +282,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.3
 
 - name: "SCORED | 2.2.4 | PATCH | Ensure CUPS is not enabled"
-  service:
+  systemd:
       name: cups
       state: stopped
       enabled: false
@@ -301,14 +301,14 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
 - name: "SCORED | 2.2.5 | PATCH | Ensure DHCP Server is not enabled"
   block:
     - name: "SCORED | 2.2.5 | PATCH | Ensure DHCP Server is not enabled | Stop isc-dhcp-server"
-      service:
+      systemd:
         name: isc-dhcp-server
         state: stopped
         enabled: false
       when:
          - isc-dhcp-server.stdout == "loaded"
     - name: "SCORED | 2.2.5 | PATCH | Ensure DHCP Server is not enabled | Stop isc-dhcp-server6"
-      service:
+      systemd:
         name: isc-dhcp-server6
         state: stopped
         enabled: false
@@ -326,7 +326,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.5
 
 - name: "SCORED | 2.2.6 | PATCH | Ensure LDAP server is not enabled"
-  service:
+  systemd:
       name: slapd
       state: stopped
       enabled: false
@@ -343,7 +343,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.6
 
 - name: "SCORED | 2.2.7 | PATCH | Ensure NFS and RPC are not enabled"
-  service:
+  systemd:
       name: nfs
       state: stopped
       enabled: false
@@ -361,7 +361,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.7
 
 - name: "SCORED | 2.2.7 | PATCH | Ensure RPC is not enabled"
-  service:
+  systemd:
       name: rpcbind
       state: stopped
       enabled: false
@@ -379,7 +379,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.7
 
 - name: "SCORED | 2.2.8 | PATCH | Ensure DNS Server is not enabled"
-  service:
+  systemd:
       name: bind9
       state: stopped
       enabled: false
@@ -394,7 +394,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.8
 
 - name: "SCORED | 2.2.9 | PATCH | Ensure FTP Server is not enabled"
-  service:
+  systemd:
       name: vsftpd
       state: stopped
       enabled: false
@@ -409,7 +409,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.9
 
 - name: "SCORED | 2.2.10 | PATCH | Ensure HTTP server is not enabled"
-  service:
+  systemd:
       name: apache2
       state: stopped
       enabled: false
@@ -424,7 +424,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.10
 
 - name: "SCORED | 2.2.11 | PATCH | Ensure IMAP and POP3 server is not enabled"
-  service:
+  systemd:
       name: dovecot
       state: stopped
       enabled: false
@@ -439,7 +439,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.11
 
 - name: "SCORED | 2.2.12 | PATCH | Ensure Samba is not enabled"
-  service:
+  systemd:
       name: smbd
       state: stopped
       enabled: false
@@ -454,7 +454,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.12
 
 - name: "SCORED | 2.2.13 | PATCH | Ensure HTTP Proxy Server is not enabled"
-  service:
+  systemd:
       name: squid
       state: stopped
       enabled: false
@@ -469,7 +469,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.13
 
 - name: "SCORED | 2.2.14 | PATCH | Ensure SNMP Server is not enabled"
-  service:
+  systemd:
       name: snmpd
       state: stopped
       enabled: false
@@ -499,7 +499,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.15
 
 - name: "SCORED | 2.2.16 | PATCH | Ensure rsync Server is not enabled"
-  service:
+  systemd:
       name: rsync
       state: stopped
       enabled: false
@@ -514,7 +514,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.16
 
 - name: "SCORED | 2.2.17 | PATCH | Ensure nis server is not enabled | rsh"
-  service:
+  systemd:
       name: nis
       state: stopped
       enabled: false
@@ -529,7 +529,7 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
       - rule_2.2.17
 
 - name: "SCORED | 2.2.17 | PATCH | Ensure nis server is not enabled | rlogin"
-  service:
+  systemd:
       name: rlogin.socket
       state: stopped
       enabled: false
@@ -545,10 +545,10 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
 
 - name: "SCORED | 2.3.1 | PATCH | Ensure NIS Client is not installed"
   apt:
-      name: ypbind
+      name: nis
       state: absent
   when:
-      - not ubuntu1604cis_ypbind_required
+      - not ubuntu1604cis_nix_required
       - ubuntu1604cis_rule_2_3_1
   tags:
       - level1
@@ -558,7 +558,9 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
 
 - name: "SCORED | 2.3.2 | PATCH | Ensure rsh client is not installed"
   apt:
-      name: rsh
+      name:
+        - rsh-client
+        - rsh-redone-client
       state: absent
   when:
       - not ubuntu1604cis_rsh_required
@@ -597,10 +599,10 @@ name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not enabled"
 
 - name: "SCORED | 2.3.5 | PATCH | Ensure LDAP client is not installed"
   apt:
-      name: openldap-clients
+      name: ldap-utils
       state: absent
   when:
-      - not ubuntu1604cis_openldap_clients_required
+      - not ubuntu1604cis_ldap_utils_required
       - ubuntu1604cis_rule_2_3_5
   tags:
       - level1
