@@ -64,22 +64,15 @@ ubuntu1604cis_rpc_server: false
 ubuntu1604cis_ntalk_server: false
 ubuntu1604cis_rsyncd_server: false
 ubuntu1604cis_tftp_server: false
-ubuntu1604cis_rsh_server: false
+ubuntu1604cis_rsync_server: false
 ubuntu1604cis_nis_server: false
 ubuntu1604cis_snmp_server: false
 ubuntu1604cis_squid_server: false
 ubuntu1604cis_smb_server: false
 ubuntu1604cis_dovecot_server: false
-ubuntu1604cis_httpd_server: false
+ubuntu1604cis_apache2_server: false
 ubuntu1604cis_vsftpd_server: false
 ubuntu1604cis_named_server: false
-ubuntu1604cis_bind: false
-ubuntu1604cis_vsftpd: false
-ubuntu1604cis_httpd: false
-ubuntu1604cis_dovecot: false
-ubuntu1604cis_samba: false
-ubuntu1604cis_squid: false
-ubuntu1604cis_net_snmp: false
 ```
 
 ##### Designate server as a Mail server
@@ -120,11 +113,11 @@ ubuntu1604cis_aide_cron:
 
 ##### Client application requirements
 ```
-ubuntu1604cis_openldap_clients_required: false
+ubuntu1604cis_ldap_utils_required: false
 ubuntu1604cis_telnet_required: false
 ubuntu1604cis_talk_required: false
 ubuntu1604cis_rsh_required: false
-ubuntu1604cis_ypbind_required: false
+ubuntu1604cis_nis_required: false
 ```
 
 ##### Time Synchronization
