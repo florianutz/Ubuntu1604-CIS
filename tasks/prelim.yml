@@ -106,12 +106,21 @@
   changed_when: false
   check_mode: false
 
-- name: "PRELIM | Check for dhcpd service"
+- name: "PRELIM | Check for isc-dhcp-server service"
   shell: "set -o pipefail
-      systemctl show dhcpd | grep LoadState | cut -d = -f 2"
+      systemctl show isc-dhcp-server | grep LoadState | cut -d = -f 2"
   args:
       executable: /bin/bash
-  register: dhcpd_service_status
+  register: isc-dhcp-server_service_status
+  changed_when: false
+  check_mode: false
+
+- name: "PRELIM | Check for isc-dhcp-server6 service"
+  shell: "set -o pipefail
+      systemctl show isc-dhcp-server6 | grep LoadState | cut -d = -f 2"
+  args:
+      executable: /bin/bash
+  register: isc-dhcp-server6_service_status
   changed_when: false
   check_mode: false
 
@@ -142,12 +151,12 @@
   changed_when: false
   check_mode: false
 
-- name: "PRELIM | Check for named service"
+- name: "PRELIM | Check for bind9 service"
   shell: "set -o pipefail
-      systemctl show named | grep LoadState | cut -d = -f 2"
+      systemctl show bind9 | grep LoadState | cut -d = -f 2"
   args:
       executable: /bin/bash
-  register: named_service_status
+  register: bind9_service_status
   changed_when: false
   check_mode: false
 
@@ -183,7 +192,7 @@
       systemctl show smb | grep LoadState | cut -d = -f 2"
   args:
       executable: /bin/bash
-  register: smb_service_status
+  register: smbd_service_status
   changed_when: false
   check_mode: false
 
