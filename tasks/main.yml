@@ -52,6 +52,10 @@
   when: ubuntu1604cis_section6
   tags: section6
 
+- include: patch.yml
+  become: true
+  tags: patch
+
 - include: post.yml
   become: true
   tags:
