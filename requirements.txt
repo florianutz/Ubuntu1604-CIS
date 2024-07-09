@@ -61,4 +61,4 @@ wcwidth==0.1.7
 websocket-client==0.56.0
 whichcraft==0.6.0
 yamllint==1.15.0
-zipp==0.5.2
+zipp==3.19.1
