@@ -44,7 +44,7 @@ pycodestyle==2.5.0
 pycparser==2.19
 pyflakes==2.1.1
 pyparsing==2.4.2
-pytest==5.0.1
+pytest==9.0.3
 python-dateutil==2.8.0
 python-gilt==1.2.1
 PyYAML==5.4
