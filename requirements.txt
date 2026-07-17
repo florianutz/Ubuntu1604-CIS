@@ -51,7 +51,7 @@ PyYAML==5.4
 requests==2.33.0
 ruamel.yaml==0.16.0
 ruamel.yaml.clib==0.1.0
-sh==1.12.14
+sh==2.2.4
 six==1.11.0
 tabulate==0.8.2
 testinfra==1.19.0
